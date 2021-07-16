@@ -94,7 +94,7 @@
                 <select name="txt_role" class="form-control" required>
                     <option value="">-ระบุตำแหน่ง-</option>
                     <?php foreach($result as $results){
-                        if($results['status'] == 'Active'){?>
+                        if($results['status_role'] == 'Active'){?>
                     <option value="<?php echo $results["user_role_id"];?>">
                         <?php echo $results["name_role"]; ?>
                     </option>
