@@ -47,6 +47,7 @@
                 if ($username != null AND $password != null AND $role != null ) {
                     if ($select_stmt->rowCount() > 0) {
                         if ($username == $dbusername AND $password == $dbpassword AND $role == $dbrole AND $dbstatus == 'Active' AND $fname = $dbfname AND $lname = $dblname AND $id = $dbid)  {
+                            $_SESSION['master_id'] = $id;
                             switch($dbrole) {
                                 case '1':
                                     $_SESSION['login_type'] = 1;
@@ -78,7 +79,6 @@
                                     $_SESSION['user_login'] = $username;
                                     $_SESSION['fname'] = $fname;
                                     $_SESSION['lname'] = $lname;
-                                    $_SESSION['master_id'] = $id;
                                     $_SESSION['success'] = "Teacher... Successfully Login...";
                                     header("location: teacher/teacher_home.php");
                                 break;

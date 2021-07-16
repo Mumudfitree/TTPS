@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-        <?php $query = "SELECT * FROM login_information WHERE username = '".$_SESSION['user_login']."'";
+        <?php $query = "SELECT * FROM login_information WHERE master_id = '".$_SESSION['master_id']."'";
               $result = mysqli_query($conn, $query) or die ("Error in sql: $query" . mysqli_error($query));
         ?>
         <?php while ($row = mysqli_fetch_array($result)){//if (isset($_SESSION['username'])) : ?>
@@ -67,7 +67,7 @@
         <?php }?><?php?><br>
                 <h5 align="center">
         <?php $today = date('Y-m-d'); 
-              $sql1 = "SELECT * FROM work WHERE work_date = '$today' AND username = '".$_SESSION['user_login']."' ";
+              $sql1 = "SELECT * FROM work WHERE work_date = '$today' AND master_id = '".$_SESSION['master_id']."' ";
               $result1 = mysqli_query($conn, $sql1) or die ("Error in sql: $sql1" . mysqli_error($sql1));              
         ?>            
         <?php $num = mysqli_fetch_array($result1);$num2 = mysqli_num_rows($result1)?>
