@@ -1,7 +1,9 @@
 <?php 
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    require_once 'connection.php';
+    include ('connection.php');
+
+    PDO();
 
 
     if (isset($_POST['btn_login'])) {
@@ -24,7 +26,7 @@
             $errorMsg[] = "Please select role";
         } else if ($username AND $password AND $role) {
             try {
-                $select_stmt = $db->prepare("SELECT username, password, user_role_id,status_master,fname,lname,master_id FROM login_information WHERE username = :uusername AND password = :upassword AND user_role_id = :urole");
+                $select_stmt = $_SESSION['db']->prepare("SELECT username, password, user_role_id,status_master,fname,lname,master_id FROM login_information WHERE username = :uusername AND password = :upassword AND user_role_id = :urole");
                 $select_stmt->bindParam(":uusername", $username);
                 $select_stmt->bindParam(":upassword", $password);
                 $select_stmt->bindParam(":urole", $role);
