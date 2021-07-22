@@ -1,6 +1,7 @@
 <?php 
-    session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
-
+    if(session_status() != 2){
+        session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
+    }
     require_once 'connection.php';
 
 
@@ -108,6 +109,8 @@
         }
 
         switch ($_SESSION['login_type']) {
+            case 0:
+                break;
             case 1:
                 $_SESSION['admin_login'] = $_SESSION['user_login'];
                 break;
