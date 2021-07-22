@@ -4,6 +4,12 @@
 
     include_once('connection.php');
     session_start();
+
+    //This code have been added for compatible reason, you can remove if you already ensure no more codes is used.
+    include('login_db.php');
+    legacyLogin(1);
+
+
     if(isset($_SESSION['login_type'])){    
 
         if ($_SESSION['login_type'] === 1) {

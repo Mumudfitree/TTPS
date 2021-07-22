@@ -101,4 +101,38 @@
         }
     }
 
+    //This function have been added for compatible reason, you can remove if you already ensure no more codes is used.
+    function legacyLogin(int $isEnabled) {
+        if (!$isEnabled){
+            return;
+        }
+
+        switch ($_SESSION['login_type']) {
+            case 1:
+                $_SESSION['admin_login'] = $_SESSION['user_login'];
+                break;
+            case 2:
+                $_SESSION['director_login'] = $_SESSION['user_login'];
+                break;
+            case 3:
+                $_SESSION['deputydirector_login'] = $_SESSION['user_login'];
+                break;
+            case 4:
+                $_SESSION['academicdepartment_login'] = $_SESSION['user_login'];
+                break;
+            case 5:
+                $_SESSION['teacher_login'] = $_SESSION['user_login'];
+                break;
+            case 6:
+                $_SESSION['headprimary_login'] = $_SESSION['user_login'];
+                break;
+            case 7:
+                $_SESSION['headhighschool_login'] = $_SESSION['user_login'];
+                break;
+            default:
+                $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
+            
+        }
+    }
+
 ?>
