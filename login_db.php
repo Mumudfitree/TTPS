@@ -4,6 +4,7 @@
     }
     require_once 'connection.php';
 
+    $_SESSION['login_type'] = 0;
 
     if (isset($_POST['btn_login'])) {
         $username = $_POST['txt_username']; // textbox name 

@@ -44,7 +44,6 @@
     //This code have been added for compatible reason, you can remove if you already ensure no more codes is used.
     include('login_db.php');
     legacyLogin(1);
-    
 ?>
 
 <!DOCTYPE html>
