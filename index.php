@@ -5,25 +5,22 @@
     include_once('connection.php');
     session_start();
 
-    //This code have been added for compatible reason, you can remove if you already ensure no more codes is used.
-    include('login_db.php');
-    legacyLogin(1);
-
-
+    
+    
     if(isset($_SESSION['login_type'])){    
-
+        
         if ($_SESSION['login_type'] === 1) {
             header("location: admin/admin_home.php");
         }
-
+        
         if ($_SESSION['login_type'] === 2) {
             header("location: director/director_home.php");
         }
-
+        
         if ($_SESSION['login_type'] === 3) {
             header("location: deputydirector/deputydirector_home.php");
         }
-
+        
         if ($_SESSION['login_type'] === 4) {
             header("location: academicdepartment/academicdepartment_home.php");
         }
@@ -31,9 +28,22 @@
         if ($_SESSION['login_type'] === 5) {
             header("location: teacher/teacher_home.php");
         }
+        
+        if ($_SESSION['login_type'] === 6) {
+            header("location: headprimary/headprimary_home.php");
+        }
+        
+        if ($_SESSION['login_type'] === 7) {
+            header("location: headhighschool/headhighschool_home.php");
+        }
+        
     } else {
         $_SESSION['login_type'] = 0;
     }
+    
+    //This code have been added for compatible reason, you can remove if you already ensure no more codes is used.
+    include('login_db.php');
+    legacyLogin(1);
     
 ?>
 
