@@ -1,12 +1,11 @@
 <?php
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก่อนถึงเข้าได้
+    if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่อนถึงเข้าได้
         header("location: ../index.php");
     }
 
     require_once('../connection.php');
-    
 
     if(isset($_REQUEST['update_id'])){
         //2. query ข้อมูลจากตาราง:

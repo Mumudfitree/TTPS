@@ -1,7 +1,7 @@
 <?php
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก่อนถึงเข้าได้
+    if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่อนถึงเข้าได้
         header("location: ../index.php");
     }
 
@@ -27,7 +27,7 @@
         $name_classroom = $_REQUEST['txt_name_classroom'];
 
         if(empty($name_classroom)){
-            $errorMsg = "กรุณากรอกชั้นเรียน";
+            $errorMsg = "กรุณาระบุชั้นเรียน";
         }else{
             
                 if(!isset($errorMsg))

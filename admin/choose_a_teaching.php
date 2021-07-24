@@ -2,7 +2,7 @@
 
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก่อนถึงเข้าได้
+    if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่อนถึงเข้าได้
         header("location: ../index.php");
     }
 
@@ -42,10 +42,7 @@
                         AND c.master_id = login.master_id AND c.grade_id = grade.grade_id  ORDER BY choose_id DESC $limit";
                          if(isset($_GET['search'])){ 
                             $search = $_GET['search'];
-                            $sql = "SELECT * FROM choose_a_teaching as c, subject as sub ,classroom as class,login_information as login, grade_level as grade, year
-                            WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = year.year_id
-                            AND c.master_id = login.master_id  AND  c.grade_id = grade.grade_id AND login.fname LIKE '%" . $search . "%' 
-                            ORDER BY choose_id  DESC $limit";
+                            $sql = "SELECT * FROM choose_a_teaching as report, subject, classroom as class, login_information as user, grade_level as grade, year  WHERE report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.year_id = year.year_id AND report.master_id = user.master_id AND report.grade_id = grade.grade_id ORDER BY choose_id DESC $limit";
                         }
                         $nquery=mysqli_query($conn,$sql);
                     
@@ -141,6 +138,7 @@
                 </thead>
                 <tbody>
                     <?php
+
                     while($row =  mysqli_fetch_array($nquery)){
                     ?>
 
@@ -181,6 +179,6 @@
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
 
-</body>
-
+    </body>
+    
 </html>

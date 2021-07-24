@@ -11,8 +11,8 @@
         
         $id = $_REQUEST['update_id'];
 
-        $sql = "SELECT * FROM choose_a_teaching as c,login_information as m , subject as sub, classroom as class, grade_level as grade
-        WHERE c.choose_id = '".$id."' and c.master_id = m.master_id and c.subject_id = sub.subject_id and c.class_id = class.class_id and c.grade_id = grade.grade_id ";
+        $sql = "SELECT * FROM choose_a_teaching as report, login_information as user, subject, classroom as class, grade_level as grade
+        WHERE report.choose_id = '".$id."' and report.master_id = user.master_id and report.subject_id = subject.subject_id and report.class_id = class.class_id and report.grade_id = grade.grade_id";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);
@@ -107,7 +107,7 @@
                 $result1 = mysqli_query($conn,$query1);//login data
                 ?>
                 <?php foreach($result1 as $row1){
-                    if($row1['status_master'] == 'Active' && $row1['user_role_id'] == '5' && row1['master_id'] !== $master_id){?>
+                    if($row1['master_id'] !== $master_id && $row1['status_master'] == 'Active' && $row1['user_role_id'] == '5' ) {?>
                 <option value="<?php echo $row1["master_id"]; ?>">
                 <?php echo $row1["fname"].' '.$row1["lname"]; ?>
                 </option>
@@ -153,7 +153,7 @@
                 $result2 = mysqli_query($conn,$query2);//subject
                 ?>
                 <?php foreach($result2 as $row2){
-                    if($row2['status_subject'] == 'Active' && $row2['subject_id'] !== $subject_id){?>
+                    if($row2['status_subject'] == 'Active' && $row2['subject_id'] != $subject_id){?>
                 <option value="<?php echo $row2["subject_id"]; ?>">
                 <?php echo $row2["code_subject"].' '.$row2["name_subject"]; ?>
                 </option>
@@ -175,7 +175,7 @@
                 $result3 = mysqli_query($conn,$query3);//classroom
                 ?>
                 <?php foreach($result3 as $row3){
-                    if($row3['status_class'] == 'Active' && row3['class_id'] !== $class_id){?>
+                    if($row3['status_class'] == 'Active' && $row3['class_id'] != $class_id){?>
                 <option value="<?php echo $row3["class_id"]; ?>">
                 <?php echo $row3["name_classroom"]; ?>
                 </option>
@@ -214,7 +214,7 @@
 
 
 
-    <script src="js/slime.js"></>
+    <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
 

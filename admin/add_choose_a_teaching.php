@@ -1,7 +1,7 @@
 <?php
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก่อนถึงเข้าได้
+    if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่อนถึงเข้าได้
         header("location: ../index.php");
     }
     require_once('../connection.php');
@@ -99,7 +99,9 @@
                 <option value="<?php echo $row["master_id"]; ?>">
                 <?php echo $row["fname"].' '.$row["lname"]; ?>
                 </option>
-                <?php } ?>
+                <?php }else {
+                    # code...
+                } ?>
                 <?php } ?>
                 </select>
             </div>
