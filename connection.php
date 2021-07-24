@@ -1,4 +1,19 @@
-<?php 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "php_multiplelogin";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $database);
+mysqli_set_charset($conn, "utf8");
+
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+    //อันเก่าแบบPDO
 
     $db_host = "localhost"; // localhost server
     $db_user = "root"; // database username
@@ -7,7 +22,7 @@
     // Create connection
     $conn = new mysqli($db_host, $db_user, $db_password,$db_name);
     mysqli_query($conn, "SET NAMES 'UTF8' ");
-     //Check connection
+    //Check connection
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
@@ -20,6 +35,4 @@
     } catch(PDOException $e) {
         $e->getMessage();
     }
-
-
 ?>

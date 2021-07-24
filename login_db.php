@@ -53,25 +53,25 @@
                                 case '1':
                                     $_SESSION['login_type'] = 1;
                                     $_SESSION['user_login'] = $username;
-                                    $_SESSION['success'] = "ยินดีต้อนรับผู้ดูแลระบบ";
+                                    $_SESSION['success'] = "ผู้ดูแลระบบ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: admin/admin_home.php");
                                 break;
                                 case '2':
                                     $_SESSION['login_type'] = 2;
                                     $_SESSION['user_login'] = $username;
-                                    $_SESSION['success'] = "Director... Successfully Login...";
+                                    $_SESSION['success'] = "ผู้อำนวยการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: director/director_home.php");
                                 break;
                                 case '3':
                                     $_SESSION['login_type'] = 3;
                                     $_SESSION['user_login'] = $username;
-                                    $_SESSION['success'] = "Deputy Director... Successfully Login...";
+                                    $_SESSION['success'] = "รองผู้อำนวยการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: deputydirector/deputydirector_home.php");
                                 break;
                                 case '4':
                                     $_SESSION['login_type'] = 4;
                                     $_SESSION['user_login'] = $username;
-                                    $_SESSION['success'] = "Academic Department... Successfully Login...";
+                                    $_SESSION['success'] = "ฝ่ายวิชาการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: academicdepartment/academicdepartment_home.php");
                                 break;
                                 case '5':
@@ -81,19 +81,40 @@
                                     $_SESSION['fname'] = $fname;
                                     $_SESSION['lname'] = $lname;
                                     $_SESSION['master_id'] = $id;
-                                    $_SESSION['success'] = "Teacher... Successfully Login...";
+                                    $_SESSION['success'] = "ครู ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: teacher/teacher_home.php");
                                 break;
+                                case '6':
+
+                                    $_SESSION['login_type'] = 6;
+                                    $_SESSION['user_login'] = $username;
+                                    $_SESSION['fname'] = $fname;
+                                    $_SESSION['lname'] = $lname;
+                                    $_SESSION['master_id'] = $id;
+                                    $_SESSION['success'] = "หัวหน้าช่วงชั้นประถม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
+                                    header("location: headprimary/headprimary_home.php");
+                                break;
+                                
+                                case '7':
+
+                                    $_SESSION['login_type'] = 7;
+                                    $_SESSION['user_login'] = $username;
+                                    $_SESSION['fname'] = $fname;
+                                    $_SESSION['lname'] = $lname;
+                                    $_SESSION['master_id'] = $id;
+                                    $_SESSION['success'] = "หัวหน้าช่วงชั้นมัธยม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
+                                    header("location: headhighschool/headhighschool_home.php");
+                                break;
                                 default:
-                                    $_SESSION['error'] = "กรุณาตรวจสอบบัญชีผู้ใช้ รหัสผ่าน หรือบทบาทใหม่อีกครั้ง";
+                                    $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
                                     header("location: index.php");
                             }
                         }else{
-                            $_SESSION['error'] = "กรุณาตรวจสอบบัญชีผู้ใช้ รหัสผ่าน หรือบทบาทใหม่อีกครั้ง";
+                            $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
                         header("location: index.php");
                         }
                     } else {
-                        $_SESSION['error'] = "กรุณาตรวจสอบบัญชีผู้ใช้ รหัสผ่าน หรือบทบาทใหม่อีกครั้ง";
+                        $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
                         header("location: index.php");
                     }
                 }
