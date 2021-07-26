@@ -18,7 +18,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
             }
     }
 
-    $update_stmt = $db->prepare("UPDATE classroom SET status='Active' WHERE class_id = :id");
+    $update_stmt = $db->prepare("UPDATE classroom SET status_class ='Active' WHERE class_id = :id");
     $update_stmt->bindParam(':id', $id);
     if($update_stmt->execute()){
         header("refresh:1,classroom.php?update_id=$id");

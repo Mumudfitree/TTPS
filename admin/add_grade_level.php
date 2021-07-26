@@ -8,6 +8,7 @@
 
     if(isset($_REQUEST['btn_insert'])){
         $name_gradelevel = $_REQUEST['txt_gradelevel'];
+        $grade_level_user = $_REQUEST['txt_grade_level_user'];
 
         if(empty($name_gradelevel)){
             $errorMsg = "กรุณากรอกชื่อระดับชั้น";
@@ -60,6 +61,17 @@
     <?php } ?>
 
     <form method="post" class="form-horizontal mt-5">
+        
+    <div class="form- text-center">
+                <div class="row">
+                <label for="txt_grade_level_user" class="col-sm-3 control-label">ชื่อระดับการศึกษา</label>
+                <div class="col-sm-6">
+                    <input type="text" name="txt_grade_level_user" class="form-control" placeholder="ชื่อระดับการศึกษา...">
+                </div>
+                </div>
+            </div>
+
+    
             <div class="form- text-center">
                 <div class="row">
                 <label for="name_gradelevel" class="col-sm-3 control-label">ชื่อระดับชั้น</label>

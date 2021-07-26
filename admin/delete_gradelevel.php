@@ -21,7 +21,7 @@ if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่�
             }
     }
 
-    $update_stmt = $db->prepare("UPDATE grade_level SET status  = 'Inactive' WHERE grade_id = :id");
+    $update_stmt = $db->prepare("UPDATE grade_level SET status_grade  = 'Inactive' WHERE grade_id = :id");
     $update_stmt->bindParam(':id', $id);
     if($update_stmt->execute()){
         $updateMeg = "Record update successfully...";

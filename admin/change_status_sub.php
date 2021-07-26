@@ -18,7 +18,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
             }
     }
 
-    $update_stmt = $db->prepare("UPDATE subject SET status='Active' WHERE subject_id = :id");
+    $update_stmt = $db->prepare("UPDATE subject SET status_sugject ='Active' WHERE subject_id = :id");
     $update_stmt->bindParam(':id', $id);
     if($update_stmt->execute()){
         header("refresh:1,subject.php?update_id=$id");

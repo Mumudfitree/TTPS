@@ -19,10 +19,11 @@
             $e->getMessage();
         }
     }if(isset($_REQUEST['btn_update'])){//ตั้งตัวแปร up
+        $grade_level = $_REQUEST['txt_grade'];
         $name_classroom = $_REQUEST['txt_name_classroom'];
 
         if(empty($name_classroom)){
-            $errorMsg = "Please Enter Classroom";
+            $errorMsg = "กรุณาระบุชั้นเรียน";
         }else{
             try{
                 if(!isset($errorMsg))

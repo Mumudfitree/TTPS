@@ -9,6 +9,7 @@
     if(isset($_REQUEST['btn_insert'])){
         $code_subject = $_REQUEST['txt_code_subject'];
         $name_subject = $_REQUEST['txt_name_subject'];
+        $grade = $_REQUEST['txt_grade'];
 
         if(empty($code_subject)){
             $errorMsg = "กรุณากรอกรหัสวิชา";
@@ -64,6 +65,31 @@
     <?php } ?>
 
     <form method="post" class="form-horizontal mt-5">
+        
+    <div class="form- text-center">
+                <div class="row">
+                <label for="name_classroom" class="col-sm-3 control-label">ระดับชั้น</label>
+                <div class="col-sm-6">
+                <select name="txt_grade" class="form-control" required>
+                    <?php
+                $query1 = "SELECT * FROM grade_level ";
+                $result1 = mysqli_query($conn, $query1);
+                    ?>
+                <option value="">-ระบุระดับชั้นเรียน-</option>
+                    <?php foreach($result1 as $results1){
+                        if( $results1["status_grade"] == 'Active'){?>
+                    
+                    <option value="<?php echo $results1["grade_id"];?>">
+                    <?php echo '('.$results1["grade_level_user"].')  '.$results1["name_gradelevel"]; ?>
+                    </option>
+                    <?php } ?>
+                    <?php } ?>
+                </select>
+                </div>
+                </div>
+            </div>
+            <br>
+
             <div class="form- text-center">
                 <div class="row">
                 <label for="codesubject" class="col-sm-3 control-label">รหัสวิชา</label>
@@ -72,6 +98,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             <div class="form- text-center">
                 <div class="row">
@@ -81,6 +108,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             <div class="form-group text-center">
                 <div class="col-sm-offset-3 col-sm-9 mt-5">

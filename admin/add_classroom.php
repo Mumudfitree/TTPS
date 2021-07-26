@@ -74,11 +74,11 @@
                 $result = mysqli_query($conn, $query);
                     ?>
                 <option value="">-ระบุระดับชั้นเรียน-</option>
-                    <?php foreach($result as $results){
-                        if($results["grade_id"] = $results["grade_id"] AND $results["status"] == 'Active'){?>
+                <?php foreach($result1 as $results1){
+                        if( $results1["status_grade"] == 'Active'){?>
                     
-                    <option value="<?php echo $results["grade_id"];?>">
-                        <?php echo $results["name_gradelevel"]; ?>
+                    <option value="<?php echo $results1["grade_id"];?>">
+                        <?php echo '('.$results1["grade_level_user"].')  '.$results1["name_gradelevel"]; ?>
                     </option>
                     <?php } ?>
                     <?php } ?>
@@ -86,6 +86,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             <div class="form- text-center">
                 <div class="row">

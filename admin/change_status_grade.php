@@ -18,11 +18,11 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
             }
     }
 
-    $update_stmt = $db->prepare("UPDATE grade_level SET status='Active' WHERE grade_id = :id");
+    $update_stmt = $db->prepare("UPDATE grade_level SET status__grade ='Active' WHERE grade_id = :id");
     $update_stmt->bindParam(':id', $id);
     if($update_stmt->execute()){
         header("refresh:1,grade_level.php?update_id=$id");
     }
-    
+
     
 ?>

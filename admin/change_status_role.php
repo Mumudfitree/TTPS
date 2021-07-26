@@ -18,7 +18,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
             }
     }
 
-    $update_stmt = $db->prepare("UPDATE user_role SET status='Active' WHERE user_role_id = :id");
+    $update_stmt = $db->prepare("UPDATE user_role SET status_role ='Active' WHERE user_role_id = :id");
     $update_stmt->bindParam(':id', $id);
     if($update_stmt->execute()){
         $updateMeg = "Record update successfully...";

@@ -27,8 +27,7 @@
         $email_up = $_REQUEST['txt_email'];
         $role_up = $_REQUEST['txt_role'];
         $status;
-        $id = $_REQUEST['update_id'];
-        
+        //$id = $_REQUEST['update_id'];
         
 
         if(empty($firstname_up)){
@@ -178,9 +177,9 @@
 
 
 
-    <script src="js/slime.js"></>
+    <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
 
-</body>
+    </body>
 </html>
