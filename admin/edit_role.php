@@ -31,7 +31,7 @@
                     $update_stmt->bindParam(':id', $id);
 
                     if($update_stmt->execute()){
-                        $updateMeg = "บันทึกการอัพเดตเสร็จสิ้น";
+                        $updateMeg = "อัพเดตข้อมูลเสร็จสิ้น";
                         header("refresh:1,role_type.php");
                     }
             } catch(PDOException $e){

@@ -20,18 +20,20 @@
         }
     }if(isset($_REQUEST['btn_update'])){//ตั้งตัวแปร up
         $name_gradelevel = $_REQUEST['txt_name_gradelevel'];
+        $grade_level_user = $_REQUEST['txt_grade_level_user'];
 
         if(empty($name_gradelevel)){
             $errorMsg = "กรุณากรอกชื่อระดับชั้น";
         }else{
             try{
                 if(!isset($errorMsg))
-                    $update_stmt = $db->prepare("UPDATE grade_level SET  name_gradelevel = :name_gradelevel WHERE grade_id = :id");
+                    $update_stmt = $db->prepare("UPDATE grade_level SET grade_level_user = :grade_level_user, name_gradelevel = :name_gradelevel WHERE grade_id = :id");
+                    $update_stmt->bindParam(':grade_level_user', $grade_level_user);
                     $update_stmt->bindParam(':name_gradelevel', $name_gradelevel);
                     $update_stmt->bindParam(':id', $id);
 
                     if($update_stmt->execute()){
-                        $updateMeg = "บันทึกข้อมูลการอัพเดตเสร็จสิ้น";
+                        $updateMeg = "อัพเดตข้อมูลเสร็จสิ้น";
                         header("refresh:1,grade_level.php");
                     }
             } catch(PDOException $e){
@@ -50,36 +52,49 @@
     <title>หน้าแก้ไขข้อมูลระดับชั้น</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
 </head>
+
 <body>
-<?php include_once('slidebar_admin.php'); ?>
+    <?php include_once('slidebar_admin.php'); ?>
     <div class="main">
-    <div class="container">
-    <div class="display-3 text-center">แก้ไขระดับชั้น</div>
-    </div>
-    <?php
+        <div class="container">
+            <div class="display-3 text-center">แก้ไขระดับชั้น</div>
+        </div>
+        <?php
         if(isset($errorMsg)){
     ?>
         <div class="alert alert-danger">
-        <strong>เกิดข้อผิดพลาด! <?php echo $errorMsg; ?></strong>
+            <strong>เกิดข้อผิดพลาด! <?php echo $errorMsg; ?></strong>
         </div>
-    <?php } ?>
+        <?php } ?>
 
 
     <?php
         if(isset($updateMeg)){
     ?>
         <div class="alert alert-success">
-        <strong>ดำเนินการเสร็จสิ้น <?php echo $updateMeg; ?></strong>
+            <strong>ดำเนินการเสร็จสิ้น <?php echo $updateMeg; ?></strong>
         </div>
-    <?php } ?>
+        <?php } ?>
 
-    <form method="post" class="form-horizontal mt-5">
+        <form method="post" class="form-horizontal mt-5">
             <div class="form- text-center">
                 <div class="row">
-                <label for="name_gradelevel" class="col-sm-3 control-label">ชื่อระดับชั้น</label>
-                <div class="col-sm-6">
-                    <input type="text" name="txt_name_gradelevel" class="form-control" value="<?php echo $name_gradelevel; ?>">
+                    <label for="name_gradelevel" class="col-sm-3 control-label">ชื่อระดับชั้น</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="txt_grade_level_user" class="form-control"
+                            value="<?php echo $grade_level_user; ?>">
+                    </div>
                 </div>
+            </div>
+             
+
+
+            <div class="form- text-center">
+                <div class="row">
+                    <label for="name_gradelevel" class="col-sm-3 control-label">ชื่อระดับชั้น</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="txt_name_gradelevel" class="form-control" value="<?php echo $name_gradelevel; ?>">
+                    </div>
                 </div>
             </div>
 
@@ -89,10 +104,10 @@
                     <a href="grade_level.php" class="btn btn-danger">ยกเลิก</a>
                 </div>
             </div>
-    </form>
+        </form>
     </div>
 
-    
+
 
 
 
@@ -100,6 +115,6 @@
     <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
-    
-</body>
+
+    </body>
 </html>

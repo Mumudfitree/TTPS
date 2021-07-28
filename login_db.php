@@ -48,49 +48,44 @@
                 }
                 if ($username != null AND $password != null AND $role != null ) {
                     if ($select_stmt->rowCount() > 0) {
+
+                        $_SESSION['master_id'] = $id;
+                        $_SESSION['user_login'] = $username;
+                        $_SESSION['fname'] = $fname;
+                        $_SESSION['lname'] = $lname;
+                        $_SESSION['name'] = $_SESSION['fname'].' '.$_SESSION['lname'];
+
                         if ($username == $dbusername AND $password == $dbpassword AND $role == $dbrole AND $dbstatus == 'Active' AND $fname = $dbfname AND $lname = $dblname AND $id = $dbid)  {
                             switch($dbrole) {
                                 case '1':
                                     $_SESSION['login_type'] = 1;
-                                    $_SESSION['user_login'] = $username;
                                     $_SESSION['success'] = "ผู้ดูแลระบบ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: admin/admin_home.php");
                                 break;
                                 case '2':
                                     $_SESSION['login_type'] = 2;
-                                    $_SESSION['user_login'] = $username;
                                     $_SESSION['success'] = "ผู้อำนวยการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: director/director_home.php");
                                 break;
                                 case '3':
                                     $_SESSION['login_type'] = 3;
-                                    $_SESSION['user_login'] = $username;
                                     $_SESSION['success'] = "รองผู้อำนวยการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: deputydirector/deputydirector_home.php");
                                 break;
                                 case '4':
                                     $_SESSION['login_type'] = 4;
-                                    $_SESSION['user_login'] = $username;
                                     $_SESSION['success'] = "ฝ่ายวิชาการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: academicdepartment/academicdepartment_home.php");
                                 break;
                                 case '5':
 
                                     $_SESSION['login_type'] = 5;
-                                    $_SESSION['user_login'] = $username;
-                                    $_SESSION['fname'] = $fname;
-                                    $_SESSION['lname'] = $lname;
-                                    $_SESSION['master_id'] = $id;
                                     $_SESSION['success'] = "ครู ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: teacher/teacher_home.php");
                                 break;
                                 case '6':
 
                                     $_SESSION['login_type'] = 6;
-                                    $_SESSION['user_login'] = $username;
-                                    $_SESSION['fname'] = $fname;
-                                    $_SESSION['lname'] = $lname;
-                                    $_SESSION['master_id'] = $id;
                                     $_SESSION['success'] = "หัวหน้าช่วงชั้นประถม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: headprimary/headprimary_home.php");
                                 break;
@@ -98,10 +93,6 @@
                                 case '7':
 
                                     $_SESSION['login_type'] = 7;
-                                    $_SESSION['user_login'] = $username;
-                                    $_SESSION['fname'] = $fname;
-                                    $_SESSION['lname'] = $lname;
-                                    $_SESSION['master_id'] = $id;
                                     $_SESSION['success'] = "หัวหน้าช่วงชั้นมัธยม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                                     header("location: headhighschool/headhighschool_home.php");
                                 break;

@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระดับชั้นเรียน</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../pass_or_no.css">
 </head>
 
 <body>
@@ -29,6 +30,7 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
+                        <th>ชื่อระดับการศึกษา</th>
                         <th>ชื่อระดับชั้นเรียน</th>
                         <th>สถานะ</th>
                         <th>แก้ไข</th>
@@ -45,8 +47,13 @@
                 ?>
 
                     <tr>
+                        <td><?php echo $row["grade_level_user"]; ?></td>
                         <td><?php echo $row["name_gradelevel"]; ?></td>
-                        <td><?php echo $row["status"]; ?></td>
+                        <td><?php if($row["status_grade"] == 'Active'){?>
+                            <p class="active">ใช้งานได้</p>
+                        <?php } elseif($row["status_grade"] == 'Inactive'){?>
+                            <p class="inactive">ถูกระงับการใช้งาน</p>
+                       <?php } ?></td>
                         <td><a href="edit_gradelevel.php?update_id=<?php echo $row['grade_id']; ?>"
                                 class="btn btn-warning">แก้ไข</td>
                         <td><a href="delete_gradelevel.php?delete_id=<?php echo $row['grade_id']; ?>" class="btn btn-danger"
@@ -59,6 +66,10 @@
                     <?php } ?>
                 </tbody>
             </table>
+            <div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
+				</div>
+				<div class="col-lg-2">
+				</div>
         </div>
     </div>
 

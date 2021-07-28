@@ -33,7 +33,7 @@
     if(isset($_REQUEST['download_id'])){
         try{
             $id = $_REQUEST['download_id'];
-            $select_stmt = $db->prepare("SELECT * FROM prepare_to_teach as pre, subject as sub, classroom as class  WHERE pre.id_prepare = :id AND pre.subject_id = sub.subject_id AND pre.class_id = class.class_id  ");
+            $select_stmt = $db->prepare("SELECT * FROM prepare_to_teach as reportState, choose_a_teaching as report, subject, classroom as class  WHERE reportState.choose_id = report.choose_id AND report.subject_id = subject.subject_id AND report.class_id = class.class_id AND reportState.id_prepare = :id ");
             $select_stmt->bindParam(':id', $id);
             $select_stmt->execute();
             $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
@@ -49,45 +49,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Page Hours</title>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>หน้าดาวน์โหลดเตรียมสอนรายชั่วโมง</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
-    <style>
-body {
-font-family: sarabun;
-font-size: 20px;
-}
-table {
-border-collapse: collapse;
-width: 100%;
-}
+    <link rel="stylesheet" href="download_hours.css">
 
-td, th {
-border: 1px solid #dddddd;
-text-align: left;
-padding: 8px;
-
-}
- 
-tr:nth-child(even) {
-background-color: #dddddd;
-}
-</style>
 </head>
 <body">
+
     <div class="container">
     <form method="post" class="form-horizontal mt-5">
+    <div class="display-3 text-center">เตรียมสอนรายชั่วโมง</div>
+
     <div class="form- text-left">
                 <div class="row">
-                    <label for="name_role" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
-                    <div class="col-sm-6">
-                        <br>
-                        <input type="text" name="" class="form-control"
-                            value="<?php echo $_SESSION['fname'].' '.$_SESSION['lname']; ?>" readonly />
-                    </div>
+                    <label for="name_role" class="col-sm-3 control-label">ชื่อ-นามสกุล </label>
+                    <div class="col-sm-6"><?php echo $_SESSION['name']; ?></div>
                 </div>
             </div>
 
-
+            <?php 
+            $id = $_REQUEST['download_id'];
+            $query = "SELECT * FROM prepare_to_teach as pre,choose_a_teaching as c,subject as sub, classroom  as class
+            WHERE pre.choose_id = c.choose_id AND c.subject_id = sub.subject_id AND c.class_id =class.class_id AND pre.id_prepare = '".$id."' ";
+            $result1 = mysqli_query($conn,$query);
+            ?>
 
 
 
@@ -95,9 +81,10 @@ background-color: #dddddd;
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">วิชา</label>
                     <div class="col-sm-6">
-                        <br>
-                        <input type="text" name="txt_name_role" class="form-control"
-                            value="<?php echo $row['name_subject']; ?>" readonly />
+                    <?php foreach($result1 as $row1){?>
+                         
+                        <?php  echo $row1['name_subject']; ?>
+                    <?php }?>
                     </div>
                 </div>
             </div>
@@ -106,9 +93,13 @@ background-color: #dddddd;
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">ชั้น</label>
                     <div class="col-sm-6">
-                        <br>
-                        <input type="text" name="txt_name_role" class="form-control"
-                            value="<?php echo $row['name_classroom']; ?>" readonly />
+                    <?php foreach($result1 as $row1){?>
+                   
+                   
+                        <?php echo $row1['name_classroom']; ?>
+                
+                
+                    <?php }?>
                     </div>
                 </div>
             </div>
@@ -117,9 +108,7 @@ background-color: #dddddd;
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">วันที่</label>
                     <div class="col-sm-6">
-                        <br>
-                        <input type="date" name="txt_name_role" class="form-control"
-                            value="<?php echo $row['date_prepare']; ?>" readonly />
+                    <?php echo $row['date_prepare']; ?>
                     </div>
                 </div>
             </div>
@@ -128,9 +117,7 @@ background-color: #dddddd;
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">สาระการเรียนรู้/ตัวชี้วัด</label>
                     <div class="col-sm-6">
-                        <br>
-                        <textarea rows="10" cols="55" name="description" class="form-control" required
-                           ><?php echo $row['learning']; ?> </textarea>
+                        <?php echo $row['learning']; ?>
                     </div>
                 </div>
             </div>
@@ -139,9 +126,7 @@ background-color: #dddddd;
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">จุดประสงค์</label>
                     <div class="col-sm-6">
-                    <br>
-                        <textarea rows="10" cols="55" name="description" class="form-control" required
-                            ><?php echo $purpose; ?> </textarea>
+                        <?php echo $purpose; ?>
                     </div>
                 </div>
             </div>
@@ -150,8 +135,7 @@ background-color: #dddddd;
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">สอนอย่างไร(กระบวนการจัดการเรียน)</label>
                     <div class="col-sm-6">
-                        <textarea rows="10" cols="55" name="description" class="form-control" required
-                           ><?php echo $how_to_teach; ?> </textarea>
+                        <?php echo $how_to_teach; ?>
                     </div>
                 </div>
             </div>
@@ -160,9 +144,7 @@ background-color: #dddddd;
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">สื่อ/อุปกรณ์การเรียนรู้</label>
                     <div class="col-sm-6">
-                    <br>
-                        <textarea rows="10" cols="55" name="description" class="form-control"
-                            required ><?php echo $media; ?> </textarea>
+                    <?php echo $media; ?>
                     </div>
                 </div>
             </div>
@@ -171,9 +153,7 @@ background-color: #dddddd;
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">วิธีวัดและประเมินการสอน/เครื่องมือ</label>
                     <div class="col-sm-6">
-                    <br>
-                        <textarea rows="10" cols="55" name="description" class="form-control"
-                            required><?php echo $measure; ?> </textarea>
+                    <?php echo $measure; ?>
                     </div>
                 </div>
             </div>
@@ -186,9 +166,11 @@ background-color: #dddddd;
        
 
             <?php 
+            //เป็นการกำหนด Font LilyUPC ตัวปกติ ขนาด 16
                 $html = ob_get_contents();
                 $mpdf->WriteHTML($html);
                 $mpdf->Output("MyReport_hours.pdf");
+
                 ob_end_flush();
                 
 
@@ -213,7 +195,7 @@ background-color: #dddddd;
     <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script> document.location.href='MyReport_hours.pdf';</script>
+    <script>document.location.href='MyReport_hours.pdf';</script>
     
 </body>
 </html>

@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>บทบาท</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../pass_or_no.css">
 </head>
 
 <body>
@@ -58,7 +59,11 @@
 
                     <tr>
                         <td><?php echo $row["name_role"]; ?></td>
-                        <td><?php echo $row["status"]; ?></td>
+                        <td><?php if($row["status_role"] == 'Active'){?>
+                            <p class="active">ใช้งานได้</p>
+                        <?php } elseif($row["status_role"] == 'Inactive'){?>
+                            <p class="inactive">ถูกระงับการใช้งาน</p>
+                       <?php } ?></td>
                         <td><a href="edit_role.php?update_id=<?php echo $row['user_role_id']; ?>"
                                 class="btn btn-warning">แก้ไข</td>
                         <td><a href="delete_role.php?delete_id=<?php echo $row['user_role_id']; ?>"
@@ -70,7 +75,11 @@
                     <?php } ?>
                 </tbody>
             </table>
+            <div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
         </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
     </div>
 
 

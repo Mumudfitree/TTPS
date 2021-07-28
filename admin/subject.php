@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>หน้าวิชา</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../pass_or_no.css">
 </head>
 <body>
 <?php include_once('slidebar_admin.php'); ?>
@@ -27,6 +28,8 @@
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
+                <th>ชื่อระดับการศึกษา</th>
+                <th>ระดับชั้น</th>
                 <th>รหัสวิชา</th>
                 <th>ชื่อวิชา</th>
                 <th>สถานะ</th>
@@ -44,9 +47,15 @@
                 ?>  
 
                     <tr>
+                        <td><?php echo $row["grade_level_user"]; ?></td>
+                        <td><?php echo $row["name_gradelevel"]; ?></td>
                         <td><?php echo $row["code_subject"]; ?></td>
                         <td><?php echo $row["name_subject"]; ?></td>
-                        <td><?php echo $row["status"]; ?></td>
+                        <td><?php if($row["status_subject"] == 'Active'){?>
+                            <p class="active">ใช้งานได้</p>
+                        <?php } elseif($row["status_subject"] == 'Inactive'){?>
+                            <p class="inactive">ถูกระงับการใช้งาน</p>
+                       <?php } ?></td>
                         <td><a href="edit_subject.php?update_id=<?php echo $row['subject_id']; ?>" class="btn btn-warning">แก้ไข</td>
                         <td><a href="delete_subject.php?delete_id=<?php echo $row['subject_id']; ?>" class="btn btn-danger"class="btn btn-danger" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่')">ลบข้อมูล</td>
                         <td><a href="change_status_sub.php?change_id=<?php echo $row["subject_id"]; ?>" class="btn btn-info "
@@ -55,6 +64,10 @@
                 <?php } ?>
         </tbody>
     </table>
+    <div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
+				</div>
+				<div class="col-lg-2">
+				</div>
     </div>
 </div>
 
