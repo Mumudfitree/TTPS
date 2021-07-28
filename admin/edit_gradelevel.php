@@ -1,7 +1,7 @@
 <?php
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก่อนถึงเข้าได้
+    if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่อนถึงเข้าได้
         header("location: ../index.php");
     }
 
@@ -56,7 +56,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +78,7 @@
         <?php } ?>
 
 
-        <?php
+    <?php
         if(isset($updateMeg)){
     ?>
         <div class="alert alert-success">
@@ -88,13 +87,15 @@
         <?php } ?>
 
         <form method="post" class="form-horizontal mt-5">
+        
+        //ส่วนนี้น่าจะ code ขยะ ไม่มีการเรียกใช้ที่อื่น ยังไม่ได้ทดสอบ
         <?php 
             $sql1 = "SELECT * FROM grade_level WHERE grade_id = '".$id."' ";
             $result1 = mysqli_query($conn, $sql1) or die ("Error in query: $sql1 " . mysqli_error());
                     mysqli_close($conn);
         ?>
 
-<div class="form- text-center">
+            <div class="form- text-center">
                 <div class="row">
                     <label for="name_gradelevel" class="col-sm-3 control-label">ชื่อระดับชั้น</label>
                     <div class="col-sm-6">
@@ -110,8 +111,7 @@
                 <div class="row">
                     <label for="name_gradelevel" class="col-sm-3 control-label">ชื่อระดับชั้น</label>
                     <div class="col-sm-6">
-                        <input type="text" name="txt_name_gradelevel" class="form-control"
-                            value="<?php echo $name_gradelevel; ?>">
+                        <input type="text" name="txt_name_gradelevel" class="form-control" value="<?php echo $name_gradelevel; ?>">
                     </div>
                 </div>
             </div>
@@ -134,6 +134,5 @@
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
 
-</body>
-
+    </body>
 </html>

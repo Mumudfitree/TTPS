@@ -2,8 +2,8 @@
   session_start();
   require_once('../connection.php');
 
-  if (!isset($_SESSION['teacher_login'])) {
-      header("location: ../index.php");
+  if ($_SESSION['login_type'] != 5) {
+    header("location: ../index.php");
   }
 
 
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
+
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                     </thead>
                     <tbody>
                         <?php
-                    $id =$_SESSION['UserID'];
+                    $id =$_SESSION['master_id'];
                     $sql = "SELECT * FROM choose_a_teaching as c,year as y WHERE c.year_id = y.year_id AND y.status_year = 'Active'  ";
                     $query = mysqli_query($conn,$sql) ;
                     $row = mysqli_fetch_array($query);

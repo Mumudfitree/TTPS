@@ -5,15 +5,15 @@
 
     require_once('../connection.php');
 
-    $id1 =$_SESSION['UserID'];
+    $id1 = $_SESSION['master_id'];
 
 
     if(isset($_REQUEST['update_id'])){
 
             $id = $_REQUEST['update_id'];
-            $sql = "SELECT * FROM weekly_summary as week ,choose_a_teaching as c, subject as sub , classroom as class, grade_level as grade
-            WHERE week.id_prepare_week = '".$id."' AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.grade_id = grade.grade_id AND
-            week.choose_id = c.choose_id ";
+            $sql = "SELECT * FROM weekly_summary as week, choose_a_teaching as report, subject, classroom as class, grade_level as grade
+            WHERE week.id_prepare_week = '".$id."' AND report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.grade_id = grade.grade_id AND
+            week.choose_id = report.choose_id ";
             $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
             $row = mysqli_fetch_array($result);
             extract($row);
@@ -122,7 +122,7 @@
 </head>
 
 <body>
-<?php include_once('sidebar.php'); ?>
+    <?php include_once('sidebar.php'); ?>
     <div class="main">
         <div class="container">
             <div class="display-3 text-center">หน้าแก้ไขสรุปผลรายสัปดาห์</div>
@@ -150,13 +150,11 @@
                     <label for="fname" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
                     <div class="col-sm-6">
                         <input type="text" name="txt_firstname" class="form-control"
-                            value="<?php echo $_SESSION['User']; ?>" readonly>
+                            value="<?php echo $_SESSION['name']; ?>" readonly>
                     </div>
                 </div>
             </div>
             <br>
-            
-            >
 
             <div class="form- text-center">
                 <div class="row">
@@ -169,9 +167,9 @@
             <br>
 
             <?php
-                        $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
-                        $result2 = mysqli_query($conn, $query2);
+                $query2 = "SELECT * FROM choose_a_teaching as report, subject, classroom as class
+                WHERE report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.master_id = '".$id1."' " ;//เชื่อม2ตาราง
+                $result2 = mysqli_query($conn, $query2);
                     ?>
 
             <div class="form- text-center">
@@ -179,7 +177,8 @@
                     <label for="name_subject" class="col-sm-3 control-label">วิชาที่สอน/กิจกรรมที่ทำ</label>
                     <div class="col-sm-6">
                         <select name="txt_choose_id" class="form-control">
-                            <option value="<?php  echo $choose_id; ?>"><?php echo $name_subject.' ('.$name_classroom.')'; ?></option>
+                            <option value="<?php  echo $choose_id; ?>"><?php echo $name_subject.' ('.$name_classroom.')'; ?>
+                            </option>
                             <?php foreach($result2 as $row2){
                                 if($row2['status_choose'] == 'Active' && $row2["choose_id"] !==$choose_id ){?>
                             <option value="<?php echo $row2["choose_id"]; ?>">

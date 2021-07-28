@@ -3,29 +3,26 @@
     date_default_timezone_set('Asia/Bangkok');
 
     require_once('../connection.php');
-    $id = $_SESSION['User'];
-    $id1 =$_SESSION['UserID'];
-    
+    $id = $_SESSION['name'];
+    $id1 =$_SESSION['master_id'];
+
     if(isset($_REQUEST['btn_insert'])){ 
         
         $name = $_REQUEST['txt_name'];
-        
         $learn = $_REQUEST['txt_learn'];
         $purpose = $_REQUEST['txt_purpose'];
         $how_to_teach = $_REQUEST['txt_how_to_teach'];
         $media = $_REQUEST['txt_media'];
         $measure = $_REQUEST['txt_measure'];
         $date_prepare = $_REQUEST['txt_date'];
-       
+
         $today = date('d/m/Y');
         
         $choose_id = $_REQUEST['txt_choose_id'];
 
-        
-    
-        
 
-        
+    
+    
 
         if(empty($date_prepare)){
             $errorMsg = "กรุณาเพิ่มข้อมูลในช่องของวัน";
@@ -186,7 +183,7 @@
                         <label for="fname" class="col-sm-3 control-label">ชื่อ-สกุล</label>
                         <div class="col-sm-6">
                             <input type="text" name=" txt_name" class="form-control"
-                                value="<?php echo $_SESSION['User']; ?>" readonly>
+                                value="<?php echo $_SESSION['name']; ?>" readonly>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION['admin_login'])) {
+    if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
     }
     $id = $_SESSION['UserID'];
@@ -182,8 +182,7 @@
                         </td>
                         <td><a href="delete.php?delete_id=<?php echo $row1["master_id"]; ?>" class="btn btn-danger "
                                 onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่')">ลบข้อมูล</td>
-                        <td><a href="change_status.php?change_id=<?php echo $row1["master_id"]; ?>"
-                                class="btn btn-info "
+                        <td><a href="change_status.php?change_id=<?php echo $row1["master_id"]; ?>" class="btn btn-info "
                                 onclick="return confirm('คุณต้องการเปลี่ยนสถานะของผู้ใช้หรือไม่')">แก้ไขสถานะ</a></td>
                     </tr>
                     <?php } ?>

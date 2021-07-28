@@ -3,7 +3,8 @@
     date_default_timezone_set('Asia/Bangkok');
     require_once('../connection.php');
 
-    $id = $_SESSION['UserID'];
+    $id = $_SESSION['master_id'];
+
 
     if(isset($_REQUEST['btn_insert'])){
         //$fname_lname =$_REQUEST['txt_fname_lname'] ;
@@ -144,7 +145,7 @@
                 <div class="row">
                     <label for="fname" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
                     <div class="col-sm-6">
-                        <input type="text" name="txt_fname_lname" class="form-control"
+                        <input type="text" name="txt_fname_lname" class="form-control" 
                             value="<?php echo $_SESSION['User']; ?>" /readonly>
                     </div>
                 </div>
@@ -163,8 +164,8 @@
             </div>
             <br>
             <?php
-                        $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id."' " ;//เชื่อม2ตาราง
+                        $query2 = "SELECT * FROM choose_a_teaching as report, subject, classroom as class
+                        WHERE report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.master_id = '".$id."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 
@@ -174,7 +175,7 @@
                     <div class="col-sm-6">
                         <select name="txt_choose_id" class="form-control">
 
-                            <option value="">- กรุณาเลือก -</option>
+                            <option value="" selected="selected">- กรุณาเลือก -</option>
                             <?php foreach($result2 as $row2){
                                 if($row2['status_choose'] == 'Active'){?>
                             <option value="<?php echo $row2["choose_id"] ?>">

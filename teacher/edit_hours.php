@@ -4,23 +4,24 @@
     
 
     require_once('../connection.php');
-    $id = $_SESSION['User'];
-    $id1 =$_SESSION['UserID'];
+    $id = $_SESSION['name'];
+    $id1 = $_SESSION['master_id'];
     //$query2 = "SELECT * FROM subject_user as s,choose_a_teaching as c,classroom_user as class, prepare_hours as pre WHERE c.master_id= ".$id." AND c.subject_id = s.subject_id AND c.class_id = class.class_id AND pre.subject_id = s.subject_id";//เชื่อม2ตาราง
     //$result2 = mysqli_query($conn,$query2); 
 
     if(isset($_REQUEST['update_id'])){
         
             $id2 = $_REQUEST['update_id'];
-            $sql = "SELECT * FROM prepare_to_teach as pre ,choose_a_teaching as c, subject as sub , classroom as class, grade_level as grade
-            WHERE pre.id_prepare = '".$id2."' AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.grade_id = grade.grade_id AND
-            pre.choose_id = c.choose_id ";
+            $sql = "SELECT * FROM prepare_to_teach as reportState, choose_a_teaching as report, subject, classroom as class, grade_level as grade
+            WHERE reportState.id_prepare = $id2 AND report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.grade_id = grade.grade_id AND
+            reportState.choose_id = report.choose_id ";
             $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
             $row = mysqli_fetch_array($result);
             extract($row);
         
     }if(isset($_REQUEST['btn_update'])){//ตั้งตัวแปร up 
-        
+        $subject_up =$_REQUEST['txt_subject_id'];
+        $classroom_up =$_REQUEST['txt_class']; 
         $learn_up =$_REQUEST['txt_learn'];
         $purpose_up =$_REQUEST['txt_pur'];
         $how_to_teach_up =$_REQUEST['txt_how'];
@@ -148,7 +149,7 @@
                 <div class="row">
                 <label for="name_role" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
                 <div class="col-sm-6">
-                    <input type="text" name="txt_name_up" class="form-control" value="<?php echo $_SESSION['User'];?>"readonly/>
+                    <input type="text" name="txt_name_up" class="form-control" value="<?php echo $_SESSION['ืname'];?>"readonly></input>
                 </div>
                 </div>
             </div>
@@ -179,14 +180,14 @@
                 </div>
             </div>
             
-            
+
             <div class="form- text-center">
                 <div class="row">
                 <label for="name_subject" class="col-sm-3 control-label">วันที่</label>
                 <div class="col-sm-6">
                 <input type="text" name="txt_date" class="form-control" id="datepicker" value="<?php echo $row['date_prepare'];?>"placeholder="วัน/เดือน/ปี">
-                
-                
+
+
                 </div>
                 </div>
             </div>
@@ -205,7 +206,7 @@
 
             <div class="form- text-center">
                 <div class="row">
-                <label for="name_pur" class="col-sm-3 control-label">จุดประสงค์</label>
+                <label for="name_purpose" class="col-sm-3 control-label">จุดประสงค์</label>
                 <div class="col-sm-6">
                 <textarea rows="10" cols="55" name="txt_pur" class="form-control" required><?php echo $purpose; ?></textarea>
                 </div>
@@ -232,7 +233,7 @@
 
             <div class="form- text-center">
                 <div class="row">
-                <label for="txt_measurea" class="col-sm-3 control-label">วิธีวัดและประเมินการสอน/เครื่องมือ</label>
+                <label for="txt_measureLabel" class="col-sm-3 control-label">วิธีวัดและประเมินการสอน/เครื่องมือ</label>
                 <div class="col-sm-6">
                 <textarea rows="10" cols="55" name="txt_measure" class="form-control"required><?php echo $measure; ?></textarea>
                 </div>

@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    if (!isset($_SESSION['director_login'])) {
+    if ($_SESSION['login_type'!= 2]) {
         header("location: ../index.php");
     }
 
@@ -35,11 +35,12 @@
 
             <h1>หน้าหลัก ผู้อำนวยการ </h1>
             <hr>
-                
+        
             <h3>
-                <?php if(isset($_SESSION['director_login'])) { ?>
-                Welcome, <?php echo $_SESSION['User']; }?>
+                <?php if(isset($_SESSION['user_login'])) { ?>
+                Welcome, <?php echo $_SESSION['user_login']; }?>
             </h3>
+            <a href="../logout.php" class="btn btn-danger">Logout</a>
 
         </div>
     </div>

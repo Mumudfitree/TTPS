@@ -2,7 +2,7 @@
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
     require_once('../connection.php');
     date_default_timezone_set('Asia/Bangkok');
-    $id =$_SESSION['UserID'];
+    $id =$_SESSION['master_id'];
 
     $query=mysqli_query($conn,"SELECT COUNT(id_prepare_week) FROM weekly_summary ");
     $row = mysqli_fetch_row($query);
@@ -104,7 +104,7 @@
                 ?>
 
                     <?php $row["date_prepare_week"];
-                     $id =$_SESSION['UserID']; ?>
+                     $id =$_SESSION['master_id']; ?>
                     <tr>
 
                         <?php if($row['status_prepare_week'] !='Complete' && $row['master_id'] == $id && $row['status_choose'] == 'Active'){?>
@@ -142,6 +142,8 @@
     <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
+
+
 </body>
 
 </html>

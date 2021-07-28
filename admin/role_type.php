@@ -2,7 +2,7 @@
 
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก่อนถึงเข้าได้
+    if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่อนถึงเข้าได้
         header("location: ../index.php");
     }
 
@@ -156,8 +156,7 @@
                         <td><a href="delete_role.php?delete_id=<?php echo $row['user_role_id']; ?>"
                                 class="btn btn-danger" class="btn btn-danger"
                                 onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่')">ลบข้อมูล</td>
-                        <td><a href="change_status_role.php?change_id=<?php echo $row["user_role_id"]; ?>"
-                                class="btn btn-info "
+                        <td><a href="change_status_role.php?change_id=<?php echo $row["user_role_id"]; ?>" class="btn btn-info "
                                 onclick="return confirm('คุณต้องการเปลี่ยนสถานะของบทบาทหรือไม่')">แก้ไขสถานะ</a></td>
                     </tr>
                     <?php } ?>

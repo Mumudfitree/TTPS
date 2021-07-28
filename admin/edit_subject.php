@@ -1,7 +1,7 @@
 <?php
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก่อนถึงเข้าได้
+    if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่อนถึงเข้าได้
         header("location: ../index.php");
     }
 
@@ -11,7 +11,7 @@
 
         $id = $_REQUEST['update_id'];
 
-        $sql = "SELECT * FROM  subject as sub,grade_level as grade  WHERE sub.grade_id = grade.grade_id AND sub.subject_id = '".$id."'";
+        $sql = "SELECT * FROM subject, grade_level as grade  WHERE subject.grade_id = grade.grade_id AND subject.subject_id = '".$id."'";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);

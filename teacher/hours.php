@@ -2,7 +2,7 @@
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
     require_once('../connection.php');
     date_default_timezone_set('Asia/Bangkok');
-    $id =$_SESSION['UserID'];
+    $id = $_SESSION['master_id'];
 
     $query=mysqli_query($conn,"SELECT COUNT(id_prepare) FROM prepare_to_teach  ");
     $row = mysqli_fetch_row($query);
@@ -113,7 +113,7 @@
                     </td>
                     <td><a href="edit_hours.php?update_id=<?php echo $row["id_prepare"]; ?>"
                             class="btn btn-warning">แก้ไข</td>
-                    <td><a target="_blank" href="download_hours.php?download_id=<?php echo $row["id_prepare"]; ?>"
+                    <td><a target ="_blank" href="download_hours.php?download_id=<?php echo $row["id_prepare"]; ?>"
                             class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
                                 <path

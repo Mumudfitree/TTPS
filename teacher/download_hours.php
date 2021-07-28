@@ -1,8 +1,7 @@
 <?php
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-    require_once __DIR__ . '../../vendor/autoload.php';
-    
+    require_once __DIR__ . '../vendor/autoload.php';
 
         $defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
@@ -30,14 +29,12 @@
     
 
     require_once('../connection.php');
-            
-
 
     if(isset($_REQUEST['download_id'])){
         
             $id = $_REQUEST['download_id'];
-            $sql = "SELECT * FROM prepare_to_teach as pre,choose_a_teaching as c,subject as sub, classroom  as class
-            WHERE pre.choose_id = c.choose_id AND c.subject_id = sub.subject_id AND c.class_id =class.class_id AND pre.id_prepare = $id ";
+            $sql = "SELECT * FROM prepare_to_teach as reportState, choose_a_teaching as report, subject, classroom as class
+            WHERE reportState.choose_id = report.choose_id AND report.subject_id = subject.subject_id AND report.class_id =class.class_id AND reportState.id_prepare = $id ";
             $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
             $row = mysqli_fetch_array($result);
             extract($row);
@@ -65,10 +62,10 @@
     <div class="form- text-left">
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">ชื่อ-นามสกุล </label>
-                    <div class="col-sm-6"><?php echo $_SESSION['User']; ?></div>
+                    <div class="col-sm-6"><?php echo $_SESSION['name']; ?></div>
                 </div>
             </div>
-    
+
             <?php 
             $id = $_REQUEST['download_id'];
             $query = "SELECT * FROM prepare_to_teach as pre,choose_a_teaching as c,subject as sub, classroom  as class
@@ -80,8 +77,7 @@
 
             <div class="form- text-left">
                 <div class="row">
-                    <label for="name_role" class="col-sm-3 control-label">
-                     วิชา</label>
+                    <label for="name_role" class="col-sm-3 control-label">วิชา</label>
                     <div class="col-sm-6">
                     <?php foreach($result1 as $row1){?>
                          
@@ -99,8 +95,8 @@
                    
                    
                         <?php echo $row1['name_classroom']; ?>
-                        
-                        
+                
+                
                     <?php }?>
                     </div>
                 </div>
@@ -168,11 +164,11 @@
        
 
             <?php 
-             //เป็นการกำหนด Font LilyUPC ตัวปกติ ขนาด 16
+            //เป็นการกำหนด Font LilyUPC ตัวปกติ ขนาด 16
                 $html = ob_get_contents();
                 $mpdf->WriteHTML($html);
                 $mpdf->Output("MyReport_hours.pdf");
-                
+
                 ob_end_flush();
                 
 
