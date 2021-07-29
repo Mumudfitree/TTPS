@@ -65,7 +65,7 @@
     <div class="form- text-left">
                 <div class="row">
                     <label for="name_role" class="col-sm-3 control-label">ชื่อ-นามสกุล </label>
-                    <div class="col-sm-6"><?php echo $_SESSION['User']; ?></div>
+                    <div class="col-sm-6"><?php echo $_SESSION['name']; ?></div>
                 </div>
             </div>
     

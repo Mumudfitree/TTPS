@@ -2,7 +2,7 @@
     if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
         include("connection.php");
-        $_SESSION["User"] = $row["fname"]." ".$row["lname"];
+        $_SESSION['name'] = $row["fname"]." ".$row["lname"];
     }
 
 ?>
@@ -27,8 +27,8 @@
       
     </ul>
     <nav class="nav-inline my-2 my-lg-0">
-        <a class="nav-control mr-sm-2" >คุณ: <?php echo $_SESSION['User']; ?></a>
-        <a class="nav-control mr-sm-2" >สถานะในตอนนี้: <?php echo $_SESSION['admin_login']; ?></a>
+        <a class="nav-control mr-sm-2" >คุณ: <?php echo $_SESSION['name']; ?></a>
+        <a class="nav-control mr-sm-2" >สถานะในตอนนี้: <?php echo $_SESSION['user_login']; ?></a>
     </nav>
   </div>
 </nav>

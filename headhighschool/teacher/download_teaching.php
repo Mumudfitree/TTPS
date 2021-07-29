@@ -31,7 +31,7 @@
 
     require_once('../connection.php');
             
-    $id1 = $_SESSION['UserID'];
+    $id1 = $_SESSION['master_id'];
     if(isset($_REQUEST['download_id'])){
         
             $id = $_REQUEST['download_id'];

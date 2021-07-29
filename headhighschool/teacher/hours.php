@@ -2,7 +2,7 @@
     session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
     require_once('../connection.php');
     date_default_timezone_set('Asia/Bangkok');
-    $id =$_SESSION['UserID'];
+    $id =$_SESSION['master_id'];
 
     $query=mysqli_query($conn,"SELECT COUNT(id_prepare) FROM prepare_to_teach  ");
     $row = mysqli_fetch_row($query);

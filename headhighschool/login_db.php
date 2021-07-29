@@ -113,8 +113,8 @@ session_start();
 
                       $row = mysqli_fetch_array($result);
 
-                      $_SESSION["UserID"] = $row["master_id"];
-                      $_SESSION["User"] = $row["fname"]." ".$row["lname"];
+                      $_SESSION["master_id"] = $row["master_id"];
+                      $_SESSION['name'] = $row["fname"]." ".$row["lname"];
                       $_SESSION["Userlevel"] = $row["user_role_id"];
                       
 
@@ -178,7 +178,7 @@ session_start();
                       if ($_SESSION["Userlevel"]=="5" && $row['status_master'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
 
                         $_SESSION['teacher_login'] = $username;
-                        $_SESSION["User"];
+                        $_SESSION['name'];
                         $_SESSION['master_id'] = $id;
                         $_SESSION['success'] = "ครู ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                         header("location: teacher/teacher_home.php");

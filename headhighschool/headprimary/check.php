@@ -1,7 +1,7 @@
 <?php
 session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-if (!isset($_SESSION['headprimary_login'])) {//คำสั่งต้องloginก่อนถึงเข้าได้
+if ($_SESSION['login_type'] != 6) {//คำสั่งต้องloginก่อนถึงเข้าได้
     header("location: ../index.php");
 }
   

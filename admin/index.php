@@ -4,7 +4,7 @@
     if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
     }
-    $id = $_SESSION['UserID'];
+    $id = $_SESSION['master_id'];
     include_once('../connection.php');
                     $strKeyword = null;// กำหนดค่าsearch
                     $search = isset($_GET['search']) ? $_GET['search']:' ';

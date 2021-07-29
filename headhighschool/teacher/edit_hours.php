@@ -4,8 +4,8 @@
     
 
     require_once('../connection.php');
-    $id = $_SESSION['User'];
-    $id1 =$_SESSION['UserID'];
+    $id = $_SESSION['name'];
+    $id1 =$_SESSION['master_id'];
     //$query2 = "SELECT * FROM subject_user as s,choose_a_teaching as c,classroom_user as class, prepare_hours as pre WHERE c.master_id= ".$id." AND c.subject_id = s.subject_id AND c.class_id = class.class_id AND pre.subject_id = s.subject_id";//เชื่อม2ตาราง
     //$result2 = mysqli_query($conn,$query2); 
 
@@ -148,7 +148,7 @@
                 <div class="row">
                 <label for="name_role" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
                 <div class="col-sm-6">
-                    <input type="text" name="txt_name_up" class="form-control" value="<?php echo $_SESSION['User'];?>"readonly/>
+                    <input type="text" name="txt_name_up" class="form-control" value="<?php echo $_SESSION['name'];?>"readonly/>
                 </div>
                 </div>
             </div>

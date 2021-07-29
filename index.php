@@ -2,31 +2,31 @@
     include_once('connection.php');
     session_start();
 
-    if (isset($_SESSION['admin_login'])) {
+    if ($_SESSION['login_type'] === 1) {
         header("location: admin/admin_home.php");
     }
 
-    if (isset($_SESSION['director_login'])) {
+    if ($_SESSION['login_type'] === 2) {
         header("location: director/director_home.php");
     }
 
-    if (isset($_SESSION['deputydirector_login'])) {
+    if ($_SESSION['login_type'] === 3) {
         header("location: deputydirector/deputydirector_home.php");
     }
 
-    if (isset($_SESSION['academicdepartment_login'])) {
+    if ($_SESSION['login_type'] === 4) {
         header("location: academicdepartment/academicdepartment_home.php");
     }
     
-    if (isset($_SESSION['teacher_login'])) {
+    if ($_SESSION['login_type'] === 5) {
         header("location: teacher/teacher_home.php");
     }
 
-    if (isset($_SESSION['headprimary_login'])) {
+    if ($_SESSION['login_type'] === 6) {
         header("location: headprimary/headprimary_home.php");
     }
 
-    if (isset($_SESSION['headhighschool_login'])) {
+    if ($_SESSION['login_type'] === 7) {
         header("location: headhighschool/headhighschool_home.php");
     }
     

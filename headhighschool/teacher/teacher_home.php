@@ -2,7 +2,7 @@
   session_start();
   require_once('../connection.php');
 
-  if (!isset($_SESSION['teacher_login'])) {
+  if ($_SESSION['login_type'] != 5) {
       header("location: ../index.php");
   }
 
@@ -45,7 +45,7 @@
                     </thead>
                     <tbody>
                         <?php
-                    $id =$_SESSION['UserID'];
+                    $id =$_SESSION['master_id'];
                     $sql = "SELECT * FROM choose_a_teaching as c,year as y WHERE c.year_id = y.year_id AND y.status_year = 'Active'  ";
                     $query = mysqli_query($conn,$sql) ;
                     $row = mysqli_fetch_array($query);

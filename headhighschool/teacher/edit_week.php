@@ -5,7 +5,7 @@
 
     require_once('../connection.php');
 
-    $id1 =$_SESSION['UserID'];
+    $id1 =$_SESSION['master_id'];
 
 
     if(isset($_REQUEST['update_id'])){
@@ -150,7 +150,7 @@
                     <label for="fname" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
                     <div class="col-sm-6">
                         <input type="text" name="txt_firstname" class="form-control"
-                            value="<?php echo $_SESSION['User']; ?>" readonly>
+                            value="<?php echo $_SESSION['name']; ?>" readonly>
                     </div>
                 </div>
             </div>
