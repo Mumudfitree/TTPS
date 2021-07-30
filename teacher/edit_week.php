@@ -171,7 +171,7 @@
                 </div>
             </div>
             <br>
-                        
+
             <?php
                 $query = ("SELECT * FROM choose_a_teaching as report, subject, classroom as class
                 WHERE report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.master_id = '".$id1."' ");//เชื่อม2ตาราง

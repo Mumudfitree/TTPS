@@ -61,7 +61,7 @@
     <?php } ?>
 
     <form method="post" class="form-horizontal mt-5">
-        
+
     <div class="form- text-center">
                 <div class="row">
                 <label for="txt_grade_level_user" class="col-sm-3 control-label">ชื่อระดับการศึกษา</label>
@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-    
+
             <div class="form- text-center">
                 <div class="row">
                 <label for="name_gradelevel" class="col-sm-3 control-label">ชื่อระดับชั้น</label>

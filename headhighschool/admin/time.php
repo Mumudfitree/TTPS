@@ -1,10 +1,10 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION['admin_login'])) {
+    if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
     }
-    $id = $_SESSION['UserID'];
+    $id = $_SESSION['master_id'];
     include_once('../connection.php');
                     
 

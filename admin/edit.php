@@ -50,7 +50,7 @@
                     WHERE master_id = '".$id."'");
 
                     if($update_stmt->execute()){
-                        $updateMeg = "การอัพเดตข้อมูลดำเนินการเสร็จสิ้น";
+                        $updateMeg = "การอัพเดตข้อมูลเสร็จสิ้น";
                         header("refresh:1,index.php");
                     }
             } catch(PDOException $e){
@@ -160,7 +160,6 @@
                 </div>
                 </div>
             </div>
-             
         
 
 

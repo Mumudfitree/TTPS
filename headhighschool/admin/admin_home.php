@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    if (!isset($_SESSION['admin_login'])) {
+    if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่อนถึงเข้าได้
         header("location: ../index.php");
     }
 
@@ -36,10 +36,10 @@
 
         
             <h3>
-                <?php if(isset($_SESSION['admin_login'])) { ?>
+                <?php if(isset($_SESSION['name'])) { ?>
                 ยินดีต้อนรับ 
                 <br>
-                คุณ <?php echo $_SESSION['admin_login']; }?>
+                คุณ <?php echo $_SESSION['name']; }?>
             </h3>
             
             

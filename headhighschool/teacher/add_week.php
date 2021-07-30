@@ -3,7 +3,7 @@
     date_default_timezone_set('Asia/Bangkok');
     require_once('../connection.php');
 
-    $id = $_SESSION['UserID'];
+    $id = $_SESSION['master_id'];
 
     if(isset($_REQUEST['btn_insert'])){
         //$fname_lname =$_REQUEST['txt_fname_lname'] ;
@@ -145,7 +145,7 @@
                     <label for="fname" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
                     <div class="col-sm-6">
                         <input type="text" name="txt_fname_lname" class="form-control"
-                            value="<?php echo $_SESSION['User']; ?>" /readonly>
+                            value="<?php echo $_SESSION['name']; ?>" readonly>
                     </div>
                 </div>
             </div>

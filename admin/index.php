@@ -4,7 +4,7 @@
     if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
     }
-    $id = $_SESSION['UserID'];
+    $id = $_SESSION['master_id'];
     include_once('../connection.php');
 
     if(isset($_REQUEST['delete_id'])){

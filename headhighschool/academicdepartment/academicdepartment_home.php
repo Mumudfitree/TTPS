@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    if (!isset($_SESSION['academicdepartment_login'])) {
+    if ($_SESSION['login_type'] != 4) {
         header("location: ../index.php");
     }
 

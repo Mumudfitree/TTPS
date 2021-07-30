@@ -4,7 +4,7 @@
     
 
     require_once('../connection.php');
-    $id1 = $_SESSION['UserID'];
+    $id1 = $_SESSION['master_id'];
 
 
     if(isset($_REQUEST['update_id'])){
@@ -42,7 +42,7 @@
                     $update_stmt->bindParam(':id', $id);
 
                     if($update_stmt->execute()){
-                        $updateMeg = "บันทึกข้อมูลการอัพเดตเสร็จสิ้น";
+                        $updateMeg = "อัพเดตข้อมูลเสร็จสิ้น";
                         header("refresh:1,choose_a_teaching.php");
                     }
             } catch(PDOException $e){

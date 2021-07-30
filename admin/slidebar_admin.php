@@ -2,7 +2,6 @@
     if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
         include("connection.php");
-        $_SESSION["User"] = $row["fname"]." ".$row["lname"];
     }
 
 ?>
@@ -16,6 +15,22 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+    <nav class="nav-inline my-2 my-lg-0">
+        <a class="nav-control mr-sm-2" >คุณ: <?php echo $_SESSION['name']; ?></a>
+        <a class="nav-control mr-sm-2" >สถานะในตอนนี้: <?php echo $_SESSION['user_login']; ?></a>
+    </nav>
+  </div>
+</nav>
 
     <div class="sidebar">
         <a href="admin_home.php"><i class="fa fa-fw fa-home"></i> หน้าหลัก</a>
