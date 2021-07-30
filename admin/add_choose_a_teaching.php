@@ -146,7 +146,7 @@
                 ?>
                 <?php foreach($result1 as $row1){
                     if($row1['status_subject'] == 'Active'){?>
-                <option value="<?php echo $row1["subject_id"]; ?>">
+                        <option value="<?php echo $row1["subject_id"]; ?>">
                 <?php echo $row1["code_subject"].' '.$row1["name_subject"]; ?>
                 </option>
                 <?php } ?>
@@ -240,7 +240,7 @@
             </div>
         </div>
         <br>
-        
+
 
 
 

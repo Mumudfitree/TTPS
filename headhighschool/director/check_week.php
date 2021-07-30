@@ -1,7 +1,7 @@
 <?php
 session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
 
-if ($_SESSION['login_type'] != 3) {//คำสั่งต้องloginก่อนถึงเข้าได้
+if ($_SESSION['login_type'] != 2) {//คำสั่งต้องloginก่อนถึงเข้าได้
     header("location: ../index.php");
 }
   

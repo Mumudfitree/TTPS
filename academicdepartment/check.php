@@ -4,7 +4,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
 if ($_SESSION['login_type'] != 4) {//คำสั่งต้องloginก่อนถึงเข้าได้
     header("location: ../index.php");
 }
-  
+
 require_once('../connection.php');
 date_default_timezone_set('Asia/Bangkok');
 

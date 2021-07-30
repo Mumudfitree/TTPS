@@ -2,7 +2,6 @@
     if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
         include("connection.php");
-        $_SESSION['name'] = $row["fname"]." ".$row["lname"];
     }
 
 ?>

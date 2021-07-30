@@ -71,7 +71,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เพิ่มบุคลากร</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
@@ -156,7 +156,7 @@
                     <option value="">-ระบุตำแหน่ง-</option>
                      <?php foreach($result as $results){
                         if($results['status_role'] == 'Active'){?>
-                    <option value="<?php echo $results["user_role_id"];?>">
+                            <option value="<?php echo $results["user_role_id"];?>">
                         <?php echo $results["name_role"]; ?>
                     </option>
                     <?php }else {

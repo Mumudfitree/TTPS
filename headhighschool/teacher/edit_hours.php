@@ -148,7 +148,7 @@
                 <div class="row">
                 <label for="name_role" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
                 <div class="col-sm-6">
-                    <input type="text" name="txt_name_up" class="form-control" value="<?php echo $_SESSION['name'];?>"readonly/>
+                    <input type="text" name="txt_name_up" class="form-control" value="<?php echo $_SESSION['name'];?>" readonly>
                 </div>
                 </div>
             </div>

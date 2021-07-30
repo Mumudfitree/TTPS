@@ -37,7 +37,7 @@
             <hr>
                 
             <h3>
-            <?php if(isset($_SESSION['user_login'])) { ?>
+                <?php if(isset($_SESSION['user_login'])) { ?>
                 Welcome, <?php echo $_SESSION['user_login']; }?>
             </h3>
             <a href="../logout.php" class="btn btn-danger">Logout</a>

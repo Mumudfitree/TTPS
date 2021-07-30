@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    if ($_SESSION['login_type'] != 3) {
+    if ($_SESSION['login_type'] != 2) {
         header("location: ../index.php");
     }
 
@@ -37,7 +37,7 @@
             <hr>
                 
             <h3>
-                <?php if($_SESSION['login_type'] === 3) { ?>
+                <?php if($_SESSION['login_type'] === 2) { ?>
                 Welcome, <?php echo $_SESSION['name']; }?>
             </h3>
 

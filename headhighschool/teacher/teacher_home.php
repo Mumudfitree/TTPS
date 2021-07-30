@@ -3,7 +3,7 @@
   require_once('../connection.php');
 
   if ($_SESSION['login_type'] != 5) {
-      header("location: ../index.php");
+    header("location: ../index.php");
   }
 
 
