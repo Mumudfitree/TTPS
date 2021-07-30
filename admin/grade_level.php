@@ -9,7 +9,7 @@
 
     require_once('../connection.php');
     
-    $query=mysqli_query($conn,"SELECT grade_id FROM grade_level");
+    $query=mysqli_query($conn,"SELECT COUNT(grade_id) FROM grade_level");
                         $row = mysqli_fetch_row($query);
                     
                         $rows = $row[0];
@@ -40,7 +40,7 @@
                         $sql = "SELECT * from  grade_level   ORDER BY grade_id DESC $limit";
                         if(isset($_GET['search'])){ 
                             $search = $_GET['search'];
-                            $sql = "SELECT * from  grade_level WHERE  name_gradelevel LIKE '%" . $search . "%' ORDER BY id DESC $limit ";
+                            $sql = "SELECT * from  grade_level WHERE  name_gradelevel LIKE '%" . $search . "%' ORDER BY grade_id DESC $limit ";
                         }
                         $nquery=mysqli_query($conn,$sql);
                     
@@ -134,7 +134,7 @@
                         <td><?php if($row["status_grade"] == 'Active'){?>
                             <p class="active">ใช้งานได้</p>
                         <?php } elseif($row["status_grade"] == 'Inactive'){?>
-                            <p class="inactive">ถูกระงับการใช้งาน</p>
+                            <p class="inactive">ถูกระงับการใช้งานได้</p>
                        <?php } ?></td>
                         <td><a href="edit_gradelevel.php?update_id=<?php echo $row['grade_id']; ?>"
                                 class="btn btn-warning">แก้ไข</td>

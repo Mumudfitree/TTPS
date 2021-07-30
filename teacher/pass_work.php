@@ -133,8 +133,7 @@
     <div class="col-lg-2">
     </div>
 </div>
-</div>
-</div>
+
 
 <script src="js/slime.js"></script>
 <script src="js/popper.js"></script>

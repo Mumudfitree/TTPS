@@ -1,6 +1,4 @@
-		
-		
-<?php
+		<?php
 
 require 'vendor/autoload1.php';
  
@@ -26,6 +24,9 @@ foreach($sheetData as $s => $k){
 }
  
 include('../connection.php');
+$check = "SELECT * FROM choose_a_teaching";
+                    $query_check = mysqli_query($conn,$check);
+                    $row_check = mysqli_fetch_array($query_check);
  
 //Insert Data To MySQL
 $i = 2;
@@ -80,17 +81,23 @@ foreach($data as $q[]){
         
 
 
-		
+		if($master_id != $row_check['master_id'] AND $grade_id != $row_check['grade_id'] AND $subject_id != $row_check['subject_id'] AND $class_id != $row_check['class_id'] AND $time_id != $row_check['time_id'] AND $date != $row_check['date'] AND $year_id != $row_check['year_id'] ){
         $sql = "INSERT INTO choose_a_teaching (master_id,grade_id,subject_id,class_id,time_id,date,year_id) VALUES ('$master_id','$grade_id ','$subject_id','$class_id','$time_id ','$date','$year_id')";
         
-		if (mysqli_query($conn, $sql)) {
+            if (mysqli_query($conn, $sql)) {
+                echo "<script>";
+                        echo "alert('เพิ่มข้อมูลเสร็จสิ้น');";
+                        echo "window.location ='choose_a_teaching.php'; ";
+                echo "</script>";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }else{
             echo "<script>";
-                    echo "alert('เพิ่มข้อมูลเสร็จสิ้น');";
-                    echo "window.location ='choose_a_teaching.php'; ";
-            echo "</script>";
-		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-		}
+                //echo "alert('Meow ๆ');";
+                echo "window.location ='choose_a_teaching.php'; ";
+             echo "</script>";
+        }
 	
 	}
 	$i++;
@@ -100,4 +107,3 @@ foreach($data as $q[]){
 
 mysqli_close($conn);
 ?>
-

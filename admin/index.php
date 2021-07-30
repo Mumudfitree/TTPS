@@ -107,9 +107,18 @@
     <title>หน้าข้อมูลของสมาชิก</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" href="../pass_or_no.css">
+    <style>
+        body{
+            font-size:18px;
+        }
+        ul{
+            align: right;
+        }
+    </style>
 </head>
 
 <body>
+    
     <?php include_once('slidebar_admin.php'); ?>
 
     <div class="main">
@@ -124,7 +133,7 @@
                     </svg> เพิ่มบุคลากร</a>
                     
                 <!-- ปุ่ม Search -->
-                <ul class="nav nav-pills pull-right">
+                <ul class="nav nav-pills">
                     <div class="d-flex pb-3">
                         <input class="form-control me-2" type="search" placeholder="ค้นหาชื่อ" aria-label="Search"
                             id="Search" onchange="search_input()">
@@ -175,7 +184,7 @@
                         <td><?php if($row1["status_master"] == 'Active'){?>
                             <p class="active">ใช้งานได้</p>
                             <?php } elseif($row1["status_master"] == 'Inactive'){?>
-                            <p class="inactive">ถูกระงับการใช้งาน</p>
+                            <p class="inactive">ถูกระงับการใช้งานได้</p>
                             <?php } ?>
                         </td>
                         <td><a href="edit.php?update_id=<?php echo $row1["master_id"]; ?>" class="btn btn-warning">แก้ไข

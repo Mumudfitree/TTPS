@@ -111,7 +111,13 @@
         });
     });
     </script>
-    </script>
+
+<style>
+    textarea {
+        width: 100%;
+    }
+    </style>
+  
 
 </head>
 

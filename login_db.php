@@ -121,6 +121,7 @@ session_start();
                       if($_SESSION["Userlevel"]== "1" && $row['status_master'] == 'Active'  ){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin_page.php
 
                         $_SESSION['admin_login'] = $username;
+                        $_SESSION['Role'] = 'ผู้ดูแลระบบ';
                         $_SESSION['success'] = "ผู้ดูแลระบบ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                         header("location: admin/admin_home.php");
 
@@ -135,6 +136,7 @@ session_start();
                       if ($_SESSION["Userlevel"]=="2" && $row['status_master'] == 'Active' ){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
 
                         $_SESSION['director_login'] = $username;
+                        $_SESSION['Role'] = 'ผู้อำนวยการ';
                         $_SESSION['success'] = "ผู้อำนวยการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                         header("location: director/director_home.php");
 
@@ -149,6 +151,7 @@ session_start();
                       if ($_SESSION["Userlevel"]=="3" && $row['status_master'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
 
                         $_SESSION['deputydirector_login'] = $username;
+                        $_SESSION['Role'] = 'รองผู้อำนวยการ';
                         $_SESSION['success'] = "รองผู้อำนวยการ ฝ่ายวิชาการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                         header("location: deputydirector/deputydirector_home.php");
 
@@ -178,6 +181,7 @@ session_start();
                       if ($_SESSION["Userlevel"]=="5" && $row['status_master'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
 
                         $_SESSION['teacher_login'] = $username;
+                        $_SESSION['Role'] = 'คุณครู';
                         $_SESSION["User"];
                         $_SESSION['master_id'] = $id;
                         $_SESSION['success'] = "ครู ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
@@ -194,6 +198,7 @@ session_start();
                       if ($_SESSION["Userlevel"]=="6" && $row['status_master'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
 
                         $_SESSION['headprimary_login'] = $username;
+                        $_SESSION['Role'] = 'หัวหน้าช่วงชั้นประถม';
                         $_SESSION['success'] = "หัวหน้าช่วงชั้นประถม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                         header("location: headprimary/headprimary_home.php");
 
@@ -207,6 +212,7 @@ session_start();
                       if ($_SESSION["Userlevel"]=="7" && $row['status_master'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
 
                         $_SESSION['headhighschool_login'] = $username;
+                        $_SESSION['Role'] = 'หัวหน้าช่วงชั้นมัธยม';
                         $_SESSION['success'] = "หัวหน้าช่วงชั้นมัธยม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                         header("location: headhighschool/headhighschool_home.php");
 
