@@ -101,6 +101,7 @@
         <form method="post" class="form-horizontal mt-5">
             <div class="form- text-center">
                 <div class="row">
+                    <input type="hidden" id="id" name="id" >
                     <label for="type" class="col-sm-3 control-label">ชื่อ</label>
                     <div class="col-sm-6">
                         <select name="txt_name" class="form-control">
@@ -321,6 +322,7 @@
             </div>
         </form>
     </div>
+    
 
 
 

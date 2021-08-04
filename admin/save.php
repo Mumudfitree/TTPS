@@ -1,4 +1,4 @@
-		<?php
+<?php
 
 require 'vendor/autoload1.php';
  
@@ -81,7 +81,7 @@ foreach($data as $q[]){
         
 
 
-		if($master_id != $row_check['master_id'] AND $grade_id != $row_check['grade_id'] AND $subject_id != $row_check['subject_id'] AND $class_id != $row_check['class_id'] AND $time_id != $row_check['time_id'] AND $date != $row_check['date'] AND $year_id != $row_check['year_id'] ){
+		/*if($master_id != $row_check['master_id'] AND $grade_id != $row_check['grade_id'] AND $subject_id != $row_check['subject_id'] AND $class_id != $row_check['class_id'] AND $time_id != $row_check['time_id'] AND $date != $row_check['date'] AND $year_id != $row_check['year_id'] ){*/
         $sql = "INSERT INTO choose_a_teaching (master_id,grade_id,subject_id,class_id,time_id,date,year_id) VALUES ('$master_id','$grade_id ','$subject_id','$class_id','$time_id ','$date','$year_id')";
         
             if (mysqli_query($conn, $sql)) {
@@ -92,12 +92,12 @@ foreach($data as $q[]){
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
-        }else{
+        /*}else{
             echo "<script>";
                 //echo "alert('Meow ๆ');";
                 echo "window.location ='choose_a_teaching.php'; ";
              echo "</script>";
-        }
+        }*/
 	
 	}
 	$i++;
