@@ -35,9 +35,9 @@
     if(isset($_REQUEST['download_id'])){
         
             $id = $_REQUEST['download_id'];
-            $sql = "SELECT * FROM choose_a_teaching as c,subject as sub, classroom  as class,login_information as login, grade_level as grade,time ,year as y
-            WHERE  c.choose_id = $id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = y.year_id AND c.master_id =login.master_id AND c.master_id = $id1 
-            AND c.grade_id = grade.grade_id AND c.time_id = time.time_id";
+            $sql = "SELECT * FROM choose_a_teaching as report,subject, classroom  as class,login_information as login, grade_level as grade,time ,year as y
+            WHERE  report.choose_id = $id AND report.subject_id = sub.subject_id AND report.class_id = class.class_id AND report.year_id = y.year_id AND report.master_id =login.master_id AND report.master_id = $id1 
+            AND report.grade_id = grade.grade_id AND report.time_id = time.time_id";
             $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
             $row = mysqli_fetch_array($result);
             extract($row);
@@ -65,8 +65,8 @@
     <div class="container">
         <?php 
     $data_schedule=array();//array ของข้อมูล
-    $sql ="SELECT * FROM choose_a_teaching as c,login_information as login, classroom as class, subject as sub, grade_level as grade, time ,year as y
-    WHERE c.master_id = login.master_id AND c.class_id = class.class_id AND c.year_id = y.year_id AND c.subject_id = sub.subject_id AND c.grade_id = grade.grade_id AND c.time_id = time.time_id ";
+    $sql ="SELECT * FROM choose_a_teaching as report,login_information as login, classroom as class, subject, grade_level as grade, time ,year as y
+    WHERE report.master_id = login.master_id AND report.class_id = class.class_id AND report.year_id = y.year_id AND report.subject_id = sub.subject_id AND report.grade_id = grade.grade_id AND report.time_id = time.time_id ";
     $query=mysqli_query($conn,$sql);
 ?>
         <form method="post" class="form-horizontal mt-5">
@@ -158,7 +158,7 @@
                     <?php
                     for($i_time=1;$i_time<= $kab/*7คาบ*/ ;$i_time++){ //ตารางที่ของเวลาที่ว่างๆ **สำคัญ
                         //echo $thai_day_arr[$i_day];
-                        $sql3="SELECT * FROM choose_a_teaching as c,grade_level as grade, classroom as class, subject as sub, time as t, year as y,login_information as login
+                        $sql3="SELECT * FROM choose_a_teaching as report,grade_level as grade, classroom as class, subject, time as t, year as y,login_information as login
                         WHERE c.master_id = login.master_id AND c.grade_id = grade.grade_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.time_id = t.time_id AND c.year_id = y.year_id 
                         AND login.master_id ='50' AND date ='$thai_day_arr[$i_day]' AND t.time_id = '$i_time' ";
                         $query3=mysqli_query($conn,$sql3);

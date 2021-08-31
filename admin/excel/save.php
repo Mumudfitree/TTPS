@@ -72,7 +72,7 @@ foreach($data as $q[]){
 
 
 		
-        $sql = "INSERT INTO choose_a_teaching (master_id,grade_id,subject_id,class_id,time_id,date) VALUES ('$master_id','$grade_id ','$subject_id','$class_id','$time_id ','$date')";
+        $sql = "INSERT INTO choose_a_teaching (master_id, grade_id, subject_id, class_id, time_id, date) VALUES ('$master_id','$grade_id ','$subject_id','$class_id','$time_id ','$date')";
         
 		if (mysqli_query($conn, $sql)) {
             echo "<script>";

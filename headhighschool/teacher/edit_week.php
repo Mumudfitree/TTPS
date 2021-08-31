@@ -11,9 +11,9 @@
     if(isset($_REQUEST['update_id'])){
 
             $id = $_REQUEST['update_id'];
-            $sql = "SELECT * FROM weekly_summary as week ,choose_a_teaching as c, subject as sub , classroom as class, grade_level as grade
-            WHERE week.id_prepare_week = '".$id."' AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.grade_id = grade.grade_id AND
-            week.choose_id = c.choose_id ";
+            $sql = "SELECT * FROM weekly_summary as week ,choose_a_teaching as report, subject , classroom as class, grade_level as grade
+            WHERE week.id_prepare_week = '".$id."' AND report.subject_id = sub.subject_id AND report.class_id = class.class_id AND report.grade_id = grade.grade_id AND
+            week.choose_id = report.choose_id ";
             $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
             $row = mysqli_fetch_array($result);
             extract($row);
@@ -156,8 +156,6 @@
             </div>
             <br>
             
-            >
-
             <div class="form- text-center">
                 <div class="row">
                     <label for="name_classroom" class="col-sm-3 control-label">วันที่รายงานผล</label>
@@ -169,8 +167,8 @@
             <br>
 
             <?php
-                        $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        $query2 = "SELECT * FROM choose_a_teaching as report, subject, classroom as class
+                        WHERE report.subject_id = sub.subject_id AND report.class_id = class.class_id AND report.master_id = '".$id1."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 

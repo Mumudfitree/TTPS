@@ -9,7 +9,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
 
         $id = $_REQUEST['change_id'];
 
-        $sql = "SELECT * FROM  login_information WHERE master_id = '".$id."'";
+        $sql = "SELECT * FROM login_information WHERE master_id = '".$id."'";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);

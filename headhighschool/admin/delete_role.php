@@ -16,7 +16,7 @@ if ($_SESSION['login_type'] != 1) {//คำสั่งต้องloginก่�
         extract($row);
     }
 
-    $sql = "UPDATE user_role SET status_role  = 'Inactive' WHERE user_role_id = '".$id."'";
+    $sql = "UPDATE user_role SET status_role = 'Inactive' WHERE user_role_id = '".$id."'";
     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 

@@ -40,7 +40,7 @@
         }else{
             
                 if(!isset($errorMsg))
-                    $sql = "UPDATE choose_a_teaching SET  grade_id = '".$grade_level_user."', subject_id = '".$code_up."', class_id = '".$classroom_up."' ,
+                    $sql = "UPDATE choose_a_teaching SET grade_id = '".$grade_level_user."', subject_id = '".$code_up."', class_id = '".$classroom_up."' ,
                     status_choose='Active' WHERE choose_id = '".$id."' ";
                     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 

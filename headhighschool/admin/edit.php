@@ -12,7 +12,7 @@
         //2. query ข้อมูลจากตาราง:
         $id = $_REQUEST['update_id'];
 
-        $sql = "SELECT * FROM  login_information as login, user_role as role WHERE login.master_id = '".$id."' AND login.user_role_id = role.user_role_id ";
+        $sql = "SELECT * FROM login_information as user, user_role as role WHERE user.master_id = '".$id."' AND user.user_role_id = role.user_role_id ";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);
@@ -189,7 +189,7 @@
 
 
 
-    <script src="js/slime.js"></>
+    <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
 

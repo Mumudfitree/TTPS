@@ -14,7 +14,7 @@
             <div class="display-3 text-center">หน้าอัพโหลดข้อมูลผ่านทางexcel</div>
             <br>
                 <form action="save.php" method="post" enctype="multipart/form-data">
-                <input type="file" name="myfile"  required accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" /> 
+                <input type="file" name="myfile"  required accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"> 
                 <button type="submit" class="btn btn-info">อัพโหลด</button>
                 </form>
             

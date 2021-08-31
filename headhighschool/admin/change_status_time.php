@@ -21,7 +21,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
             extract($row);*/
             
     }
-    $sql = "UPDATE time SET  status_time  = 'Active' WHERE time_id = '".$id."'";
+    $sql = "UPDATE time SET status_time = 'Active' WHERE time_id = '".$id."'";
     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 

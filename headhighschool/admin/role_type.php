@@ -40,10 +40,10 @@
                     
                         $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
                     
-                        $sql = "SELECT * from user_role  ORDER BY user_role_id DESC $limit";
+                        $sql = "SELECT * from user_role ORDER BY user_role_id DESC $limit";
                         if(isset($_GET['search'])){ 
                             $search = $_GET['search'];
-                            $sql = "SELECT * from  user_role WHERE   name_role LIKE '%" . $search . "%' ORDER BY user_role_id DESC $limit ";
+                            $sql = "SELECT * from  user_role WHERE name_role LIKE '%" . $search . "%' ORDER BY user_role_id DESC $limit ";
                             $strKeyword = $_GET['search'];// รับค่า search
                         }
                         $nquery=mysqli_query($conn,$sql);
@@ -110,7 +110,7 @@
             </a>
              <!-- ปุ่ม Search -->
              <ul class="nav nav-pills pull-right"> 
-            <div class="d-flex pb-3" >
+            <div class="d-flex pb-3">
             <input class="form-control me-2" type="search" placeholder="ค้นหาบทบาท" aria-label="Search"
                         id="Search" onchange="search_input()">
                     <button class=" btn btn-outline-success" type="submit" onclick='search()'>ค้นหา</button>

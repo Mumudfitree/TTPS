@@ -60,8 +60,7 @@
                     <label for="name_role" class="col-sm-3 control-label">ชื่อ-นามสกุล</label>
                     <div class="col-sm-6">
                         <input type="text" name="" class="form-control"
-                            value="<?php echo $_SESSION['fname'].' '.$_SESSION['lname']; ?>" readonly />
-                    </div>
+                            value="<?php echo $_SESSION['fname'].' '.$_SESSION['lname']; ?>" readonly>                    </div>
                 </div>
             </div>
 
@@ -70,8 +69,7 @@
                     <label for="name_role" class="col-sm-3 control-label">วันที่รายงานผล/วิชา</label>
                     <div class="col-sm-6">
                         <input type="text" name="" class="form-control"
-                            value="<?php echo $row['date_prepare_week'].' '.$row['name_subject']; ?>" readonly />
-                    </div>
+                            value="<?php echo $row['date_prepare_week'].' '.$row['name_subject']; ?>" readonly>                    </div>
                 </div>
             </div>
 
@@ -80,7 +78,7 @@
                     <label for="name_role" class="col-sm-3 control-label">เป้าหมาย</label>
                     <div class="col-sm-6">
                         <textarea rows="10" cols="55" name="description" class="form-control" required
-                            readonly /><?php echo $row['goal']; ?> </textarea>
+                            readonly><?php echo $row['goal']; ?> </textarea>
                     </div>
                 </div>
             </div>
@@ -90,7 +88,7 @@
                     <label for="name_role" class="col-sm-3 control-label">ผลการปฎิบัติงาน</label>
                     <div class="col-sm-6">
                         <textarea rows="10" cols="55" name="description" class="form-control" required
-                            readonly /><?php echo $row['result']; ?> </textarea>
+                            readonly><?php echo $row['result']; ?> </textarea>
                     </div>
                 </div>
             </div>
@@ -100,7 +98,7 @@
                     <label for="name_role" class="col-sm-3 control-label">กิจกรรมที่ทำได้ดี</label>
                     <div class="col-sm-6">
                         <textarea rows="10" cols="55" name="description" class="form-control" required
-                            readonly /><?php echo $row['activity_good']; ?> </textarea>
+                            readonly><?php echo $row['activity_good']; ?> </textarea>
                     </div>
                 </div>
             </div>
@@ -110,7 +108,7 @@
                     <label for="name_role" class="col-sm-3 control-label">กิจกรรมที่ทำได้ไม่ดี</label>
                     <div class="col-sm-6">
                         <textarea rows="10" cols="55" name="description" class="form-control" required
-                            readonly /><?php echo $row['activity_nogood']; ?> </textarea>
+                            readonly><?php echo $row['activity_nogood']; ?> </textarea>
                     </div>
                 </div>
             </div>
@@ -120,7 +118,7 @@
                     <label for="name_role" class="col-sm-3 control-label">ปัญหา/อุปสรรค</label>
                     <div class="col-sm-6">
                         <textarea rows="10" cols="55" name="description" class="form-control" required
-                            readonly /><?php echo $row['problem']; ?> </textarea>
+                            readonly><?php echo $row['problem']; ?> </textarea>
                     </div>
                 </div>
             </div>
@@ -130,7 +128,7 @@
                     <label for="name_role" class="col-sm-3 control-label">นักเรียน/กิจกรรมที่ต้องปรับปรุง</label>
                     <div class="col-sm-6">
                         <textarea rows="10" cols="55" name="description" class="form-control" required
-                            readonly /><?php echo $row['student']; ?> </textarea>
+                            readonly><?php echo $row['student']; ?> </textarea>
                     </div>
                 </div>
             </div>
@@ -141,7 +139,7 @@
                         class="col-sm-3 control-label">แนวทางการแก้ปัญหาหรือการปฎิบัติการครั้งต่อไป</label>
                     <div class="col-sm-6">
                         <textarea rows="10" cols="55" name="description" class="form-control" required
-                            readonly /><?php echo $row['Solve_the_problem']; ?> </textarea>
+                            readonly><?php echo $row['Solve_the_problem']; ?> </textarea>
 
                     </div>
                 </div>

@@ -15,7 +15,7 @@
         }else {
             
                 if(!isset($errorMsg)){
-                    $sql ="INSERT INTO year(year_id,year_name,term)VALUES (NULL,'$year_name','$term')";
+                    $sql ="INSERT INTO year(year_id,year_name,term) VALUES (NULL,'$year_name','$term')";
                     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                     mysqli_close($conn);
     

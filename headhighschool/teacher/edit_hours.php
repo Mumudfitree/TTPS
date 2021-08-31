@@ -12,9 +12,9 @@
     if(isset($_REQUEST['update_id'])){
         
             $id2 = $_REQUEST['update_id'];
-            $sql = "SELECT * FROM prepare_to_teach as pre ,choose_a_teaching as c, subject as sub , classroom as class, grade_level as grade
-            WHERE pre.id_prepare = '".$id2."' AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.grade_id = grade.grade_id AND
-            pre.choose_id = c.choose_id ";
+            $sql = "SELECT * FROM prepare_to_teach as pre ,choose_a_teaching as report, subject , classroom as class, grade_level as grade
+            WHERE pre.id_prepare = '".$id2."' AND report.subject_id = sub.subject_id AND report.class_id = class.class_id AND report.grade_id = grade.grade_id AND
+            pre.choose_id = report.choose_id ";
             $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
             $row = mysqli_fetch_array($result);
             extract($row);
@@ -154,8 +154,8 @@
             </div>
 
             <?php
-                        $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        $query2 = "SELECT * FROM choose_a_teaching as report, subject, classroom as class
+                        WHERE report.subject_id = sub.subject_id AND report.class_id = class.class_id AND report.master_id = '".$id1."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 

@@ -11,8 +11,8 @@ $diff_result = $interval->format('%y ปี %m เดือน  %d วัน');
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css"/>
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
@@ -34,7 +34,7 @@ $diff_result = $interval->format('%y ปี %m เดือน  %d วัน');
         <div id="name_data">
         <div class="input-group">
         <input class="form-control form-control-inline input-medium datepicker"
-         name="date1" value="<?php echo $date1;?>" />       
+         name="date1" value="<?php echo $date1;?>" >       
         </div>
         </div>
      </div>
@@ -48,7 +48,7 @@ $diff_result = $interval->format('%y ปี %m เดือน  %d วัน');
         <div id="name_data">
         <div class="input-group">
         <input class="form-control form-control-inline input-medium datepicker"
-         name="date2" value="<?php echo $date2;?>" />       
+         name="date2" value="<?php echo $date2;?>" >       
         </div>
         </div>
      </div>

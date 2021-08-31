@@ -105,7 +105,7 @@ session_start();
                   $password = $_POST['txt_password'];
                   $role = $_POST['txt_role'];
 				//query 
-                  $sql="SELECT * FROM login_information Where username='".$username."' and password='".$password."' and user_role_id ='".$role."' ";
+                  $sql="SELECT * FROM login_information Where username = '".$username."' and password = '".$password."' and user_role_id = '".$role."' ";
 
                   $result = mysqli_query($conn,$sql);
 				

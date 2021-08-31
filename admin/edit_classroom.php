@@ -11,7 +11,7 @@
         
         $id = $_REQUEST['update_id'];
 
-        $sql = "SELECT * FROM  classroom as class , grade_level as grade WHERE  class.class_id = '".$id."' AND class.grade_id = grade.grade_id ";
+        $sql = "SELECT * FROM  classroom as class , grade_level as grade WHERE class.class_id = '".$id."' AND class.grade_id = grade.grade_id ";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);

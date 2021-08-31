@@ -190,8 +190,8 @@
                 <br>
 
                 <?php
-                        $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        $query2 = "SELECT * FROM choose_a_teaching as report, subject, classroom as class
+                        WHERE report.subject_id = sub.subject_id AND report.class_id = class.class_id AND report.master_id = '".$id1."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 

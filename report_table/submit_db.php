@@ -1,28 +1,28 @@
 <form id="myForm" action="submit_db.php" method="post">
-    <input value="" name="latitude" id="latitude" hidden/>
-    <input value="" name="longitude" id="longitude" hidden/>
-    <input value="" name="in" hidden/>
+    <input value="" name="latitude" id="latitude" hidden>
+    <input value="" name="longitude" id="longitude" hidden>
+    <input value="" name="in" hidden>
     <button type="submit" class="btn" hidden>ลงชื่อเข้า</button>
 </form>
 
 <form id="myForm2" action="submit_db.php" method="post">
-    <input value="" name="latitude2" id="latitude2" hidden/>
-    <input value="" name="longitude2" id="longitude2" hidden/>
-    <input value="" name="out" hidden/>
+    <input value="" name="latitude2" id="latitude2" hidden>
+    <input value="" name="longitude2" id="longitude2" hidden>
+    <input value="" name="out" hidden>
     <button type="submit" class="btn"  hidden>ลงชื่อออก</button>
 </form>
 
 <form id="myForm3" action="submit_db.php" method="post">
-    <input value="" name="latitude3" id="latitude3" hidden/>
-    <input value="" name="longitude3" id="longitude3" hidden/>
-    <input value="" name="wfh" hidden/>
+    <input value="" name="latitude3" id="latitude3" hidden>
+    <input value="" name="longitude3" id="longitude3" hidden>
+    <input value="" name="wfh" hidden>
     <button type="submit" class="btn"  hidden>wfh</button>
 </form>
 
 <form id="myForm4" action="submit_db.php" method="post">
-    <input value="" name="latitude4" id="latitude4" hidden/>
-    <input value="" name="longitude4" id="longitude4" hidden/>
-    <input value="" name="wfh_out" hidden/>
+    <input value="" name="latitude4" id="latitude4" hidden>
+    <input value="" name="longitude4" id="longitude4" hidden>
+    <input value="" name="wfh_out" hidden>
     <button type="submit" class="btn"  hidden>wfh_out</button>
 </form>
 

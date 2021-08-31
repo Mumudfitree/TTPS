@@ -37,10 +37,10 @@
                     
                         $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
                     
-                        $sql = "SELECT * from  grade_level   ORDER BY grade_id DESC $limit";
+                        $sql = "SELECT * from  grade_level ORDER BY grade_id DESC $limit";
                         if(isset($_GET['search'])){ 
                             $search = $_GET['search'];
-                            $sql = "SELECT * from  grade_level WHERE  name_gradelevel LIKE '%" . $search . "%' ORDER BY id DESC $limit ";
+                            $sql = "SELECT * from  grade_level WHERE name_gradelevel LIKE '%" . $search . "%' ORDER BY id DESC $limit ";
                         }
                         $nquery=mysqli_query($conn,$sql);
                     
@@ -94,7 +94,7 @@
             <a href="add_grade_level.php" class="btn btn-success mb-3">เพิ่มระดับชั้นเรียน</a>
             <!-- ปุ่ม Search -->
             <ul class="nav nav-pills pull-right"> 
-            <div class="d-flex pb-3" >
+            <div class="d-flex pb-3">
             <input class="form-control me-2" type="search" placeholder="ค้นหาระดับชั้น" aria-label="Search"
                         id="Search" onchange="search_input()">
                     <button class=" btn btn-outline-success" type="submit" onclick='search()'>ค้นหา</button>

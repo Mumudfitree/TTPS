@@ -46,7 +46,7 @@
                     <tbody>
                         <?php
                     $id =$_SESSION['master_id'];
-                    $sql = "SELECT * FROM choose_a_teaching as c,year as y WHERE c.year_id = y.year_id AND y.status_year = 'Active'  ";
+                    $sql = "SELECT * FROM choose_a_teaching as report, year as y WHERE report.year_id = y.year_id AND y.status_year = 'Active'  ";
                     $query = mysqli_query($conn,$sql) ;
                     $row = mysqli_fetch_array($query);
                     ?>

@@ -37,12 +37,12 @@
                     
                         $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
                         
-                        $sql ="SELECT * FROM choose_a_teaching as c, subject as sub , classroom as class, login_information as login, grade_level as grade, year
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = year.year_id
-                        AND c.master_id = login.master_id AND c.grade_id = grade.grade_id  ORDER BY choose_id DESC $limit";
+                        $sql ="SELECT * FROM choose_a_teaching as report, subject, classroom as class, login_information as user, grade_level as grade, year
+                        WHERE report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.year_id = year.year_id
+                        AND report.master_id = user.master_id AND report.grade_id = grade.grade_id  ORDER BY choose_id DESC $limit";
                          if(isset($_GET['search'])){ 
                             $search = $_GET['search'];
-                            $sql = "SELECT * FROM choose_a_teaching as report, subject, classroom as class, login_information as user, grade_level as grade, year  WHERE report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.year_id = year.year_id AND report.master_id = user.master_id AND report.grade_id = grade.grade_id ORDER BY choose_id DESC $limit";
+                            $sql = "SELECT * FROM choose_a_teaching as report, subject, classroom as class, login_information as user, grade_level as grade, year WHERE report.subject_id = subject.subject_id AND report.class_id = class.class_id AND report.year_id = year.year_id AND report.master_id = user.master_id AND report.grade_id = grade.grade_id ORDER BY choose_id DESC $limit";
                         }
                         $nquery=mysqli_query($conn,$sql);
                     
@@ -95,15 +95,15 @@
             <div class="display-3 text-center">หน้าที่ครู</div>
             <a href="add_choose_a_teaching.php" class="btn btn-success mb-3"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                         height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z">
                         <path fill-rule="evenodd"
-                            d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                            d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z">
                     </svg>เพิ่มหน้าที่ครู</a>
             <a href="add_excel.php" class="btn btn-success mb-3"> เพิ่มข้อมูล Excel</a>
              <!-- ปุ่ม Search -->
              <ul class="nav nav-pills pull-right"> 
-            <div class="d-flex pb-3" >
-            <input class="form-control me-2" type="search" placeholder="ค้นหาชื่อ" aria-label="Search"
+            <div class="d-flex pb-3">
+                <input class="form-control me-2" type="search" placeholder="ค้นหาชื่อ" aria-label="Search"
                         id="Search" onchange="search_input()">
                     <button class=" btn btn-outline-success" type="submit" onclick='search()'>ค้นหา</button>
             </div>

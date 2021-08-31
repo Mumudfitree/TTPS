@@ -32,7 +32,7 @@
 
     $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-    $nquery=mysqli_query($conn,"SELECT * from  prepare_to_teach  as pre,choose_a_teaching as c, subject as sub, classroom as class,login_information as login
+    $nquery=mysqli_query($conn,"SELECT * from  prepare_to_teach  as pre,choose_a_teaching as report, subject, classroom as class,login_information as login
     WHERE pre.choose_id = c.choose_id AND c.subject_id =sub.subject_id AND c.class_id = class.class_id AND c.master_id = login.master_id AND  login.master_id = '".$id."' ORDER BY id_prepare DESC $limit");
 
     $paginationCtrls = '';
@@ -105,7 +105,7 @@
                 ?>
                 <tr>
                     <?php if($row['status_prepare_hours'] =='Complete'&& $row['master_id'] == $id && $row['status_choose'] == 'Active'){?>
-                    <!-- <td><?php// echo date("m/d/y ",strtotime($row["date_prepare"])) ?></td> -->
+                    <!-- <td>< ?php// echo date("m/d/y ",strtotime($row["date_prepare"])) ?></td> -->
                     <td><?php echo $row["date_prepare"]; ?></td>
                     <td><?php echo $row['name_subject'].' ('.$row['name_classroom'].')'; ?></td>
 
@@ -113,9 +113,9 @@
                             class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
                                 <path
-                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z">
                                 <path
-                                    d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                    d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z">
                             </svg> ดาวน์โหลด</a></td>
                     <td><?php if($row['status_prepare_hours'] == 'Complete'){?>
                         <p class="status_pass">ผ่านการตรวจสอบ</p>

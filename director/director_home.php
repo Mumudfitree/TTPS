@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    if ($_SESSION['login_type'!= 2]) {
+    if ($_SESSION['login_type'] != 2) {
         header("location: ../index.php");
     }
 

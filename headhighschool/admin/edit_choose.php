@@ -11,8 +11,8 @@
         
         $id = $_REQUEST['update_id'];
 
-        $sql = "SELECT * FROM choose_a_teaching as c,login_information as m , subject as sub, classroom as class, grade_level as grade
-        WHERE c.choose_id = '".$id."' and c.master_id = m.master_id and c.subject_id = sub.subject_id and c.class_id = class.class_id and c.grade_id = grade.grade_id ";
+        $sql = "SELECT * FROM choose_a_teaching as report, login_information as user, subject, classroom as class, grade_level as grade
+        WHERE report.choose_id = '".$id."' and report.master_id = user.master_id and report.subject_id = subject.subject_id and report.class_id = class.class_id and report.grade_id = grade.grade_id ";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);
@@ -40,7 +40,7 @@
         }else{
             
                 if(!isset($errorMsg))
-                    $sql = "UPDATE choose_a_teaching SET  grade_id = '".$grade_level_user."', subject_id = '".$code_up."', class_id = '".$classroom_up."' ,
+                    $sql = "UPDATE choose_a_teaching SET grade_id = '".$grade_level_user."', subject_id = '".$code_up."', class_id = '".$classroom_up."' ,
                     status_choose='Active' WHERE choose_id = '".$id."' ";
                     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
@@ -214,7 +214,7 @@
 
 
 
-    <script src="js/slime.js"></>
+    <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
 

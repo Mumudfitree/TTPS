@@ -36,8 +36,8 @@ else if ($pagenum > $last) {
 
 $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-$nquery=mysqli_query($conn,"SELECT * from  weekly_summary as week,choose_a_teaching as c,subject as sub,classroom as class,grade_level as grade,login_information as login
-WHERE week.choose_id = c.choose_id AND c.class_id = class.class_id AND c.subject_id = sub.subject_id AND c.grade_id = grade.grade_id AND c.master_id = login.master_id
+$nquery=mysqli_query($conn,"SELECT * from  weekly_summary as week,choose_a_teaching as report,subject,classroom as class,grade_level as grade, login_information as login
+WHERE week.choose_id = report.choose_id AND report.class_id = class.class_id AND report.subject_id = sub.subject_id AND report.grade_id = grade.grade_id AND report.master_id = login.master_id
 ORDER BY id_prepare_week DESC $limit");
 
 $paginationCtrls = '';

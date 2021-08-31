@@ -11,7 +11,7 @@
     if(isset($_REQUEST['update_id'])){
         //2. query ข้อมูลจากตาราง:
         $id = $_REQUEST['update_id'];
-        $sql = "SELECT * FROM  year WHERE year_id = '".$id."' ";
+        $sql = "SELECT * FROM year WHERE year_id = '".$id."' ";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);
@@ -131,7 +131,7 @@
 
 
 
-    <script src="js/slime.js"></>
+    <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
 

@@ -37,10 +37,10 @@
                     
                         $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
                     
-                        $sql = "SELECT * from  subject as sub, grade_level as grade WHERE sub.grade_id = grade.grade_id ORDER BY subject_id DESC $limit";
+                        $sql = "SELECT * from subject, grade_level as grade WHERE subject.grade_id = grade.grade_id ORDER BY subject.subject_id DESC $limit";
                         if(isset($_GET['search'])){ 
                             $search = $_GET['search'];
-                            $sql = "SELECT * from  subject as sub, grade_level as grade WHERE  sub.grade_id = grade.grade_id AND sub.code_subject LIKE '%" . $search . "%' OR name_subject LIKE '%" . $search . "%' ORDER BY subject_id DESC $limit ";
+                            $sql = "SELECT * from subject, grade_level as grade WHERE subject.grade_id = grade.grade_id AND subject.code_subject LIKE '%" . $search . "%' OR subject.name_subject LIKE '%" . $search . "%' ORDER BY subject.subject_id DESC $limit ";
                         }
                         $nquery=mysqli_query($conn,$sql);
                     
@@ -92,7 +92,7 @@
     <a href="add_subject.php" class="btn btn-success mb-3">เพิ่มวิชา</a>
     <!-- ปุ่ม Search -->
     <ul class="nav nav-pills pull-right"> 
-            <div class="d-flex pb-3" >
+            <div class="d-flex pb-3">
             <input class="form-control me-2" type="search" placeholder="ค้นหา รหัสวิชา ชื่อวิชา" aria-label="Search"
                         id="Search" onchange="search_input()">
                     <button class=" btn btn-outline-success" type="submit" onclick='search()'>ค้นหา</button>

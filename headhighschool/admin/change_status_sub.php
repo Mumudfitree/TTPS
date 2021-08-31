@@ -14,7 +14,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
         extract($row);
     }
 
-    $sql = "UPDATE subject SET  status_subject  = 'Active' WHERE subject_id = '".$id."'";
+    $sql = "UPDATE subject SET status_subject = 'Active' WHERE subject_id = '".$id."'";
     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 

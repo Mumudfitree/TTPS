@@ -11,7 +11,7 @@
         //2. query ข้อมูลจากตาราง:
         $id = $_REQUEST['update_id'];
 
-        $sql = "SELECT * FROM  login_information as login, user_role as role WHERE login.master_id = '".$id."' AND login.user_role_id = role.user_role_id ";
+        $sql = "SELECT * FROM login_information as login, user_role as role WHERE login.master_id = '".$id."' AND login.user_role_id = role.user_role_id ";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);
@@ -48,8 +48,8 @@
             $errorMsg = "กรุณาระบุบทบาท";
         }else{
                 if(!isset($errorMsg))
-                    $sql = "UPDATE login_information SET fname = '".$firstname_up."' ,lname = '".$lastname_up."',
-                    username = '".$username_up."', password = '".$password_up."',email= '".$email_up."', user_role_id = '".$role_up."' 
+                    $sql = "UPDATE login_information SET fname = '".$firstname_up."', lname = '".$lastname_up."',
+                    username = '".$username_up."', password = '".$password_up."', email = '".$email_up."', user_role_id = '".$role_up."' 
                     WHERE master_id = '".$id."'";
                     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
