@@ -10,11 +10,6 @@
         $username = $_POST['txt_username']; // textbox name 
         $password = $_POST['txt_password']; // password
         $role = $_POST['txt_role']; // select option role
-        $fname;
-        $lname;
-        $id;
-    
-
 
         $status;
   
@@ -48,14 +43,15 @@
                 }
                 if ($username != null AND $password != null AND $role != null ) {
                     if ($select_stmt->rowCount() > 0) {
+                        
+                        if ($username == $dbusername AND $password == $dbpassword AND $role == $dbrole AND $dbstatus == 'Active')  {
+                            
+                            $_SESSION['master_id'] = $dbid;
+                            $_SESSION['user_login'] = $dbusername;
+                            $_SESSION['fname'] = $dbfname;
+                            $_SESSION['lname'] = $dblname;
+                            $_SESSION['name'] = $_SESSION['fname'].' '.$_SESSION['lname'];
 
-                        $_SESSION['master_id'] = $id;
-                        $_SESSION['user_login'] = $username;
-                        $_SESSION['fname'] = $fname;
-                        $_SESSION['lname'] = $lname;
-                        $_SESSION['name'] = $_SESSION['fname'].' '.$_SESSION['lname'];
-
-                        if ($username == $dbusername AND $password == $dbpassword AND $role == $dbrole AND $dbstatus == 'Active' AND $fname = $dbfname AND $lname = $dblname AND $id = $dbid)  {
                             switch($dbrole) {
                                 case '1':
                                     $_SESSION['login_type'] = 1;

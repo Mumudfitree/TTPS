@@ -17,13 +17,11 @@
 
     $client_id = 'wpUIRBGGA6B7RaRF02BrON';
     $api_url = 'https://notify-bot.line.me/oauth/authorize?';
-    $callback_url = 'http://localhost/TTPS/notification/line-notify-upd_auth.php';
+    $callback_url = 'http://localhost/TTPS/notification/line_notify.php';
         
     $state = "mylinenotify";
         
     haveState();
-
-    message();
         
     function haveState(){
 
@@ -31,6 +29,9 @@
             echo "haveSession";
 
             addDatabase();
+            getToken();
+
+            unsetSession();
 
             return;
 
@@ -79,7 +80,7 @@
 
         echo $_SESSION['code'];
 
-        header("location: line-notify-upd_auth.php");
+        header("location: line_notify.php");
     }
     
     function addDatabase(){
@@ -125,8 +126,6 @@
             echo $e->getMessage();
         }
 
-        getToken();
-
     }
 
     function getToken(){
@@ -135,7 +134,7 @@
         $client_secret = 'o5mbSR8kqb2Rq5wOsfDwZQ2JiP8picFpFszofs2ea3A';
 
         $api_url = 'https://notify-bot.line.me/oauth/token';
-        $callback_url = 'http://localhost/TTPS/notification/line-notify-upd_auth.php';
+        $callback_url = 'http://localhost/TTPS/notification/line_notify.php';
 
         $fields = [
             'grant_type' => 'authorization_code',
@@ -188,86 +187,10 @@
         }
     }
 
-    function message()
-    {
-        $client_id = 'wpUIRBGGA6B7RaRF02BrON';
-        $client_secret = 'o5mbSR8kqb2Rq5wOsfDwZQ2JiP8picFpFszofs2ea3A';
+    function unsetSession(){
 
-        $api_url = 'https://notify-bot.line.me/oauth/token';
-        $callback_url = 'http://localhost/TTPS/notification/line-notify-upd_auth.php';
-
-        $fields = [
-            'grant_type' => 'authorization_code',
-            'code' => $_SESSION['code'],
-            'redirect_uri' => $callback_url,
-            'client_id' => $client_id,
-            'client_secret' => $client_secret
-        ];
-        
-        try {
-            $ch = curl_init();
-        
-            curl_setopt($ch, CURLOPT_URL, $api_url);
-            curl_setopt($ch, CURLOPT_POST, count($fields));
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        
-            $res = curl_exec($ch);
-            curl_close($ch);
-        
-            if ($res == false)
-                throw new Exception(curl_error($ch), curl_errno($ch));
-        
-            $json = json_decode($res);
-
-            $_SESSION['token'] = $json->access_token;
-        
-        } catch(Exception $e) {
-            throw new Exception($e->getMessage());
-
-        }
-    }
-
-    //function message(string $msg)
-    {
-        $client_id = 'wpUIRBGGA6B7RaRF02BrON';
-        $client_secret = 'o5mbSR8kqb2Rq5wOsfDwZQ2JiP8picFpFszofs2ea3A';
-
-        $api_url = 'https://notify-bot.line.me/oauth/token';
-        $callback_url = 'http://localhost/TTPS/notification/line-notify-upd_auth.php';
-
-        $fields = [
-            'grant_type' => 'authorization_code',
-            'code' => $_SESSION['code'],
-            'redirect_uri' => $callback_url,
-            'client_id' => $client_id,
-            'client_secret' => $client_secret
-        ];
-        
-        try {
-            $ch = curl_init();
-        
-            curl_setopt($ch, CURLOPT_URL, $api_url);
-            curl_setopt($ch, CURLOPT_POST, count($fields));
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        
-            $res = curl_exec($ch);
-            curl_close($ch);
-        
-            if ($res == false)
-                throw new Exception(curl_error($ch), curl_errno($ch));
-        
-            $json = json_decode($res);
-
-            $_SESSION['token'] = $json->access_token;
-        
-        } catch(Exception $e) {
-            throw new Exception($e->getMessage());
-
-        }
+        unset($_SESSION['code']);
+        unset($_SESSION['token']);
     }
     
 ?>
