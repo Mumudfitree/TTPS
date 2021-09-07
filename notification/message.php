@@ -18,7 +18,7 @@
     $client_secret = 'o5mbSR8kqb2Rq5wOsfDwZQ2JiP8picFpFszofs2ea3A';
 
     $api_url = 'https://notify-api.line.me/api/notify';
-    $callback_url = 'http://localhost/TTPS/notification/message.php';
+    $callback_url = 'http://localhost/TTPS.wsl/notification/message.php';  //have to change back later
 
     function getToken()
     {
@@ -72,7 +72,7 @@
         $client_secret = 'o5mbSR8kqb2Rq5wOsfDwZQ2JiP8picFpFszofs2ea3A';
 
         $api_url = 'https://notify-api.line.me/api/notify';
-        $callback_url = 'http://localhost/TTPS/notification/message.php';
+        $callback_url = 'http://localhost/TTPS.wsl/notification/message.php';  //have to change back later
 
         //You should send CURLOPT_HTTPHEADER as arrays according to document
         //You should send CURLOPT_POSTFIELDS as strings according to document

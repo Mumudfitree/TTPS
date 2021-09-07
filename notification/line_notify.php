@@ -17,7 +17,7 @@
 
     $client_id = 'wpUIRBGGA6B7RaRF02BrON';
     $api_url = 'https://notify-bot.line.me/oauth/authorize?';
-    $callback_url = 'http://localhost/TTPS/notification/line_notify.php';
+    $callback_url = 'http://localhost/TTPS.wsl/notification/line_notify.php'; //have to change back later
         
     $state = "mylinenotify";
         
@@ -115,6 +115,8 @@
                 //this codes should be seperate to function in the future
                 /*if($insert_stmt->execute()){
 
+                    //problem is, I forgot to change other one that called it. So the it show that SQL codes were wrong. Codes from first one is correct, but not the second one. Because it pass checking Query at first times, but not the second.
+
                 }*/ //old one
 
                 //I mean, this codes should be seperate to function.
@@ -142,7 +144,7 @@
                             $insertMsg = "Updated successfully.";  
                         }
                         
-                        break;
+                        return 0;
                         
                     }
                     
@@ -172,7 +174,7 @@
         $client_secret = 'o5mbSR8kqb2Rq5wOsfDwZQ2JiP8picFpFszofs2ea3A';
 
         $api_url = 'https://notify-bot.line.me/oauth/token';
-        $callback_url = 'http://localhost/TTPS/notification/line_notify.php';
+        $callback_url = 'http://localhost/TTPS.wsl/notification/line_notify.php';   //have to change back later
 
         $fields = [
             'grant_type' => 'authorization_code',
