@@ -45,12 +45,14 @@
         }
     }
         
-    function checkState(){
+    function checkState(){  //I forgot to return (or break) from function
         
         if($_GET['state'] === $GLOBALS['state']){
             echo "state<br>";
                         
             clearState();
+
+            return 0;
 
         }
 
@@ -205,7 +207,7 @@
 
 
             try{
-                if(!isset($errorMsg)){
+                if(!isset($errorMsg)){ //bugs is from here, I forgot to unset $errorMsg (or is it?)
 
                     $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
                                                                 SET token = :token
