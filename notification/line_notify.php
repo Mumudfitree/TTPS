@@ -108,7 +108,7 @@
             echo $_SESSION['user_login'];
         }
 
-        try{
+        try{   //Here you are still didn't give entry for new user, I have to fix this.
             if(!isset($errorMsg)){
                 $insert_stmt = $GLOBALS['db']->prepare("SELECT * FROM login_information WHERE username = :id;");
                 $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
