@@ -109,12 +109,41 @@
         }
 
         try{   //Here you are still didn't give entry for new user, I have to fix this.
-            if(!isset($errorMsg)){
-                $insert_stmt = $GLOBALS['db']->prepare("SELECT * FROM login_information WHERE username = :id;");
+            if(!isset($errorMsg)){ //This one doesn't use because I will use query() instead.
+                //$insert_stmt = $GLOBALS['db']->prepare("SELECT * FROM login_information WHERE username = :id;");
+
+                //this codes should be seperate to function in the future
+                /*if($insert_stmt->execute()){
+
+                }*/ //old one
+
+                //I mean, this codes should be seperate to function.
+                $insert_stmt = 'SELECT * FROM login_information';
+                $stmt = $GLOBALS['db']->query($insert_stmt);
+
+                $dbData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($dbData as $distinctData){
+
+                    //This is wrong, I need to find if there are already created one. Not finds if that datas that are reading now is exist. Or if datas that is reading now is NULL.
+                    //if(!isset($distinctData["master_id"]) or $distinctData["master_id"] === NULL){
+
+                    if($distinctData['master_id'] === $_SESSION['master_id']){
+
+                        break;
+                        
+                    }
+
+                    //This codes should be seperate to function
+                    //$insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code");
+                    //This codes should have move to outside and get codes from outsides in.
+                }
+
                 $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
                                                                 SET code = :code
                                                                 WHERE master_id = :n;");
-                $insert_stmt->bindParam(":id", $_SESSION['user_login']);
+                //$insert_stmt->bindParam(":id", $_SESSION['user_login']); 
+                //old one, and didn't have to use anymore.
                 $insert_stmt->bindParam(":code", $_SESSION['code']);
                 $insert_stmt->bindParam(":n", $_SESSION['dbid']);
                 
