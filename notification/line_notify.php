@@ -22,6 +22,8 @@
     $state = "mylinenotify";
         
     haveState();
+
+    header("location: ./../index.php"); //it should redirect back to unfinished work from before. Maybe I always save URL before it redirect to other page? But it shouldn't fix all of problem, I have to save stage too. Maybe save every stage that it progress. And have Central function to give where it should go, and what value it should be? Like 'redirectUnauthorizeHello' or 'errorAuthorizeRedirectTo_./admin/download.php'
         
     function haveState(){
 
@@ -208,6 +210,7 @@
 
             try{
                 if(!isset($errorMsg)){ //bugs is from here, I forgot to unset $errorMsg (or is it?)
+                                       //No, it wasn't. bugs is from forgot to return function. And it run code outside Condition Scope.
 
                     $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
                                                                 SET token = :token

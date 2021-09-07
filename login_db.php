@@ -4,7 +4,22 @@
     }
     require_once 'connection.php';
 
-    $_SESSION['login_type'] = 0;
+    //$_SESSION['login_type'] = 0;  //ต้นตอปัญหาล็อกอินแล้วค่ามันรี ต้องล็อกอินใหม่ตลอด
+
+    if(!isset($_SESSION['master_id'])){ //ขอใช้ master_id ตรวจสอบ เพราะว่าจะได้ทดสอบได้ทันทีว่าเคยล็อกอินแล้วยัง และการล็อกอินไม่ใช่ข้อมูลลวง
+        /*$_SESSION['login_type'] = 0;
+        unset($_SESSION['master_id']);
+        unset($_SESSION['user_login']);
+        unset($_SESSION['name']);
+        unset($_SESSION['fname']);
+        unset($_SESSION['lname']);
+        unset($_SESSION['success']);
+        unset($_SESSION['error']);*/
+
+        //ใช้วิธีนี้ดีกว่า
+        session_destroy();
+        $_SESSION['login_type'] = 0;
+    }
 
     if (isset($_POST['btn_login'])) {
         $username = $_POST['txt_username']; // textbox name 
