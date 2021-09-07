@@ -130,20 +130,29 @@
 
                     if($distinctData['master_id'] === $_SESSION['master_id']){
 
+                        $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
+                                                                        SET code = :code
+                                                                        WHERE master_id = :n;");
+                        //$insert_stmt->bindParam(":id", $_SESSION['user_login']); 
+                        //old one, and didn't have to use anymore.
+                        $insert_stmt->bindParam(":code", $_SESSION['code']);
+                        $insert_stmt->bindParam(":n", $_SESSION['dbid']);
+
+                        if($insert_stmt->execute()){
+                            $insertMsg = "Updated successfully.";  
+                        }
+                        
                         break;
                         
                     }
-
+                    
                     //This codes should be seperate to function
                     //$insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code");
                     //This codes should have move to outside and get codes from outsides in.
                 }
+                
+                $insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code");
 
-                $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
-                                                                SET code = :code
-                                                                WHERE master_id = :n;");
-                //$insert_stmt->bindParam(":id", $_SESSION['user_login']); 
-                //old one, and didn't have to use anymore.
                 $insert_stmt->bindParam(":code", $_SESSION['code']);
                 $insert_stmt->bindParam(":n", $_SESSION['dbid']);
                 
