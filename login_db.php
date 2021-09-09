@@ -18,6 +18,7 @@
 
         //ใช้วิธีนี้ดีกว่า
         session_destroy();
+        session_start();
         $_SESSION['login_type'] = 0;
     }
 
