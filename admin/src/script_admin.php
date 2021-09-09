@@ -30,7 +30,10 @@
             //if (isset($queryData['token']) or $queryData['token'] === NULL or $queryData['token'] === '\0')
             //it is not correct, because getToken() return as string. (Only $row['token'], not $row)
             
-            if (isset($queryData) or $queryData === NULL or $queryData === '\0')
+            //if (isset($queryData) or $queryData === NULL or $queryData === '\0')
+            //it is still not correct, I need to find if it wasn't set. it should be !isset($queryData) not isset($queryData)
+
+            if (!isset($queryData) or $queryData === NULL or $queryData === '\0')
                 { //จะต้องกดปุ่มใหม่ ถ้ายังไม่ลงทะเบียน ยังต้องแก้ให้สามารถดึงมาต่อจุดเดิมได้
 
                     //header('locaton: /notification/line_notify.php');
@@ -136,7 +139,9 @@
     function lineMessageSender($tokenQuery, $messageData)
     {   //using cURL method
 
-        $senderID = getToken();
+        $senderID = getToken();  //forgot to pass token to variable.
+
+        //$senderID = $tokenQuery;
 
         $client_id = 'wpUIRBGGA6B7RaRF02BrON';  //Please clean this after commit
         $client_secret = 'o5mbSR8kqb2Rq5wOsfDwZQ2JiP8picFpFszofs2ea3A';
