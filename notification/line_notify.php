@@ -23,8 +23,17 @@
         
     haveState();
 
-    header("location: ./../index.php"); //it should redirect back to unfinished work from before. Maybe I always save URL before it redirect to other page? But it shouldn't fix all of problem, I have to save stage too. Maybe save every stage that it progress. And have Central function to give where it should go, and what value it should be? Like 'redirectUnauthorizeHello' or 'errorAuthorizeRedirectTo_./admin/download.php'
-        
+    //I have to create redirect control function after this.
+    if(isset($_SESSION['processingStage']) && $_SESSION['processingStage'] === 'redirectBack'){
+
+            header("location: ".$_SESSION['relatedURI']); //it should redirect back to unfinished work from before. Maybe I always save URL before it redirect to other page? But it shouldn't fix all of problem, I have to save stage too. Maybe save every stage that it progress. And have Central function to give where it should go, and what value it should be? Like 'redirectUnauthorizeHello' or 'errorAuthorizeRedirectTo_./admin/download.php'
+    }   //I forgot to update function to be able to add token data. Now it just be able to add code only, not token.
+        //No, I already did that.
+
+    unset($_SESSION['processingStage']);
+    //unset($_['relatedURI']);    //oops, mistype.
+    unset($_SESSION['relatedURI']);
+
     function haveState(){
 
         if(isset($_SESSION['code'])){
@@ -34,6 +43,16 @@
             getToken();
 
             unsetSession();
+
+            $_SESSION['processingStage'] = "redirectBack";
+
+            //if(!isset($_SESSION['recallURI'])){
+            if(!isset($_SESSION['relatedURI'])){    
+
+                //$_SESSION['recallURI'];
+                $_SESSION['relatedURI'] = "../index.php";
+                //$_SESSION['redirectURI' = "/index.php"]
+            }
 
             return;
 
@@ -79,7 +98,7 @@
     }
         
     function clearState(){
-        $code = $_GET['code'];
+        //$code = $_GET['code'];  //This one didn't need. I already called directly.
         $_SESSION['code'] = $_GET['code'];
 
         echo $_SESSION['code'];
@@ -134,7 +153,8 @@
                     //This is wrong, I need to find if there are already created one. Not finds if that datas that are reading now is exist. Or if datas that is reading now is NULL.
                     //if(!isset($distinctData["master_id"]) or $distinctData["master_id"] === NULL){
 
-                    if($distinctData['master_id'] === $_SESSION['master_id']){
+                    if($distinctData['master_id'] === $_SESSION['master_id']){  //This is wrong. It will always try using INSERT INTO no matter what your datas is already there or not.
+                    //But... Actually, it was true. Codes is UPDATE, not INSERT TO. INSERT TO are outside.
 
                         $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
                                                                         SET code = :code

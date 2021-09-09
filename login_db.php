@@ -18,7 +18,11 @@
 
         //ใช้วิธีนี้ดีกว่า
         session_destroy();
-        session_start();
+
+        if(session_status() != 2){
+            session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
+        }
+        
         $_SESSION['login_type'] = 0;
     }
 
