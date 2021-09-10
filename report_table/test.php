@@ -7,11 +7,11 @@
 
     $_SESSION['userNumber'] = 0;
 
-    while($row =  mysqli_fetch_array($result))
+    /* while($row =  mysqli_fetch_array($result))
     {
         $_SESSION['userNumber'] += 1;
         echo $_SESSION['userNumber'];
-    }
+    }*/
 
 
 ?>
@@ -22,35 +22,35 @@
     <body>
         <table>
             <tr>
-                <td>
+                <th>
                     ที่
-                </td>
-                <td>
+                </th>
+                <th>
                     ชื่อ-สกุล
-                </td>
-                <td>
+                </th>
+                <th>
                     รวม (%d)
-                </td>
-                <td>
+                </th>
+                <th>
                     ร้อยละ
-                </td>
-                <td>
+                </th>
+                <th>
                     คะเเนน
-                </td>
+                </th>
             </tr>
 
 <?php
 
-    while($row =  mysqli_fetch_array($result))
+    while($row = mysqli_fetch_array($result))
     {
         $_SESSION['userNumber'] += 1;
         echo "
             <tr>
-                <td>
-                    ".$_SESSION['userNumber']."
+                <td>".$_SESSION['userNumber']."
                 </td>
-                <td>
+                <td>".$row['fname'].'  '.$row['lname']."
                 </td>
+                
                 <td>
                 </td>
                 <td>
