@@ -30,9 +30,9 @@
     }   //I forgot to update function to be able to add token data. Now it just be able to add code only, not token.
         //No, I already did that.
 
-    unset($_SESSION['processingStage']);
+    //unset($_SESSION['processingStage']);
     //unset($_['relatedURI']);    //oops, mistype.
-    unset($_SESSION['relatedURI']);
+    //unset($_SESSION['relatedURI']);
 
     function haveState(){
 

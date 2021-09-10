@@ -66,11 +66,11 @@
 ?>
 
             <!--div class="display-3 text-center"-->
-            <div class="text-center mt-5">
+            <!-- div class="text-center mt-5">
                 <button class="btn btn-success mb-3" onclick="
                 getDataPrompt();
                 destroyCookie('lineMessage');
-                ">test</button>
+                ">test</button -->
                 <!-- button class="btn btn-success mb-3" onclick=  //I think this part should work on javascript, or php only.
                 "
 
