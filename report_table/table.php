@@ -13,6 +13,52 @@
         echo $_SESSION['userNumber'];
     }*/
 
+    function getDayOfWeek(){
+
+        $monthOfDay = date('F');
+        $yearOfDay = date('Y');
+
+        $dayOfWeek = date('l');
+
+        $valueReturn = [
+            'monthOfDay' => $monthOfDay,
+            'yearOfDay' => $yearOfDay,
+            'dayOfWeek' => $dayOfWeek
+        ];
+
+        return $valueReturn;
+    }
+
+    function returnDayCount($arrayData){
+        $month = $arrayData['monthOfDay'];
+        $year = $arrayData['yearOfDay'];
+
+        switch($month){
+            case 'January':
+                return 31;
+            case 'February':
+
+
+        }
+
+    function isLeapYear($yearData){
+
+        if($yearData%400 === 0){
+            return 1;
+        }
+
+        if($yearData%100 === 0){
+            return 1;
+        }
+
+        if($yearData%4 === 0){
+            return 1;
+        }
+
+        return 0;
+    }
+
+    }
 
 ?>
 <html>
@@ -40,6 +86,8 @@
             </tr>
 
 <?php
+
+    echo getDayOfWeek();
 
     while($row = mysqli_fetch_array($result))
     {
