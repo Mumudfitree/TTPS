@@ -1,5 +1,6 @@
 <?php
     include_once('../connection.php');
+    include_once('./src/date.php');
 
     $query = "SELECT * FROM login_information ORDER BY master_id asc" or die("Error:" . mysqli_error());
     $result = mysqli_query($conn, $query);
@@ -13,52 +14,8 @@
         echo $_SESSION['userNumber'];
     }*/
 
-    function getDayOfWeek(){
-
-        $monthOfDay = date('F');
-        $yearOfDay = date('Y');
-
-        $dayOfWeek = date('l');
-
-        $valueReturn = [
-            'monthOfDay' => $monthOfDay,
-            'yearOfDay' => $yearOfDay,
-            'dayOfWeek' => $dayOfWeek
-        ];
-
-        return $valueReturn;
-    }
-
-    function returnDayCount($arrayData){
-        $month = $arrayData['monthOfDay'];
-        $year = $arrayData['yearOfDay'];
-
-        switch($month){
-            case 'January':
-                return 31;
-            case 'February':
-
-
-        }
-
-    function isLeapYear($yearData){
-
-        if($yearData%400 === 0){
-            return 1;
-        }
-
-        if($yearData%100 === 0){
-            return 1;
-        }
-
-        if($yearData%4 === 0){
-            return 1;
-        }
-
-        return 0;
-    }
-
-    }
+    $dayInfo = getDayOfWeek();
+    $monthCount = returnDayCount($dayInfo);
 
 ?>
 <html>
@@ -74,6 +31,17 @@
                 <th>
                     ชื่อ-สกุล
                 </th>
+<?php
+
+    for($counter = 1; $counter <= $monthCount; $counter++){
+        echo '
+                <th>
+                '.$counter.'
+                </th>
+             ';
+    }
+
+?>
                 <th>
                     รวม (%d)
                 </th>
@@ -86,8 +54,6 @@
             </tr>
 
 <?php
-
-    echo getDayOfWeek();
 
     while($row = mysqli_fetch_array($result))
     {
