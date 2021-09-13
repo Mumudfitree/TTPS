@@ -71,4 +71,24 @@
         return 0;
     }
 
+    function dayGenarate(){
+
+    }
+
+    function IsWorkDay(){
+
+    }
+
+    function tableBlockPainter(){
+        
+    }
+
+    function enumGenerator($enumSize){
+        for($i=0; $i<$enumSize; $i++){
+            $enumArray = [
+                $i => -1
+            ];
+        }
+    }
+
 ?>
