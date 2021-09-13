@@ -88,7 +88,7 @@
         return 6 + $day - $exceedDay;
     }
 
-    function dayGenarate(){ //ทำการสร้างวันสำหรับทั้งเดือนนั้น
+    function dayGenarate(){ //ทำการสร้างวันสำหรับทั้งเดือนนั้น คือ เก็บเป็น วันที่ 1 = 3, 2 = 4, ..., 5 = 0
         //อันนี้ไม่ต้องทำ
     }
 
@@ -98,11 +98,12 @@
         //$date คือส่งวันที่มา ส่วน $arrayData ส่งข้อมูลเกี่ยวกับวันนี้ ประกาศไว้ใน getDayOfWeek()
 
         //code here...
+
         if($date === 0)
         {
             return 0;
         }
-        //return 1;
+        return 1;
     }
 
     function tableBlockPainter($day){ //ส่งลักษณะของสีพื้นหลังช่องตารางตามที่กำหนดไว้
@@ -113,9 +114,35 @@
         //$day คือส่งวันมา เป็นตัวเลข 0 - 6 0 คือวันอาทิตย์ 6 คือวันเสาร์
 
         //code here...
+        if($day === 5){
+            echo '
+                  
+                  <td style="backgroud-color:green;color:purple;">
 
+                 ';
+                 
+            }
+        
+        if($day != 5){
 
+            echo '<td>';
+        }
 
+        //echo '
+            //text-align:center;">
+
+             //';
+
+        switch($day){
+            case 0: echo 'Sunday</td>'; return 0;
+            case 1: echo 'Monday</td>'; return 0;
+            case 2: echo 'Tuesday</td>'; return 0;
+            case 3: echo 'Wednesday</td>'; return 0;
+            case 4: echo 'Thrusday</td>'; return 0;
+            case 5: echo 'Friday</td>'; return 0;
+            case 6: echo 'Saturday</td>'; return 0;
+
+        }   
 
         //สิ่งที่ต้องทำต่อไปสำหรับฟังก์ชั่นนี้ ตรงนี้ยังไม่จำเป็นต้องทำ
         //ลงสีคนขาด 0

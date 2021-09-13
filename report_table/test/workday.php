@@ -1,8 +1,9 @@
 <?php
     include_once('./../src/date.php');
 
-    $i=1;
+    for($i = 1; $i <= 31; $i++){
     $dayInfo = getDayOfWeek();
     $monthCount = returnDayCount($dayInfo);
-    echo isWorkDay($i, $dayInfo);
+    echo $i.': '.isWorkDay($i, $dayInfo).'<br>';
+    }
 ?>
