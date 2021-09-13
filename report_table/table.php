@@ -17,6 +17,7 @@
     $dayInfo = getDayOfWeek();
     $monthCount = returnDayCount($dayInfo);
     $enum_day = enumGenerator($monthCount);
+    $firstDay = findFirstDayOfMonth($dayInfo);
 
 ?>
 <html>
@@ -34,7 +35,16 @@
                 </th>
 <?php
 
-    for($counter = 1; $counter <= $monthCount; $counter++){
+    for($counter = 1, $day = $firstDay; $counter <= $monthCount; $counter++){
+
+        $enum_day[$counter] = $day;
+
+        $day += 1;
+        if ($day === 7){
+            $day = 0;
+        }
+
+
         echo '
                 <th>
                 '.$counter.'

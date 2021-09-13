@@ -101,7 +101,7 @@
     }
 
     function enumGenerator($enumSize){
-        for($i=0; $i<$enumSize; $i++){
+        for($i=1; $i<=$enumSize; $i++){
             $enumArray[$i] = -1;
         }
 
