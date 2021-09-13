@@ -16,6 +16,7 @@
 
     $dayInfo = getDayOfWeek();
     $monthCount = returnDayCount($dayInfo);
+    $enum_day = enumGenerator($monthCount);
 
 ?>
 <html>

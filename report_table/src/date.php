@@ -2,12 +2,15 @@
 
     function getDayOfWeek(){
 
+        $dayOfMonth = date('d');
+
         $monthOfDay = date('F');
         $yearOfDay = date('Y');
 
         $dayOfWeek = date('l');
 
         $valueReturn = [
+            'dayOfMonth' => $dayOfMonth,
             'monthOfDay' => $monthOfDay,
             'yearOfDay' => $yearOfDay,
             'dayOfWeek' => $dayOfWeek
@@ -71,6 +74,18 @@
         return 0;
     }
 
+    function findFirstDayOfMonth($arrayData){
+
+        $date = $arrayData['dayOfMonth'];
+        $day = $arrayData['dayOfWeek'];
+
+        if($arrayData['dayOfMonth'] <= 15){
+
+        }
+        
+
+    }
+
     function dayGenarate(){
 
     }
@@ -85,10 +100,10 @@
 
     function enumGenerator($enumSize){
         for($i=0; $i<$enumSize; $i++){
-            $enumArray = [
-                $i => -1
-            ];
+            $enumArray[$i] = -1;
         }
+
+        return $enumArray;
     }
 
 ?>
