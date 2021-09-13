@@ -80,8 +80,12 @@
         $day = $arrayData['dayOfWeek'];
 
         $exceedDay = $date%7;
+
+        if ($day >= $exceedDay){
+            return $day - $exceedDay;
+        }
         
-        return abs($day - $exceedDay);
+        return 6 + $day - $exceedDay;
     }
 
     function dayGenarate(){
