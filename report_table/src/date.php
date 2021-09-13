@@ -98,7 +98,11 @@
         //$date คือส่งวันที่มา ส่วน $arrayData ส่งข้อมูลเกี่ยวกับวันนี้ ประกาศไว้ใน getDayOfWeek()
 
         //code here...
-
+        if($date === 0)
+        {
+            return 0;
+        }
+        //return 1;
     }
 
     function tableBlockPainter($day){ //ส่งลักษณะของสีพื้นหลังช่องตารางตามที่กำหนดไว้
