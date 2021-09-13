@@ -79,8 +79,13 @@
         $date = $arrayData['dayOfMonth'];
         $day = $arrayData['dayOfWeek'];
 
-        if($arrayData['dayOfMonth'] <= 15){
+        if($date <= 15){
+            $exceedDay = $date%7;
+        }
 
+        if($date > 15){
+            $dayCount = $arrayData['monthOfDay'];
+            $exceedDay = (($dayCount - $date)%7) + ($dayCount%7);
         }
         
 
