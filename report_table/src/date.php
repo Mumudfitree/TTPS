@@ -114,35 +114,13 @@
         //$day คือส่งวันมา เป็นตัวเลข 0 - 6 0 คือวันอาทิตย์ 6 คือวันเสาร์
 
         //code here...
-        if($day === 5){
-            echo '
-                  
-                  <td style="backgroud-color:green;color:purple;">
-
-                 ';
-                 
-            }
-        
-        if($day != 5){
-
-            echo '<td>';
-        }
 
         //echo '
             //text-align:center;">
 
              //';
 
-        switch($day){
-            case 0: echo 'Sunday</td>'; return 0;
-            case 1: echo 'Monday</td>'; return 0;
-            case 2: echo 'Tuesday</td>'; return 0;
-            case 3: echo 'Wednesday</td>'; return 0;
-            case 4: echo 'Thrusday</td>'; return 0;
-            case 5: echo 'Friday</td>'; return 0;
-            case 6: echo 'Saturday</td>'; return 0;
 
-        }   
 
         //สิ่งที่ต้องทำต่อไปสำหรับฟังก์ชั่นนี้ ตรงนี้ยังไม่จำเป็นต้องทำ
         //ลงสีคนขาด 0
