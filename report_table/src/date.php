@@ -106,7 +106,7 @@
         return 1;
     }
 
-    function checkPainterSpecialCase($day){
+    /*function checkPainterSpecialCase($day){
         $exceptArray = array(6);
         foreach ($exceptArray as $loop){
             if($day === $loop){
@@ -114,7 +114,7 @@
             }
             return 0;
         }
-    }
+    }*/
 
     function tableBlockPainter($day){ //ส่งลักษณะของสีพื้นหลังช่องตารางตามที่กำหนดไว้
         //เบื้องต้นให้พิมพ์สีออกมาเฉพาะวันศุกร์ เป็นสีเขียว
@@ -136,7 +136,7 @@
             case 10: echo '<td'; return 0;
             case 11: echo '</td>'; return 0;
 
-            default: return '>';
+            default: echo '>'; return 0;
         }
 
         //echo '

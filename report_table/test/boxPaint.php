@@ -13,7 +13,7 @@
 
 for($i=1; $i<8; $i++){
 
-        if (!checkPainterSpecialCase($i)) tableBlockPainter(10);
+        /*if (!checkPainterSpecialCase($i)) */ tableBlockPainter(10);
         tableBlockPainter($i);
         tableDayPrint($i);
         tableBlockPainter(11);
