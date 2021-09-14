@@ -121,7 +121,14 @@
             case 3: echo '<td>Tuesday</td>'; return 0;
             case 4: echo '<td>Wednesday</td>'; return 0;
             case 5: echo '<td>Thrusday</td>'; return 0;
-            case 6: echo '<td style="backgroud-color:green;color:purple;">Friday</td>'; return 0;
+            case 6: {
+                    echo '<td style="background-color:green;">
+                            <div class="blueText">
+                                Friday
+                            </div>
+                         </td>';
+                         return 0;
+                    }
             case 7: echo '<td>Saturday</td>'; return 0;
 
             case 0: echo '<tr>'; return 0;

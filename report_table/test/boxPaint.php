@@ -9,7 +9,7 @@
 
     include_once './../src/date.php';
 
-for($i=0; $i<9; $i++){
+for($i=1; $i<8; $i++){
 
         tableBlockPainter($i);
     }

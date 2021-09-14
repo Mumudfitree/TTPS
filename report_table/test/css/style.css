@@ -33,3 +33,31 @@ table {
     font-family: sans-serif;
     font-size: .8rem;
 }
+
+.redText {
+    color: red;
+}
+
+.yellowText {
+    color: yellow;
+}
+
+.pinkText {
+    color: pink;
+}
+
+.greenText {
+    color: green;
+}
+
+.orangeText {
+    color: orange;
+}
+
+.blueText {
+    color: blue;
+}
+
+.purpleText {
+    color: purple;
+}
