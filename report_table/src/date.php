@@ -127,16 +127,16 @@
 
         switch($day){
             case 6: {
-                    echo '<td style="background-color:green;">'; return 0;
+                    echo ' style="background-color:green;">'; return 0;
                     }
 
             case 0: echo '<tr>'; return 0;
             case 8: echo '</tr>'; return 0;
             case 9: echo '</div>'; return 0;
-            case 10: echo '<td>'; return 0;
+            case 10: echo '<td'; return 0;
             case 11: echo '</td>'; return 0;
 
-            default: return 0;
+            default: return '>';
         }
 
         //echo '
