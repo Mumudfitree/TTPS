@@ -106,6 +106,16 @@
         return 1;
     }
 
+    function checkPainterSpecialCase($day){
+        $exceptArray = array(6);
+        foreach ($exceptArray as $loop){
+            if($day === $loop){
+                return 1;
+            }
+            return 0;
+        }
+    }
+
     function tableBlockPainter($day){ //ส่งลักษณะของสีพื้นหลังช่องตารางตามที่กำหนดไว้
         //เบื้องต้นให้พิมพ์สีออกมาเฉพาะวันศุกร์ เป็นสีเขียว
         //เป็นไปได้ ให้ทำการใช้ color picker ดูดสีออกมาจากภาพ เพื่อให้สีตรงที่สุด
@@ -116,23 +126,17 @@
         //code here...
 
         switch($day){
-            case 1: echo '<td>Sunday</td>'; return 0;
-            case 2: echo '<td>Monday</td>'; return 0;
-            case 3: echo '<td>Tuesday</td>'; return 0;
-            case 4: echo '<td>Wednesday</td>'; return 0;
-            case 5: echo '<td>Thrusday</td>'; return 0;
             case 6: {
-                    echo '<td style="background-color:green;">
-                            <div class="blueText">
-                                Friday
-                            </div>
-                         </td>';
-                         return 0;
+                    echo '<td style="background-color:green;">'; return 0;
                     }
-            case 7: echo '<td>Saturday</td>'; return 0;
 
             case 0: echo '<tr>'; return 0;
             case 8: echo '</tr>'; return 0;
+            case 9: echo '</div>'; return 0;
+            case 10: echo '<td>'; return 0;
+            case 11: echo '</td>'; return 0;
+
+            default: return 0;
         }
 
         //echo '
@@ -147,6 +151,24 @@
         //ลงสีคนลา ล
         //ลงสีคนลาป่วย ป
         //ลงสีคนมาทำงานครึ่งวัน 0.5
+    }
+
+    function tableBlockPrint($data){
+        echo $data;
+    }
+
+    function tableDayPrint($day){
+        switch($day){
+            case 1: echo 'Sunday'; return 0;
+            case 2: echo 'Monday'; return 0;
+            case 3: echo 'Tuesday'; return 0;
+            case 4: echo 'Wednesday'; return 0;
+            case 5: echo 'Thrusday'; return 0;
+            case 6: {
+                    echo 'Friday'; return 0;
+                    }
+            case 7: echo 'Saturday'; return 0;
+        }
     }
 
     function enumGenerator($enumSize){
