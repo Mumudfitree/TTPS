@@ -115,6 +115,19 @@
 
         //code here...
 
+        switch($day){
+            case 1: echo '<td>Sunday</td>'; return 0;
+            case 2: echo '<td>Monday</td>'; return 0;
+            case 3: echo '<td>Tuesday</td>'; return 0;
+            case 4: echo '<td>Wednesday</td>'; return 0;
+            case 5: echo '<td>Thrusday</td>'; return 0;
+            case 6: echo '<td style="backgroud-color:green;color:purple;">Friday</td>'; return 0;
+            case 7: echo '<td>Saturday</td>'; return 0;
+
+            case 0: echo '<tr>'; return 0;
+            case 8: echo '</tr>'; return 0;
+        }
+
         //echo '
             //text-align:center;">
 
