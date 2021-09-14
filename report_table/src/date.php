@@ -7,7 +7,7 @@
         $monthOfDay = date('F');
         $yearOfDay = date('Y');
 
-        $dayOfWeek = date('l');
+        $dayOfWeek = date('w');
 
         $valueReturn = [
             'dayOfMonth' => $dayOfMonth,

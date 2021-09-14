@@ -22,9 +22,10 @@
 ?>
 <html>
     <head>
-
+        
     </head>
     <body>
+        <link rel="stylesheet" href="./test/css/style.css"></link>
         <table>
             <tr>
                 <th>
