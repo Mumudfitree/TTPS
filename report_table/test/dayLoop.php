@@ -11,7 +11,7 @@
 
     $pass = 0;
 
-    for($i = 0; $i < normal12Years; $i++){
+    for($i = 1; $i <= normal12Years; $i++){
         $isValid = checkdate($dayArray['monthOfDay'], $dayArray['dayOfMonth'], $dayArray['yearOfDay']);
 
         if(!$isValid){
@@ -21,7 +21,7 @@
 
         $weekDay = findFirstDayOfMonth($dayArray);
 
-        $monthCode = $dayArray['monthOfDay'].$dayArray['yearOfDay'];
+        $monthCode = $dayArray['yearOfDay'].$dayArray['monthOfDay'];
 
         if(!isset($_SESSION['monthLoop'])){
             $_SESSION['monthLoop'] = $monthCode;
@@ -41,16 +41,6 @@
             $firstDayOfMonth = findFirstDayOfMonth($dayArray);
             $enum_month = dayGenerate($dayArray, $_SESSION['monthDay'], $firstDayOfMonth);
         }
-        
-        if($_SESSION['dayLoop'] > $_SESSION['monthDay']){
-            $_SESSION['dayLoop'] = 1;
-            $_SESSION['monthDay'] = returnDayCount($dayArray);
-            $enum_month = dayGenerate($dayArray, $_SESSION['monthDay'], $firstDayOfMonth);
-        }
-        
-        else{
-            $_SESSION['dayLoop'] += 1;
-        }
 
         $correctResult = date('w', $unixTime);
         
@@ -68,13 +58,23 @@
 
         if($isPassed){
             $pass += 1;
-            echo ($i+1).': passed<br>';
+            echo ($i).': passed<br>';
         }
         else{
-            echo ($i+1).': failed<br>';
+            echo ($i).': failed<br>';
         }
 
         $isPass = 0;
+
+        if($_SESSION['dayLoop'] > $_SESSION['monthDay']){
+            $_SESSION['dayLoop'] = 1;
+            $_SESSION['monthDay'] = returnDayCount($dayArray);
+            $enum_month = dayGenerate($dayArray, $_SESSION['monthDay'], $firstDayOfMonth);
+        }
+        
+        else{
+            $_SESSION['dayLoop'] += 1;
+        }
 
     }
 

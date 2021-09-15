@@ -129,11 +129,11 @@
 
         $exceedDay = $date%7;
 
-        if ($day >= $exceedDay){
+        if ($day > $exceedDay){
             return $day - $exceedDay;
         }
         
-        return 6 + $day - $exceedDay;
+        return 7 + $day - $exceedDay;
     }
 
     function dayGenerate($enumArray, $monthDay, $firstWeekDay){ //ทำการสร้างวันสำหรับทั้งเดือนนั้น คือ เก็บเป็น วันที่ 1 = 3, 2 = 4, ..., 5 = 0
