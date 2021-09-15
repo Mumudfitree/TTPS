@@ -21,17 +21,24 @@
             break;
         }
 
-        
-
         if(!isset($_SESSION['monthLoop'])){
             $weekDay = findFirstDayOfMonth($dayArray);
 
+            $yearCode = 12;
             $monthCode = returnDayCount($dayArray);
 
-            $_SESSION['monthLoop'] = $monthCode;
+            $_SESSION['monthLoop'] = $dayArray['monthOfDay'];
+
+            $_SESSION['dayLoop'] = $dayArray['dayOfMonth'];
+            $_SESSION['monthDay'] = returnDayCount($dayArray);
+            $firstDayOfMonth = findFirstDayOfMonth($dayArray);
+            $enum_month = dayGenerate($enum_month, $_SESSION['monthDay'], $firstDayOfMonth);
+            $_SESSION['firstLoop'] = 1;
+            //here enum that produce is start at 0, not 1.
+
         }
 
-        if($_SESSION['monthLoop'] < $monthCode){ //here, monthloop and monthcode are different format. You should change that first.
+        if(($_SESSION['monthLoop'] <= $yearCode) || isset($_SESSION['firstLoop']) ){ //here, monthloop and monthcode are different format. You should change that first.
             $weekDay = findFirstDayOfMonth($dayArray);
 
             $monthCode = returnDayCount($dayArray);
@@ -39,34 +46,43 @@
             $_SESSION['monthLoop'] += 1;
         }
 
-        if($_SESSION['monthLoop'] === 13){
+        if($_SESSION['monthLoop'] === $yearCode){
             $_SESSION['monthLoop'] = 1;
         }
 
-        if(!isset($_SESSION['dayLoop'])){
-            $_SESSION['dayLoop'] = $dayArray['dayOfMonth'];
-            $_SESSION['monthDay'] = returnDayCount($dayArray);
-            $firstDayOfMonth = findFirstDayOfMonth($dayArray);
-            $enum_month = dayGenerate($enum_month, $_SESSION['monthDay'], $firstDayOfMonth);
-            $_SESSION['firstDayLoop'] = 1;
-            //here enum that produce is start at 0, not 1.
-        }
+        $bool[0] = ($_SESSION['monthLoop'] < $yearCode);
+        $bool[1] = isset($_SESSION['firstLoop']);
+        $bool[2] = $_SESSION['dayLoop'] >= $_SESSION['monthDay'];
+        $bool[3] = isset($_SESSION['firstLoop']);
+        $bool[4] = $bool[0] or $bool[1];
+        $bool[5] = $bool[0] and $bool[1];
+        $bool[6] = $bool[2] or $bool[3];
+        $bool[7] = $bool[2] and $bool[3];
+        $bool[8] = $bool[0] || $bool[1];
+        $bool[9] = $bool[2] || $bool[3];
 
-        if($_SESSION['dayLoop'] > $_SESSION['monthDay'] && !(isset($_SESSION['fisrtDayLoop']))){ //codes from previous check still can get in here.
+        $bool[10] = TRUE or FALSE;
+
+        $_bool = $_SESSION['monthLoop'] < $yearCode or isset($_SESSION['firstLoop']);
+        $boolean = $_SESSION['dayLoop'] >= $_SESSION['monthDay'] or isset($_SESSION['firstLoop']);
+
+        if(($_SESSION['dayLoop'] >= $_SESSION['monthDay']) || isset($_SESSION['firstLoop'])){ //codes from previous check still can get in here.
+            //codes broken because I mistype.
+            
             $_SESSION['dayLoop'] = 1;
             $_SESSION['monthDay'] = returnDayCount($dayArray);
             $enum_month = dayGenerate($enum_month, $_SESSION['monthDay'], $firstDayOfMonth);
         }
         
-        else{
+        else{ //when it first init. It still get in here. (I forgot it use if-else. So It will go here.)
             $_SESSION['dayLoop'] += 1;
         }
 
-        unset($_SESSION['firstDayLoop']);
+        unset($_SESSION['firstLoop']);
 
         $correctResult = date('w', $unixTime);
         
-        if($correctResult === $enum_month[$_SESSION['dayLoop'] - 1]){
+        if($correctResult === $enum_month[$_SESSION['dayLoop'] - 1]){ //Because enum start at 0, and $_SESSION['dayloop'] start at 1. So I have to reduce base to give it equal.
             $isPassed = 1;
 
         }
