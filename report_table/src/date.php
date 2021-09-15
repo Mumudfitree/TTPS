@@ -88,7 +88,7 @@
         return 6 + $day - $exceedDay;
     }
 
-    function dayGenarate(){ //ทำการสร้างวันสำหรับทั้งเดือนนั้น คือ เก็บเป็น วันที่ 1 = 3, 2 = 4, ..., 5 = 0
+    function dayGenerate(){ //ทำการสร้างวันสำหรับทั้งเดือนนั้น คือ เก็บเป็น วันที่ 1 = 3, 2 = 4, ..., 5 = 0
         //อันนี้ไม่ต้องทำ
     }
 
@@ -133,7 +133,7 @@
             case 0: echo '<tr'; break;
             case 8: echo '</tr'; break;
             case 9: echo '</div'; break;
-            case 10: echo '<td'; break;
+            case 10: echo '<td'; return 0;
             case 11: echo '</td'; break;
 
             default: break;
@@ -168,9 +168,7 @@
             case 3: echo 'Tuesday'; return 0;
             case 4: echo 'Wednesday'; return 0;
             case 5: echo 'Thrusday'; return 0;
-            case 6: {
-                    echo 'Friday'; return 0;
-                    }
+            case 6: echo 'Friday'; return 0;
             case 7: echo 'Saturday'; return 0;
         }
     }
