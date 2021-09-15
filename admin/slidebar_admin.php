@@ -170,6 +170,13 @@
             <a href="add_role.php">เพิ่มข้อมูล</a>
             <a href="role_type.php">รายละเอียด</a>
         </div>
+        <button class="dropdown-btn">ข้อมูลเข้าสู่ระบบ
+            <i class="fas fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="add_login.php">เพิ่มข้อมูล</a>
+            <a href="login_information.php">รายละเอียด</a>
+        </div>
         <button class="dropdown-btn">ระดับชั้น
             <i class="fas fa-caret-down"></i>
         </button>

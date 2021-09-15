@@ -89,9 +89,9 @@
     <form method="post" class="form-horizontal mt-5">
             <div class="form- text-center">
                 <div class="row">
-                <label for="firstname" class="col-sm-3 control-label">ปีการศึกษา</label>
+                <label for="firstname" class="col-sm-3 control-label">ปีการศึกษา(ค.ศ)</label>
                 <div class="col-sm-6">
-                    <input type="text" name="txt_year" class="form-control" placeholder="ตัวอย่าง 2021">
+                    <input type="text" name="txt_year" class="form-control" placeholder="ตัวอย่าง 2020">
                 </div>
                 </div>
             </div>

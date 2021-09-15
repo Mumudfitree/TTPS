@@ -156,7 +156,7 @@
             </div>
             <br>
             
-            >
+            
 
             <div class="form- text-center">
                 <div class="row">
@@ -170,7 +170,7 @@
 
             <?php
                         $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id1."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 
@@ -198,7 +198,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">เป้าหมาย</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_goal" rows="4" cols="95" value=""><?php echo $row['goal'];?></textarea>
+                        <textarea id="" name="txt_goal" rows="4" cols="70" value=""><?php echo $row['goal'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -208,7 +208,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">ผลการปฎิบัติงาน</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_result" rows="4" cols="95" ><?php echo $row['result'];?></textarea>
+                        <textarea id="" name="txt_result" rows="4" cols="70" ><?php echo $row['result'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -218,7 +218,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">กิจกรรมที่ทำได้ดี</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_activity_good" rows="4" cols="95"><?php echo $row['activity_good'];?></textarea>
+                        <textarea id="" name="txt_activity_good" rows="4" cols="70"><?php echo $row['activity_good'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">กิจกรรมที่ทำได้ไม่ดี</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_activity_nogood" rows="4" cols="95"><?php echo $row['activity_nogood'];?></textarea>
+                        <textarea id="" name="txt_activity_nogood" rows="4" cols="70"><?php echo $row['activity_nogood'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -238,7 +238,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">ปัญหา/อุปสรรค</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_problem" rows="4" cols="95" ><?php echo $row['problem'];?></textarea>
+                        <textarea id="" name="txt_problem" rows="4" cols="70" ><?php echo $row['problem'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -247,7 +247,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">นักเรียน/กิจกรรมที่ต้องปรับปรุง</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_student" rows="4" cols="95" ><?php echo $row['student'];?></textarea>
+                        <textarea id="" name="txt_student" rows="4" cols="70" ><?php echo $row['student'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -257,7 +257,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">แนวทางการแก้ปัญหาหรือการปฎิบัติการครั้งต่อไป</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_solve_the_problem" rows="4" cols="95"><?php echo $row['Solve_the_problem'];?></textarea>
+                        <textarea id="" name="txt_solve_the_problem" rows="4" cols="70"><?php echo $row['Solve_the_problem'];?></textarea>
                     </div>
                 </div>
             </div>

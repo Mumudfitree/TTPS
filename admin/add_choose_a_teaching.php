@@ -31,8 +31,8 @@
         }else {
            
                 if(!isset($errorMsg)){
-                    if($name != $row_check['master_id'] AND $grade_level != $row_check['grade_id'] AND $code != $row_check['subject_id'] AND $classroom != $row_check['class_id'] AND $time_name != $row_check['time_id'] AND $date != $row_check['date'] AND $year != $row_check['year_id'] ){
-                    $sql = "INSERT INTO choose_a_teaching(master_id, grade_id, subject_id, class_id, time_id, date, year_id) VALUE('".$name."', '".$grade_level."', '".$code."', '".$classroom."', '".$time_name."', '".$date."', '".$year."')";
+                    //if($name != $row_check['master_id'] AND $grade_level != $row_check['grade_id'] AND $code != $row_check['subject_id'] AND $classroom != $row_check['class_id'] AND $time_name != $row_check['time_id'] AND $date != $row_check['date'] AND $year != $row_check['year_id'] ){
+                    $sql = "INSERT INTO choose_a_teaching(login_id, grade_id, subject_id, class_id, time_id, date, year_id) VALUE('".$name."', '".$grade_level."', '".$code."', '".$classroom."', '".$time_name."', '".$date."', '".$year."')";
                     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                     mysqli_close($conn);
                     //INSERT INTO `choose_a_teaching` (`choose_id`, `master_id`, `subject_id`, `class_id`, `status_choose`) VALUES (NULL, '41', '10', '14', 'Active');
@@ -51,12 +51,12 @@
                         echo "</script>";
                     }
                     
-                }else{
+                /*}else{
                         echo "<script>";
                         echo "alert('ล้มเหลว! เนื่องจากมีข้อมูลซ้ำ');";
                         echo "window.location ='choose_a_teaching.php'; ";
                         echo "</script>";
-                }        
+                }     */   
             }
             
         }
@@ -106,13 +106,13 @@
                             <select name="txt_name" class="form-control">
                                 <option value="" selected="selected">- กรุณาเลือก -</option>
                                 <?php 
-                $query = "SELECT * FROM login_information";
+                $query = "SELECT * FROM login_information as login, user_data as user WHERE login.user_id = user.user_id";
                 $result = mysqli_query($conn,$query);//login data
                 ?>
                                 <?php foreach($result as $row){
-                    if($row['master_id'] == $row['master_id'] && $row['status_master'] == 'Active' && $row['user_role_id'] == '5'){?>
-                                <option value="<?php echo $row["master_id"]; ?>">
-                                    <?php echo $row["fname"].' '.$row["lname"]; ?>
+                    if($row['login_id'] == $row['login_id'] && $row['status_login'] == 'Active' && $row['user_role_id'] == '5'){?>
+                                <option value="<?php echo $row["login_id"]; ?>">
+                                    <?php echo $row["firstname"].' '.$row["lastname"]; ?>
                                 </option>
                                 <?php } ?>
                                 <?php } ?>

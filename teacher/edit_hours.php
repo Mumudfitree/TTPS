@@ -155,7 +155,7 @@
 
             <?php
                         $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id1."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 
@@ -164,7 +164,7 @@
                     <label for="name_subject" class="col-sm-3 control-label">วิชาที่สอน</label>
                     <div class="col-sm-6">
                         <select name="txt_choose_id" class="form-control">
-                            <option value="<?php  echo $choose_id; ?>"><?php echo $name_subject.' '.$name_classroom.'  '.$choose_id; ?></option>
+                            <option value="<?php  echo $choose_id; ?>"><?php echo $name_subject.' '.$name_classroom; ?></option>
                             <?php foreach($result2 as $row2){
                                 if($row2['status_choose'] == 'Active' && $row2["choose_id"] !==$choose_id ){?>
                             <option value="<?php echo $row2["choose_id"]; ?>">

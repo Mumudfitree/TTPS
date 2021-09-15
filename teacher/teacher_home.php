@@ -33,7 +33,7 @@
         <div class="text-center mt-5">
             <div class="container">
                 <div class="display-5 text-center">
-                    <h1>เตรียมสอนรายชั่วโมง</h1>
+                    <h1>ตารางสอน</h1>
                 </div>
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
@@ -57,7 +57,7 @@
 
                         <tr>
 
-                            <?php if($row['master_id'] == $id && $row['status_choose'] == 'Active'){?>
+                            <?php if($row['login_id'] == $id && $row['status_choose'] == 'Active'){?>
                             <td><?php echo $row["term"].'/'.$row["year_name"]; ?></td>
                             <td><a target="_blank"
                                     href="download_teaching.php?download_id=<?php echo $row["choose_id"]; ?>"

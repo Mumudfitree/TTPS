@@ -4,7 +4,6 @@
     if (!isset($_SESSION['admin_login'])) {
         header("location: ../index.php");
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +38,7 @@
                 <?php if(isset($_SESSION['admin_login'])) { ?>
                 ยินดีต้อนรับ 
                 <br>
-                คุณ <?php echo $_SESSION['admin_login']; }?>
+                คุณ <?php echo $_SESSION["User"]; }?>
             </h3>
             
             

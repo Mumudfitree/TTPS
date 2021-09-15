@@ -1,109 +1,138 @@
 <?php
 
-require 'vendor/autoload1.php';
- 
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
- 
-$inputFileName = $_FILES["myfile"]["name"];//ชื่อไฟล์ Excel ที่ต้องการอ่านข้อมูล $_FILES["myfile"]["name"]
-//echo $inputFileName;
- 
-$spreadsheet = IOFactory::load($inputFileName);
-$sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
- 
-$i = 0;
-$j = 1;
-$data = [];
-foreach($sheetData as $s => $k){
-    foreach($k as $g){
-        $i++;
-        $data[$j][] = $g;
-    }
-    $j++;
+//import.php
+
+include 'vendor/autoload.php';
+
+//include('../connection.php');//เชื่อมต่อฐานข้อมูล
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "php_multiplelogin";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $database);
+mysqli_set_charset($conn, "utf8");
+
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
 }
- 
-include('../connection.php');
-$check = "SELECT * FROM choose_a_teaching";
-                    $query_check = mysqli_query($conn,$check);
-                    $row_check = mysqli_fetch_array($query_check);
- 
-//Insert Data To MySQL
-$i = 2;
-$j = 0;
-foreach($data as $q[]){
+
+if($_FILES["import_excel"]["name"] != '')
+{
+ $allowed_extension = array('xls', 'csv', 'xlsx');//สกุลไฟล์
+ $file_array = explode(".", $_FILES["import_excel"]["name"]);//Upload
+ $file_extension = end($file_array);//
+
+ if(in_array($file_extension, $allowed_extension))
+    {
+  $file_name = time() . '.' . $file_extension;
+  move_uploaded_file($_FILES['import_excel']['tmp_name'], $file_name);
+  $file_type = \PhpOffice\PhpSpreadsheet\IOFactory::identify($file_name);
+  $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($file_type);
+
+  $spreadsheet = $reader->load($file_name);
+
+  unlink($file_name);
+
+  $data = $spreadsheet->getActiveSheet()->toArray();
+  $i = 2;
+  $j = 0;
+  foreach($data as $row[])
+  {
     if($j >= 0){
         if($i > 3){
-        
-        $name = trim($q[0][0]);//A[0][0]
-        $lname = trim($q[0][1]);//A[0][0]
-        $sql1 = "SELECT master_id FROM login_information WHERE user_role_id ='5' AND fname = '".$name."' AND lname = '".$lname."'";
-        $query1 = mysqli_query($conn,$sql1);
-        $row = mysqli_fetch_array($query1);
-        $master_id = $row['master_id'];
+            
 
-        $year = trim($q[0][2]);//C
-        $sql6 = "SELECT year_id FROM year WHERE year_name = '".$year."' ";
-        $query6 = mysqli_query($conn,$sql6);
-        $row6 = mysqli_fetch_array($query6);
-        $year_id = $row6['year_id'];
+    $firstname = trim($row[0][0]);//A[0][0]
+    $lastname = trim($row[0][1]);//A[0][0]*/
+    $sql1 = "SELECT login_id FROM login_information as login, user_data as user WHERE user.user_id = login.user_id AND login.user_role_id ='5' AND user.firstname = '$firstname' AND user.lastname = '$lastname'";
+    $query1 = mysqli_query($conn,$sql1);
+    $row11 = mysqli_fetch_array($query1);
+    $login_id = $row11['login_id'];
+    
+    
+    $year = trim($row[0][2]);//C
+    $sql6 = "SELECT year_id FROM year WHERE year_name = '".$year."' ";
+    $query6 = mysqli_query($conn,$sql6);
+    $row6 = mysqli_fetch_array($query6);
+    $year_id = $row6['year_id'];
 
-        $date = trim($q[$j][0]);//B
-        /*$sql6 = "SELECT choose_id FROM choose_a_teaching  WHERE date = '".$date."' ";
-        $query6 = mysqli_query($conn,$sql6);
-        $row6 = mysqli_fetch_array($query6);
-        $master_id = $row6['master_id'];*/
+    $date = trim($row[$j][0]);//B
+    /*$sql6 = "SELECT choose_id FROM choose_a_teaching  WHERE date = '".$date."' ";
+    $query6 = mysqli_query($conn,$sql6);
+    $row6 = mysqli_fetch_array($query6);
+    $master_id = $row6['master_id'];*/
 
-        $time = trim($q[$j][1]);//C
-        $sql5 = "SELECT time_id FROM time WHERE time_name = '".$time."' ";
-        $query5 = mysqli_query($conn,$sql5);
-        $row5 = mysqli_fetch_array($query5);
-        $time_id = $row5['time_id'];
+    $time = trim($row[$j][1]);//C
+    $sql5 = "SELECT time_id FROM time WHERE time_name = '".$time."' ";
+    $query5 = mysqli_query($conn,$sql5);
+    $row5 = mysqli_fetch_array($query5);
+    $time_id = $row5['time_id'];
 
-        $class = trim($q[$j][2]);
-        $sql4 = "SELECT class_id FROM classroom WHERE name_classroom = '".$class."' ";
-        $query4 = mysqli_query($conn,$sql4);
-        $row4 = mysqli_fetch_array($query4);
-        $class_id = $row4['class_id'];
+    $class = trim($row[$j][2]);
+    $sql4 = "SELECT class_id FROM classroom WHERE name_classroom = '".$class."' ";
+    $query4 = mysqli_query($conn,$sql4);
+    $row4 = mysqli_fetch_array($query4);
+    $class_id = $row4['class_id'];
 
-        $code_subject = trim($q[$j][3]);//B
-        $sql3 = "SELECT subject_id FROM subject WHERE code_subject = '".$code_subject."' ";
-        $query3 = mysqli_query($conn,$sql3);
-        $row3 = mysqli_fetch_array($query3);
-        $subject_id = $row3['subject_id'];
-        
-        $grade = trim($q[$j][4]);//A[1][0]
-        $sql2 = "SELECT grade_id FROM grade_level WHERE grade_level_user = '$grade' ";
-        $query2 = mysqli_query($conn,$sql2);
-        $row2 = mysqli_fetch_array($query2);
-        $grade_id  = $row2['grade_id'];
+    $code_subject = trim($row[$j][3]);//B
+    $sql3 = "SELECT subject_id FROM subject WHERE code_subject = '".$code_subject."' ";
+    $query3 = mysqli_query($conn,$sql3);
+    $row3 = mysqli_fetch_array($query3);
+    $subject_id = $row3['subject_id'];
+    
+    $grade = trim($row[$j][4]);//A[1][0]
+    $sql2 = "SELECT grade_id FROM grade_level WHERE grade_level_user = '$grade' ";
+    $query2 = mysqli_query($conn,$sql2);
+    $row2 = mysqli_fetch_array($query2);
+    $grade_id  = $row2['grade_id'];
 
-        
+    $insert_data = array(//เพิ่มข้อมูล
+        $firstname = trim($row[0][0]),//A[0][0]
+        $lastname = trim($row[0][1]),
+        $year = trim($row[0][2]),
+        $date = trim($row[$j][0]),
+        $time = trim($row[$j][1]),
+        $class = trim($row[$j][2]),
+        $code_subject = trim($row[$j][3]),
+        $grade = trim($row[$j][4]) 
+       );
+    
 
+   $query = "choose_a_teaching(login_id,grade_id,subject_id,class_id,time_id,date,year_id) VALUES 
+   (:login_id,:grade_id ,:subject_id,:class_id,:time_id,:date,:year_id)";
+   
+   /*$result = $connection->prepare('DELETE FROM blog WHERE id = ?');
+$result->bind_param('i', $_GET['delpost']);
+$result->execute();
 
-		/*if($master_id != $row_check['master_id'] AND $grade_id != $row_check['grade_id'] AND $subject_id != $row_check['subject_id'] AND $class_id != $row_check['class_id'] AND $time_id != $row_check['time_id'] AND $date != $row_check['date'] AND $year_id != $row_check['year_id'] ){*/
-        $sql = "INSERT INTO choose_a_teaching (master_id,grade_id,subject_id,class_id,time_id,date,year_id) VALUES ('$master_id','$grade_id ','$subject_id','$class_id','$time_id ','$date','$year_id')";
-        
-            if (mysqli_query($conn, $sql)) {
-                echo "<script>";
-                        echo "alert('เพิ่มข้อมูลเสร็จสิ้น');";
-                        echo "window.location ='choose_a_teaching.php'; ";
-                echo "</script>";
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
-        /*}else{
-            echo "<script>";
-                //echo "alert('Meow ๆ');";
-                echo "window.location ='choose_a_teaching.php'; ";
-             echo "</script>";
-        }*/
-	
-	}
-	$i++;
+   
+   $statement ->bind_param($insert_data);
+   $statement->execute($insert_data);*/
+   $statement = $conn->prepare($query);
+   $statement->execute($insert_data);
     }
+    $i++;
+}
     $j++;
+  }
+    $message = '<div class="alert alert-success">Data Imported Successfully</div>';
+
+ }
+ else
+ {
+  $message = '<div class="alert alert-danger">Only .xls .csv or .xlsx file allowed</div>';
+ }
+}
+else
+{
+ $message = '<div class="alert alert-danger">Please Select File</div>';
 }
 
-mysqli_close($conn);
+
+echo $message;
+
+
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2021 at 06:39 PM
+-- Generation Time: Sep 14, 2021 at 05:07 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `choose_a_teaching` (
   `choose_id` int(20) NOT NULL,
-  `master_id` int(20) NOT NULL,
+  `login_id` int(20) NOT NULL,
   `grade_id` int(10) NOT NULL,
   `subject_id` int(20) NOT NULL,
   `class_id` int(20) NOT NULL,
@@ -43,25 +43,10 @@ CREATE TABLE `choose_a_teaching` (
 -- Dumping data for table `choose_a_teaching`
 --
 
-INSERT INTO `choose_a_teaching` (`choose_id`, `master_id`, `grade_id`, `subject_id`, `class_id`, `time_id`, `date`, `year_id`, `status_choose`) VALUES
-(57, 50, 9, 35, 1, 1, 'จันทร์', 1, 'Active'),
-(58, 50, 9, 36, 7, 2, 'อังคาร', 1, 'Active'),
-(59, 50, 10, 37, 13, 3, 'พุธ', 1, 'Active'),
-(60, 50, 10, 38, 19, 4, 'พฤหัสบดี', 1, 'Active'),
-(61, 50, 10, 39, 23, 5, 'ศุกร์', 1, 'Active'),
-(62, 50, 9, 38, 1, 6, 'วันพุธ', 1, 'Active'),
-(63, 50, 9, 35, 1, 1, 'จันทร์', 1, 'Active'),
-(64, 50, 9, 36, 7, 2, 'อังคาร', 1, 'Active'),
-(65, 50, 10, 37, 13, 3, 'พุธ', 1, 'Active'),
-(66, 50, 10, 38, 19, 4, 'พฤหัสบดี', 1, 'Active'),
-(67, 50, 10, 39, 23, 5, 'ศุกร์', 1, 'Active'),
-(68, 56, 12, 36, 14, 3, 'วันอังคาร', 1, 'Active'),
-(69, 56, 9, 35, 4, 1, 'วันจันทร์', 1, 'Active'),
-(70, 56, 9, 35, 4, 1, 'วันจันทร์', 1, 'Active'),
-(71, 56, 9, 35, 4, 1, 'วันจันทร์', 1, 'Active'),
-(72, 59, 0, 36, 1, 7, 'วันศุกร์', 1, 'Active'),
-(73, 59, 9, 36, 1, 7, 'วันศุกร์', 1, 'Active'),
-(74, 59, 9, 36, 1, 7, 'วันศุกร์', 1, 'Inactive');
+INSERT INTO `choose_a_teaching` (`choose_id`, `login_id`, `grade_id`, `subject_id`, `class_id`, `time_id`, `date`, `year_id`, `status_choose`) VALUES
+(1, 2, 5, 15, 19, 1, 'วันจันทร์', 1, 'Active'),
+(2, 2, 1, 1, 1, 6, 'วันพุธ', 1, 'Active'),
+(3, 2, 1, 1, 1, 6, 'วันพุธ', 1, 'Active');
 
 -- --------------------------------------------------------
 
@@ -81,30 +66,30 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`class_id`, `grade_id`, `name_classroom`, `status_class`) VALUES
-(1, 9, 'ป.1/1', 'Active'),
-(2, 9, 'ป.1/2', 'Active'),
-(3, 9, 'ป.2/1', 'Active'),
-(4, 9, 'ป.2/2', 'Active'),
-(5, 9, 'ป.3/1', 'Active'),
-(6, 9, 'ป.3/2', 'Active'),
-(7, 12, 'ป.4/1', 'Active'),
-(8, 12, 'ป.4/2', 'Active'),
-(9, 12, 'ป.5/1', 'Active'),
-(10, 12, 'ป.5/2', 'Active'),
-(11, 12, 'ป.6/1', 'Active'),
-(12, 12, 'ป.6/2', 'Active'),
-(13, 10, 'ม.1/1', 'Active'),
-(14, 10, 'ม.1/2', 'Active'),
-(15, 10, 'ม.2/1', 'Active'),
-(16, 10, 'ม.2/2', 'Active'),
-(17, 10, 'ม.3/1', 'Active'),
-(18, 10, 'ม.3/2', 'Active'),
-(19, 11, 'ม.4/1', 'Active'),
-(20, 11, 'ม.4/2', 'Active'),
-(21, 11, 'ม.5/1', 'Active'),
-(22, 11, 'ม.5/2', 'Active'),
-(23, 11, 'ม.6/1', 'Active'),
-(24, 11, 'ม.6/2', 'Active');
+(1, 1, 'ป.1/1', 'Active'),
+(2, 1, 'ป.1/2', 'Active'),
+(3, 1, 'ป.2/1', 'Active'),
+(4, 1, 'ป.2/2', 'Active'),
+(5, 1, 'ป.3/1', 'Active'),
+(6, 1, 'ป.3/2', 'Active'),
+(7, 2, 'ป.4/1', 'Active'),
+(8, 2, 'ป.4/2', 'Active'),
+(9, 2, 'ป.5/1', 'Active'),
+(10, 2, 'ป.5/2', 'Active'),
+(11, 2, 'ป.6/1', 'Active'),
+(12, 2, 'ป.6/2', 'Active'),
+(13, 4, 'ม.1/1', 'Active'),
+(14, 4, 'ม.1/2', 'Active'),
+(15, 4, 'ม.2/1', 'Active'),
+(16, 4, 'ม.2/2', 'Active'),
+(17, 4, 'ม.3/1', 'Active'),
+(18, 4, 'ม.3/2', 'Active'),
+(19, 5, 'ม.4/1', 'Active'),
+(20, 5, 'ม.4/2', 'Active'),
+(21, 5, 'ม.5/1', 'Active'),
+(22, 5, 'ม.5/2', 'Active'),
+(23, 5, 'ม.6/1', 'Active'),
+(24, 5, 'ม.6/2', 'Active');
 
 -- --------------------------------------------------------
 
@@ -124,12 +109,12 @@ CREATE TABLE `grade_level` (
 --
 
 INSERT INTO `grade_level` (`grade_id`, `grade_level_user`, `name_gradelevel`, `status_grade`) VALUES
-(9, 'ประถมศึกษา', 'ประถมต้น', 'Active'),
-(10, 'มัธยมศึกษา', 'มัธยมต้น', 'Active'),
-(11, 'มัธยมศึกษา', 'มัธยมปลาย', 'Active'),
-(12, 'ประถมศึกษา', 'ประถมปลาย', 'Active'),
-(13, 'มัธยมศึกษา', 'อิสลามศึกษา', 'Active'),
-(14, 'ประถมศึกษา', 'อิสลามศึกษา', 'Active');
+(1, 'ประถมศึกษา', 'ประถมต้น', 'Active'),
+(2, 'ประถมศึกษา', 'ประถมปลาย', 'Active'),
+(3, 'ประถมศึกษา', 'อิสลามศึกษา', 'Active'),
+(4, 'มัธยมศึกษา', 'มัธยมต้น', 'Active'),
+(5, 'มัธยมศึกษา', 'มัธยมปลาย', 'Active'),
+(6, 'มัธยมศึกษา', 'อิสลามศึกษา', 'Active');
 
 -- --------------------------------------------------------
 
@@ -138,45 +123,25 @@ INSERT INTO `grade_level` (`grade_id`, `grade_level_user`, `name_gradelevel`, `s
 --
 
 CREATE TABLE `login_information` (
-  `master_id` int(11) NOT NULL,
-  `fname` varchar(50) NOT NULL,
-  `lname` varchar(50) NOT NULL,
+  `login_id` int(10) NOT NULL,
+  `user_id` int(20) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
   `user_role_id` int(20) NOT NULL,
-  `status_master` varchar(20) NOT NULL DEFAULT 'Active'
+  `status_login` varchar(20) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `login_information`
 --
 
-INSERT INTO `login_information` (`master_id`, `fname`, `lname`, `username`, `password`, `email`, `user_role_id`, `status_master`) VALUES
-(29, 'admin', 'add', 'admin', '123456', 'admin@gmail.com', 1, 'Active'),
-(48, 'นายทดสอบ', 'แอดมิน', 'testadmin', '123456', 'testadmin@gmail.com', 1, 'Active'),
-(50, 'นางสาวทดสอบ', 'คุณครู', 'test_teacher', '123456', 'test_teacher@gmail.c', 5, 'Active'),
-(51, 'นายทดสอบ1', 'แอดมิน', 'test_aca', '123456', 'testadmin@gmail.com', 4, 'Active'),
-(52, 'นายทดสอบ', 'ผู้อำนวยการ', 'director', '123456', 'testadmin@gmail.com', 2, 'Active'),
-(53, 'Teeraphong', 'Singsaro', 'admin298', '123456', '6110210183@psu.ac.th', 1, 'Inactive'),
-(54, 'Teeraphong', 'Singsaro', 'teacher111', '123123', '6110210183@psu.ac.th', 4, 'Active'),
-(55, 'ธีรพงค์', 'ppp', 'adminwww', '12123', 'Teeraphongsingsaro@g', 4, 'Active'),
-(56, 'kanom', 'pang', 'teacher', '123', 'kanom_pang@gmail.com', 5, 'Active'),
-(57, 'admin', 'aiai', 'admin', '1111', 'admin123@gmail.com', 1, 'Active'),
-(58, 'Teeraphong', 'Singsaro123', 'admin298', '111', '6110210183@psu.ac.th', 1, 'Active'),
-(59, 'ธีรพงค์', 'สิงสาโร', 'admin121', '123456', '6110210183@psu.ac.th', 5, 'Active'),
-(61, 'Teeraphong', 'Singsaro', 'aca_test', '123456', '6110210183@psu.ac.th', 15, 'Active'),
-(62, 'kanom', 'pang', 'user1', '123456', 'kanom_pang@gmail.com', 1, 'Active'),
-(75, 'Teeraphong', 'Singsaro', 'admin', '111', '6110210183@psu.ac.th', 3, 'Active'),
-(76, 'นายทดสอบ', 'หัวหน้าประถม', 'test_primary', '123456', 'test_primary@gmail.c', 6, 'Active'),
-(77, 'นายทดสอบ', 'หัวหน้ามัธยม', 'test_high', '123456', 'test_high@hmail.com', 7, 'Active'),
-(78, 'นายทดสอบ1', 'ครู', 'test_teacher1', '123456', 'test_teacher1@gmail.', 5, 'Active'),
-(79, 'guktyk', 'fjghm', 'gfhjm', '121', 'dfghn', 3, 'Active'),
-(80, 'Teeraphong', 'Singsaro', 'ddd', 'qqq', '6110210183@psu.ac.th', 6, 'Active'),
-(81, 'Teeraphong', 'Singsaro', 'a', 'sa', '6110210183@psu.ac.th', 1, 'Active'),
-(82, 'Teeraphong', 'Singsaro', 'sss', '11', '6110210183@psu.ac.th', 3, 'Active'),
-(83, 'Teeraphong', 'Singsaro', 'aa', 's', '6110210183@psu.ac.th', 5, 'Active'),
-(84, 'Teeraphong', 'Singsaro', 'df', 'd', '6110210183@psu.ac.th', 1, 'Active');
+INSERT INTO `login_information` (`login_id`, `user_id`, `username`, `password`, `user_role_id`, `status_login`) VALUES
+(1, 1, 'admin', '123456', 1, 'Active'),
+(2, 2, 'test_teacher', '123456', 5, 'Active'),
+(3, 3, 'test_director', '123456', 2, 'Active'),
+(4, 4, 'primary', '123456', 6, 'Active'),
+(5, 5, 'hight', '123456', 7, 'Active'),
+(6, 6, 'd_director', '123456', 3, 'Active');
 
 -- --------------------------------------------------------
 
@@ -202,18 +167,9 @@ CREATE TABLE `prepare_to_teach` (
 --
 
 INSERT INTO `prepare_to_teach` (`id_prepare`, `choose_id`, `date_prepare`, `learning`, `purpose`, `how_to_teach`, `media`, `measure`, `status_prepare_hours`, `status_prepare`) VALUES
-(7, 30, '17/05/2021', 'การงาน', 'การงาน', 'การงาน', 'การงาน', 'การงาน', 'Checking', 'Active'),
-(8, 29, '17/05/2021', 'การงาน', 'การงาน', 'การงาน', 'การงาน', 'การงาน', 'Checking', 'Active'),
-(9, 28, '17/05/2021', 'การงาน', 'การงาน', 'การงาน', 'การงาน', 'การงาน', 'Complete', 'Active'),
-(10, 28, '17/05/2021', 'ssssssss', 's', 's', 's', 's', 'Complete', 'Active'),
-(11, 1, '10/06/2021', 'jjj', 'jjj', 'jjj', 'jj', 'jj', 'Complete', 'Active'),
-(12, 6, '10/06/2021', 'stgsd', 'sdgb', 'sdgsgdb', 'sgdb', 'fgb', 'Checking', 'Active'),
-(13, 57, '14/06/2021', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบ\r\nระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบ\r\nระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'Checking', 'Active'),
-(14, 58, '14/06/2021', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบ\r\nระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบ\r\nระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'Complete', 'Active'),
-(15, 59, '14/06/2021', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบ\r\nระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบ\r\nระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'Incomplete', 'Active'),
-(16, 60, '14/06/2021', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบ\r\nระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบ\r\nระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'Complete', 'Active'),
-(17, 59, '05/07/2564', 'nghng', 'nghn', 'ghn', 'gn', 'g', 'Checking', 'Active'),
-(18, 57, '15/07/2021', 'g', 'g', 'g', 'g', 'g', 'Checking', 'Active');
+(1, 1, '07/09/2021', 'ทดสอบครั้งที่อิอิ', 'ทดสอบครั้งที่1', 'ทดสอบครั้งที่1', 'ทดสอบครั้งที่1', 'ทดสอบครั้งที่1sss', 'Complete', 'Active'),
+(2, 2, '09/09/2021', 'กดเอก', 'กดอกอ', 'กดอกด', 'อกดอ', 'กดอกดอ', 'Complete', 'Active'),
+(3, 2, '13/09/2021', 'ทดสอบ1', 'ทดสอบ1', 'ทดสอบ1', 'ทดสอบ1', 'ทดสอบ1', 'Checking', 'Active');
 
 -- --------------------------------------------------------
 
@@ -234,11 +190,22 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`subject_id`, `grade_id`, `code_subject`, `name_subject`, `status_subject`) VALUES
-(35, 9, 'อ 11011', 'อังกฤษ', 'Active'),
-(36, 9, 'ค 11012', 'คณิตศาสตร์', 'Active'),
-(37, 10, 'อ 12012', 'อังกฤษเพื่อการสื่อสาร', 'Active'),
-(38, 11, 'ว 21021', 'ฟิสิกส์', 'Active'),
-(39, 11, 'ว 42002', 'เคมี', 'Active');
+(1, 1, 'ค 11101', 'คณิตศาสตร์', 'Active'),
+(2, 1, 'ค 12101', 'คณิตศาสตร์', 'Active'),
+(3, 1, 'ค 13101', 'คณิตศาสตร์', 'Active'),
+(4, 1, 'อ 11101', 'อังกฤษ', 'Active'),
+(5, 1, 'อ 12101', 'อังกฤษ', 'Active'),
+(6, 1, 'อ 13101', 'อังกฤษ', 'Active'),
+(7, 2, 'ค 14101', 'คณิตศาสตร์', 'Active'),
+(8, 2, 'ค 15101', 'คณิตศาสตร์', 'Active'),
+(9, 2, 'ค 16101', 'คณิตศาสตร์', 'Active'),
+(10, 2, 'ว 14101', 'วิทยาศาสตร์และเทคโนโลยี', 'Active'),
+(11, 2, 'ว 15101', 'วิทยาศาสตร์และเทคโนโลยี', 'Active'),
+(12, 2, 'ว 16101', 'วิทยาศาสตร์และเทคโนโลยี', 'Active'),
+(13, 4, 'ท 21101', 'ภาษาไทย', 'Active'),
+(14, 4, 'อ 21101', 'อังกฤษ', 'Active'),
+(15, 5, 'ฟ 21101', 'ฟิสิกส์', 'Active'),
+(16, 5, 'ช 21101', 'ชีวะ', 'Active');
 
 -- --------------------------------------------------------
 
@@ -269,6 +236,32 @@ INSERT INTO `time` (`time_id`, `time_name`, `year_id`, `status_time`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_data`
+--
+
+CREATE TABLE `user_data` (
+  `user_id` int(10) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `status_user` varchar(10) NOT NULL DEFAULT 'Active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user_data`
+--
+
+INSERT INTO `user_data` (`user_id`, `firstname`, `lastname`, `email`, `status_user`) VALUES
+(1, 'นายทดสอบ', 'ผู้ดูแลระบบ', 'admin@gmail.com', 'Active'),
+(2, 'ทดสอบ', 'คุณครู', 'test_teacher@gmail.com', 'Active'),
+(3, 'ทดสอบ', 'ผู้อำนวยการ', 'director@gmail.com', 'Active'),
+(4, 'หัวหน้า', 'ประถม', 'pri@gmail.com', 'Active'),
+(5, 'หัวหน้า', 'มัธยม', 'hight@gmail.com', 'Active'),
+(6, 'รอง', 'ผู้อำนวยการ', 'diputydirector@gmail.com', 'Active');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_role`
 --
 
@@ -286,17 +279,9 @@ INSERT INTO `user_role` (`user_role_id`, `name_role`, `status_role`) VALUES
 (1, 'ผู้ดูแลระบบ', 'Active'),
 (2, 'ผู้อำนวยการ', 'Active'),
 (3, 'รองผู้อำนวยการ', 'Active'),
-(4, 'ฝ่ายวิชาการ', 'Inactive'),
 (5, 'ครู', 'Active'),
 (6, 'หัวหน้าช่วงชั้นประถม', 'Active'),
-(7, 'หัวหน้าช่วงชั้นมัธยม', 'Active'),
-(10, 'ผู้จัดการ', 'Inactive'),
-(12, 'adminๆ', 'Inactive'),
-(13, 'ประถมต้น', 'Inactive'),
-(14, 'Adminqq1', 'Inactive'),
-(15, 'ผู้ดูแลระบบ11', 'Inactive'),
-(16, 'ฝ่ายวิชาการ112', 'Inactive'),
-(17, 'ผู้อำนวยการmm', 'Inactive');
+(7, 'หัวหน้าช่วงชั้นมัธยม', 'Active');
 
 -- --------------------------------------------------------
 
@@ -324,14 +309,9 @@ CREATE TABLE `weekly_summary` (
 --
 
 INSERT INTO `weekly_summary` (`id_prepare_week`, `choose_id`, `date_prepare_week`, `goal`, `result`, `activity_good`, `activity_nogood`, `problem`, `student`, `Solve_the_problem`, `status_prepare_week`, `status_week`) VALUES
-(1, 28, '17/05/2021', 'รอีร', 'ีอรอรีอ', 'รอรีอ', '่อีรอรีอ', 'ีอรีอีรอ', 'รอีรอีรอ่าอิ้่แ', 'ัแเแัแ', 'Checking', 'Active'),
-(2, 30, '17/05/2021', 'uib', 'ubyv', ' yuvy', 'bub', 'yvyubuy', 'nijn', 'iubnui', 'Complete', 'Active'),
-(3, 1, '11/06/2021', 'arfdfv', 'vdfvddfv', 'kgig', 'iugui', 'fui', 'fui', 'fiuf', 'Checking', 'Active'),
-(4, 57, '18/06/2021', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'Checking', 'Active'),
-(5, 58, '18/06/2021', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'Complete', 'Active'),
-(6, 59, '18/06/2021', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'Checking', 'Active'),
-(7, 60, '18/06/2021', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ,ทดสอบระบบ', 'Complete', 'Active'),
-(8, 57, '11/06/2021', 'ทดสอบ', 'ทดสอบ', 'ทดสอบ', 'ทดสอบ', 'ทดสอบ', 'ทดสอบ', 'ทดสอบ', 'Checking', 'Active');
+(1, 1, '08/09/2021', 'eee', 'ee', 'ee', 'ee', 'ee', 'ee', 'ee', 'Complete', 'Active'),
+(2, 2, '09/09/2021', 'อดอด', 'อดอด', 'อดอด', 'อดอด', 'อดอด', 'อดอด', 'อดอด', 'Complete', 'Active'),
+(3, 1, '13/09/2021', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'Complete', 'Active');
 
 -- --------------------------------------------------------
 
@@ -351,8 +331,7 @@ CREATE TABLE `year` (
 --
 
 INSERT INTO `year` (`year_id`, `year_name`, `term`, `status_year`) VALUES
-(1, 2564, '1', 'Active'),
-(2, 2563, '1', 'Active');
+(1, 2561, '1', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -364,7 +343,7 @@ INSERT INTO `year` (`year_id`, `year_name`, `term`, `status_year`) VALUES
 ALTER TABLE `choose_a_teaching`
   ADD PRIMARY KEY (`choose_id`),
   ADD KEY `FK_class_id` (`class_id`),
-  ADD KEY `master_id` (`master_id`),
+  ADD KEY `master_id` (`login_id`),
   ADD KEY `subject_id` (`subject_id`),
   ADD KEY `grade_id` (`grade_id`),
   ADD KEY `time_id` (`time_id`),
@@ -387,8 +366,9 @@ ALTER TABLE `grade_level`
 -- Indexes for table `login_information`
 --
 ALTER TABLE `login_information`
-  ADD PRIMARY KEY (`master_id`),
-  ADD KEY `user_role_id` (`user_role_id`);
+  ADD PRIMARY KEY (`login_id`),
+  ADD KEY `user_role_id` (`user_role_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `prepare_to_teach`
@@ -410,6 +390,12 @@ ALTER TABLE `subject`
 ALTER TABLE `time`
   ADD PRIMARY KEY (`time_id`),
   ADD KEY `year_id` (`year_id`);
+
+--
+-- Indexes for table `user_data`
+--
+ALTER TABLE `user_data`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `user_role`
@@ -438,7 +424,7 @@ ALTER TABLE `year`
 -- AUTO_INCREMENT for table `choose_a_teaching`
 --
 ALTER TABLE `choose_a_teaching`
-  MODIFY `choose_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `choose_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `classroom`
@@ -450,31 +436,37 @@ ALTER TABLE `classroom`
 -- AUTO_INCREMENT for table `grade_level`
 --
 ALTER TABLE `grade_level`
-  MODIFY `grade_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `grade_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `login_information`
 --
 ALTER TABLE `login_information`
-  MODIFY `master_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `prepare_to_teach`
 --
 ALTER TABLE `prepare_to_teach`
-  MODIFY `id_prepare` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_prepare` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subject_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `subject_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `time`
 --
 ALTER TABLE `time`
   MODIFY `time_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `user_data`
+--
+ALTER TABLE `user_data`
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -486,13 +478,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `weekly_summary`
 --
 ALTER TABLE `weekly_summary`
-  MODIFY `id_prepare_week` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_prepare_week` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `year`
 --
 ALTER TABLE `year`
-  MODIFY `year_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `year_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

@@ -33,8 +33,8 @@
 
     $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-    $nquery=mysqli_query($conn,"SELECT * from  prepare_to_teach  as pre,choose_a_teaching as c, subject as sub, classroom as class,login_information as login
-    WHERE pre.choose_id = c.choose_id AND c.subject_id =sub.subject_id AND c.class_id = class.class_id AND c.master_id = login.master_id AND  login.master_id = $id ORDER BY id_prepare DESC $limit");
+    $nquery=mysqli_query($conn,"SELECT * from  prepare_to_teach  as pre,choose_a_teaching as c, subject as sub, classroom as class,login_information as login, user_data as user
+    WHERE user.user_id = login.user_id AND pre.choose_id = c.choose_id AND c.subject_id =sub.subject_id AND c.class_id = class.class_id AND c.login_id = login.login_id AND  login.user_id = $id ORDER BY id_prepare DESC $limit");
 
     $paginationCtrls = '';
 
@@ -105,7 +105,7 @@
                     <?php $row["date_prepare"]; 
                 ?>
                     <tr>
-                        <?php if($row['status_prepare_hours']!='Complete' && $row['master_id'] == $id && $row['status_choose'] == 'Active'){?>
+                        <?php if($row['status_prepare_hours']!='Complete' && $row['login_id'] == $id && $row['status_choose'] == 'Active'){?>
                         <!-- <td><?php// echo date("m/d/y ",strtotime($row["date_prepare"])) ?></td> -->
                         <td><?php echo $row["date_prepare"]; ?></td>
                         <td><?php echo  $row['code_subject'].' '.$row['name_subject'].' ('.$row['name_classroom'].')'; ?>

@@ -51,12 +51,17 @@
                 VALUES('".$choose_id."', '$date_prepare','$learn', '$purpose','$how_to_teach', '$media', '$measure') ";
                 $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                 //$query = mysqli_query($conn,$sql) or die(mysqli_error($conn) . "<br>$sql");   ตรวจสอบบัค
-                mysqli_close($conn);
+                
                 if($result){
-                    echo "<script type='text/javascript'>";
+                    /*echo "<script type='text/javascript'>";
                     echo "alert('อัพเดตข้อมูลเสร็จสิ้น');";
                     echo "</script>";
-                    header("refresh:2,hours.php");
+                    header("hours.php");*/
+                    echo "<script>";
+                    echo "alert('สำเร็จ');";
+                    echo "window.location ='hours.php'; ";
+                    $insertMsg = "เพิ่มข้อมูลสำเร็จ";
+                    echo "</script>";
                     }
             }
             
@@ -193,9 +198,11 @@
                 <br>
 
                 <?php
-                        $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
-                        $result2 = mysqli_query($conn, $query2);
+                        $sql2z = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class, login_information as login, user_data as user
+                        WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        
+                        $resultz = mysqli_query($conn,$sql2z) or die ("Error in query: $sql2z " . mysqli_error());
+                        
                     ?>
 
                 <div class="form- text-center">
@@ -205,7 +212,7 @@
                             <select name="txt_choose_id" class="form-control">
 
                                 <option value="">- กรุณาเลือก -</option>
-                                <?php foreach($result2 as $row2){
+                                <?php foreach($resultz as $row2){
                                 if($row2['status_choose'] == 'Active'){?>
                                 <option value="<?php echo $row2["choose_id"] ?>">
                                     <?php echo $row2['code_subject'].' '.$row2['name_subject'].' ('.$row2['name_classroom'].')';?>

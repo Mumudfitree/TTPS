@@ -10,10 +10,10 @@
                     $search = isset($_GET['search']) ? $_GET['search']:' ';
 
                     //query
-                    $sql1 ="SELECT COUNT(master_id) from  login_information as login,user_role as role WHERE   login.user_role_id = role.user_role_id";
+                    $sql1 ="SELECT COUNT(user_id) from  user_data ";
                     if(isset($_GET['search'])){ 
                         $search = $_GET['search'];
-                        $sql1 = "SELECT COUNT(master_id) from  login_information as login,user_role as role WHERE   login.user_role_id = role.user_role_id   AND fname LIKE '%" . $search . "%'";
+                        $sql1 = "SELECT COUNT(user_id) from  user_data WHERE   firstname LIKE '%" . $search . "%'";
                         $strKeyword = $_GET['search'];// รับค่า search
                     }
 
@@ -47,10 +47,10 @@
                     
                     $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
                     
-                    $sql = "SELECT * from  login_information as login,user_role as role WHERE   login.user_role_id = role.user_role_id   ORDER BY master_id DESC $limit";
+                    $sql = "SELECT * from user_data  ORDER BY user_id DESC $limit";
                     if(isset($_GET['search'])){ 
                         $search = $_GET['search'];
-                        $sql = "SELECT * from  login_information as login,user_role as role WHERE   login.user_role_id = role.user_role_id   AND fname LIKE '%" . $search . "%' ORDER BY master_id DESC $limit ";
+                        $sql = "SELECT * from  user_data WHERE  firstname LIKE '%" . $search . "%' ORDER BY user_id DESC $limit ";
                         $strKeyword = $_GET['search'];// รับค่า search
                     }
                     $nquery=mysqli_query($conn,$sql);
@@ -123,7 +123,7 @@
 
     <div class="main">
         <div class="container">
-            <div class="display-3 text-center">ข้อมูลบัญชีผู้ใช้</div>
+            <div class="display-3 text-center">ข้อมูลผู้ใช้</div>
             <div class="col-xs-6">
                 <a href="add.php" class="btn btn-success mb-3"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                         height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
@@ -158,10 +158,7 @@
                 <thead>
                     <th>ชื่อ</th>
                     <th>นามสกุล</th>
-                    <th>ชื่อบัญชีผู้ใช้</th>
-                    <th>รหัสผ่าน</th>
                     <th>อีเมลล์</th>
-                    <th>บทบาท</th>
                     <th>สถานะ</th>
                     <th>แก้ไข</th>
                     <th>ลบ</th>
@@ -175,23 +172,20 @@
                 while($row1 =  mysqli_fetch_array($nquery)){
             ?>
                     <tr>
-                        <td><?php echo $row1["fname"]; ?></td>
-                        <td><?php echo $row1["lname"]; ?></td>
-                        <td><?php echo $row1["username"]; ?></td>
-                        <td><?php echo $row1["password"]; ?></td>
+                        <td><?php echo $row1["firstname"]; ?></td>
+                        <td><?php echo $row1["lastname"]; ?></td>
                         <td><?php echo $row1["email"]; ?></td>
-                        <td><?php echo $row1["name_role"]; ?></td>
-                        <td><?php if($row1["status_master"] == 'Active'){?>
+                        <td><?php if($row1["status_user"] == 'Active'){?>
                             <p class="active">ใช้งานได้</p>
-                            <?php } elseif($row1["status_master"] == 'Inactive'){?>
+                            <?php } elseif($row1["status_user"] == 'Inactive'){?>
                             <p class="inactive">ถูกระงับการใช้งานได้</p>
                             <?php } ?>
                         </td>
-                        <td><a href="edit.php?update_id=<?php echo $row1["master_id"]; ?>" class="btn btn-warning">แก้ไข
+                        <td><a href="edit.php?update_id=<?php echo $row1["user_id"]; ?>" class="btn btn-warning">แก้ไข
                         </td>
-                        <td><a href="delete.php?delete_id=<?php echo $row1["master_id"]; ?>" class="btn btn-danger "
+                        <td><a href="delete.php?delete_id=<?php echo $row1["user_id"]; ?>" class="btn btn-danger "
                                 onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่')">ลบข้อมูล</td>
-                        <td><a href="change_status.php?change_id=<?php echo $row1["master_id"]; ?>"
+                        <td><a href="change_status.php?change_id=<?php echo $row1["user_id"]; ?>"
                                 class="btn btn-info "
                                 onclick="return confirm('คุณต้องการเปลี่ยนสถานะของผู้ใช้หรือไม่')">แก้ไขสถานะ</a></td>
                     </tr>

@@ -5,15 +5,13 @@
 
     require_once('../connection.php');
     $id1 = $_SESSION['UserID'];
-    $sql11 = "SELECT * FROM grade_level";
-    $query11 =mysqli_query($conn,$sql11);
 
     if(isset($_REQUEST['update_id'])){
         
         $id = $_REQUEST['update_id'];
 
-        $sql = "SELECT * FROM choose_a_teaching as c,login_information as m , subject as sub, classroom as class, grade_level as grade,time as t,year as y
-        WHERE c.choose_id = '".$id."' and c.master_id = m.master_id and c.subject_id = sub.subject_id and c.class_id = class.class_id and c.grade_id = grade.grade_id and c.time_id = t.time_id and c.year_id = y.year_id ";
+        $sql = "SELECT * FROM choose_a_teaching as c,login_information as m , subject as sub, classroom as class, grade_level as grade,time as t,year as y,user_data as user
+        WHERE user.user_id = m.user_id AND c.choose_id = '".$id."' and c.login_id = m.login_id and c.subject_id = sub.subject_id and c.class_id = class.class_id and c.grade_id = grade.grade_id and c.time_id = t.time_id and c.year_id = y.year_id ";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);
@@ -26,9 +24,13 @@
             extract($row);*/
         
     }if(isset($_REQUEST['btn_update'])){
+        $name = $_REQUEST['txt_name'];
         $code_up = $_REQUEST['txt_code'] ;
         $classroom_up = $_REQUEST['txt_classroom'];
         $grade_level_user = $_REQUEST['txt_grade'];
+        $time = $_REQUEST['txt_time'];
+        //$datei = $_REQUEST['txt_date'];
+        //$yeari = $_REQUEST['txt_year'];
         $status;
         
         
@@ -41,7 +43,7 @@
         }else{
             
                 if(!isset($errorMsg))
-                    $sql = "UPDATE choose_a_teaching SET  grade_id = '".$grade_level_user."', class_id = '".$classroom_up."' ,subject_id = '".$code_up."',
+                    $sql = "UPDATE choose_a_teaching SET login_id = '".$name."', grade_id = '".$grade_level_user."', class_id = '".$classroom_up."' ,subject_id = '".$code_up."',time_id = '".$time."',
                     status_choose='Active' WHERE choose_id = '".$id."' ";
                     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
@@ -105,15 +107,15 @@
                     <label for="type" class="col-sm-3 control-label">ชื่อ</label>
                     <div class="col-sm-6">
                         <select name="txt_name" class="form-control">
-                            <option value="<?php echo $master_id; ?>"><?php echo $fname .' '.$lname; ?></option>
+                            <option value="<?php echo $login_id; ?>"><?php echo $firstname .' '.$lastname; ?></option>
                             <?php 
-                $query1 = "SELECT * FROM login_information";
+                $query1 = "SELECT * FROM login_information as login, user_data as user WHERE login.user_id = user.user_id";
                 $result1 = mysqli_query($conn,$query1);//login data
                 ?>
                             <?php foreach($result1 as $row1){
-                    if($row1['status_master'] == 'Active' && $row1['user_role_id'] == '5' && row1['master_id'] !== $master_id){?>
-                            <option value="<?php echo $row1["master_id"]; ?>">
-                                <?php echo $row1["fname"].' '.$row1["lname"]; ?>
+                    if($row1['status_login'] == 'Active' && $row1['user_role_id'] == '5' && row1['login_id'] !== $login_id){?>
+                            <option value="<?php echo $row1["login_id"]; ?>">
+                                <?php echo $row1["firstname"].' '.$row1["lastname"]; ?>
                             </option>
                             <?php } ?>
                             <?php } ?>
@@ -122,76 +124,100 @@
                 </div>
             </div>
             <br>
-            <div class="form- text-center">
-                <div class="row">
-                    <label for="name_classroom" class="col-sm-3 control-label">ระดับชั้น</label>
-                    <div class="col-sm-6">
-                        <select name="txt_grade" class="form-control" required>
-                            <?php
-                $query1 = "SELECT * FROM grade_level ";
-                $result1 = mysqli_query($conn, $query1);
-                    ?>
-                            <option value="<?php echo $grade_id; ?>">
-                                <?php echo '('.$grade_level_user.')  '.$name_gradelevel; ?></option>
-                            <?php foreach($result1 as $results1){
-                        if( $results1["status_grade"] == 'Active' && $results1['grade_id'] !== $grade_id){?>
+            <?php
+                $grade = $grade_id;
+                $sql_grade = "SELECT * FROM grade_level ";
+                $query_grade =mysqli_query($conn,$sql_grade); 
+                
+                $class = $class_id;
+                $sql_class = "SELECT * FROM classroom WHERE grade_id ='$grade'";
+                $query_class =mysqli_query($conn,$sql_class); 
 
-                            <option value="<?php echo $results1["grade_id"];?>">
-                                <?php echo '('.$results1["grade_level_user"].')  '.$results1["name_gradelevel"]; ?>
-                            </option>
-                            <?php } ?>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <br>
+                $sub = $subject_id;
+                $sql_sub = "SELECT * FROM subject WHERE grade_id ='$grade'";
+                $query_sub =mysqli_query($conn,$sql_sub); 
+
+
+
+            
+                //$sql12 = "SELECT * FROM classroom WHERE grade_id =''"
+            ?>
             <div class="form- text-center">
-                <div class="row">
-                    <label for="type" class="col-sm-3 control-label">ห้องเรียน</label>
-                    <div class="col-sm-6">
-                        <select name="txt_classroom" class="form-control">
-                            <option value="<?php echo $class_id; ?>" selected="selected"><?php echo $name_classroom;?>
-                            </option>
-                            <?php 
-                $query2 = "SELECT * FROM classroom";
-                $result2 = mysqli_query($conn,$query2);//classroom
-                ?>
-                            <?php foreach($result2 as $row2){
-                    if($row2['status_class'] == 'Active' && row2['class_id'] !== $class_id){?>
-                            <option value="<?php echo $row2["class_id"]; ?>">
-                                <?php echo $row2["name_classroom"]; ?>
-                            </option>
-                            <?php } ?>
-                            <?php } ?>
-                        </select>
+                    <div class="row">
+                        <label for="grade_level" class="col-sm-3 control-label">ระดับชั้น</label>
+                        <div class="col-sm-6">
+                            <select name="txt_grade" id="grade_level" class="form-control">
+                                <option value="" selected="disable">กรุณาเลือกระดับชั้นเรียน</option>
+                                <?php foreach($query_grade as $value){?>
+                                    
+                                <option value="<?= $value['grade_id'];?>"<?= $value['grade_id']==$grade ? 'selected': ''; ?>><?php echo $value['name_gradelevel']?></option>
+                                
+                                
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <div class="form- text-center">
-                <div class="row">
-                    <label for="type" class="col-sm-3 control-label">รหัสวิชา/วิชา</label>
-                    <div class="col-sm-6">
-                        <select name="txt_code" class="form-control">
-                            <option value="<?php echo $subject_id; ?>" selected="selected">
-                                <?php echo $code_subject.''.$name_subject; ?></option>
-                            <?php
-                $query3 = "SELECT * FROM subject"; 
-                $result3 = mysqli_query($conn,$query3);//subject
-                ?>
-                            <?php foreach($result3 as $row3){
-                    if($row3['status_subject'] == 'Active' && $row3['subject_id'] !== $subject_id){?>
-                            <option value="<?php echo $row3["subject_id"]; ?>">
-                                <?php echo $row3["code_subject"].' '.$row3["name_subject"]; ?>
-                            </option>
-                            <?php } ?>
-                            <?php } ?>
-                        </select>
+                <br>
+
+
+                <div class="form- text-center">
+                    <div class="row">
+                        <label for="classroom" class="col-sm-3 control-label">ชั้น</label>
+                        <div class="col-sm-6">
+                        <select name="txt_classroom" id="classroom" class="form-control">
+                        <option value="" selected="disable">กรุณาเลือกชั้นเรียน</option>
+                        <?php foreach($query_class as $value){?>    
+                                    <option value="<?=$value['class_id'];?>"<?= $value['class_id']==$class ? 'selected':''; ?>><?php echo $value['name_classroom']?></option>
+                                    <?php } ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br>
+                <br>
+                <div class="form- text-center">
+                    <div class="row">
+                        <label for="subject" class="col-sm-3 control-label">วิชา</label>
+                        <div class="col-sm-6">
+                            <select name="txt_code" id="subject" class="form-control">
+                            <option value="" selected="disable">กรุณาเลือกวิชา</option>
+                            <?php foreach($query_sub as $value){
+                                //if($value["status_subject"] == 'Active' && $value['subject_id'] != $subject_id){?>    
+                                    <option value="<?=$value['subject_id'];?>"<?= $value['subject_id']==$sub ? 'selected':''; ?>><?php echo $value['name_subject']?></option>
+                                    <?php// } ?>
+                                    <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script type="text/javascript">
+                    $('#grade_level').change(function(){
+                        var id_grade_level = $(this).val();
+                        $.ajax({
+                            type: "post",
+                            url: "ajax_address.php",
+                            data: {id: id_grade_level,function:'grade_level'} ,
+                            success: function(data) {
+                                $('#classroom').html(data);
+                        }
+                    });
+                });
+                $('#grade_level').change(function(){
+                        var grade_level_id = $(this).val();
+                        $.ajax({
+                            type: "post",
+                            url: "ajax_address.php",
+                            data: {id: grade_level_id,function:'grade_level1'} ,
+                            success: function(data) {
+                                $('#subject').html(data);
+                        }
+                    });
+                });
+                    </script>
+            
             <div class="form- text-center">
                 <div class="row">
                     <label for="type" class="col-sm-3 control-label">เวลาในการสอน</label>
@@ -203,7 +229,7 @@
                 $result4 = mysqli_query($conn,$query4);//classroom
                 ?>
                             <?php foreach($result4 as $row4){
-                    if($row4['status_time'] == 'Active'){?>
+                    if($row4['status_time'] == 'Active' && $row4['time_id'] != $time_id){?>
                             <option value="<?php echo $row4["time_id"]; ?>"><?php echo $row4["time_name"]; ?>
                             </option>
                             <?php } ?>
@@ -251,68 +277,7 @@
                 </div>
             </div>
             <br>
-            <div class="form- text-center">
-                    <div class="row">
-                        <label for="grade_level" class="col-sm-3 control-label">ระดับชั้นแบบajax</label>
-                        <div class="col-sm-6">
-                            <select name="txt_grade" id="grade_level" class="form-control">
-                                <option value="<?php echo $grade_id;?>" selected="disable"><?php  echo $name_gradelevel ;?></option>
-                                <?php foreach($query11 as $value){ ?>
-                                <option value="<?php echo  $value['grade_id']?>"><?php echo $value['name_gradelevel']?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <br>
-
-
-                <div class="form- text-center">
-                    <div class="row">
-                        <label for="classroom" class="col-sm-3 control-label">ชั้นแบบajax</label>
-                        <div class="col-sm-6">
-                        <select name="txt_classroom" id="classroom" class="form-control">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="form- text-center">
-                    <div class="row">
-                        <label for="subject" class="col-sm-3 control-label">วิชาแบบajax</label>
-                        <div class="col-sm-6">
-                            <select name="txt_code" id="subject" class="form-control">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <br>
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script type="text/javascript">
-                    $('#grade_level').change(function(){
-                        var id_grade_level = $(this).val();
-                        $.ajax({
-                            type: "post",
-                            url: "ajax_address.php",
-                            data: {id: id_grade_level,function:'grade_level'} ,
-                            success: function(data) {
-                                $('#classroom').html(data);
-                        }
-                    });
-                });
-                $('#grade_level').change(function(){
-                        var grade_level_id = $(this).val();
-                        $.ajax({
-                            type: "post",
-                            url: "ajax_address.php",
-                            data: {id: grade_level_id,function:'grade_level1'} ,
-                            success: function(data) {
-                                $('#subject').html(data);
-                        }
-                    });
-                });
-                    </script>
+            
 
             <div class="form-group text-center">
                 <div class="col-sm-offset-3 col-sm-9 mt-5">

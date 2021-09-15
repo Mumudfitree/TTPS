@@ -170,7 +170,7 @@
             <br>
             <?php
                         $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id."' " ;//เชื่อม2ตาราง
+                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 
