@@ -88,8 +88,17 @@
         return 6 + $day - $exceedDay;
     }
 
-    function dayGenerate(){ //ทำการสร้างวันสำหรับทั้งเดือนนั้น คือ เก็บเป็น วันที่ 1 = 3, 2 = 4, ..., 5 = 0
-        //อันนี้ไม่ต้องทำ
+    function dayGenerate($enumArray, $monthDay, $firstWeekDay){ //ทำการสร้างวันสำหรับทั้งเดือนนั้น คือ เก็บเป็น วันที่ 1 = 3, 2 = 4, ..., 5 = 0
+        for($i = 0; $i < $monthDay; $i++, $firstWeekDay+=1){
+            if($firstWeekDay === 7){
+                $firstWeekDay = 0;
+            }
+            $enumArray[$i] = $firstWeekDay;
+
+        }
+
+        return $enumArray;
+
     }
 
     function isWorkDay($date, $arrayData){ //ตรวจสอบว่าคือวันหยุดหรือไม่

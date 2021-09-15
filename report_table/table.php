@@ -18,6 +18,7 @@
     $monthCount = returnDayCount($dayInfo);
     $enum_day = enumGenerator($monthCount);
     $firstDay = findFirstDayOfMonth($dayInfo);
+    $enum_day = dayGenerate($enum_day, $monthCount, $firstDay);
 
 ?>
 <html>
