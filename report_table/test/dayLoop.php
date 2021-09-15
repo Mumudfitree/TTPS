@@ -11,7 +11,7 @@
 
     $pass = 0;
 
-    $enum_month = enumGenerator(31); //I forgot to calles enum, and I specifieddayGenerate wrong array.
+    $enum_month = enumGenerator(31); //I forgot to called enum, and I specifieddayGenerate wrong array.
 
     for($i = 1; $i <= normal12Years; $i++){
         $isValid = checkdate($dayArray['monthOfDay'], $dayArray['dayOfMonth'], $dayArray['yearOfDay']);
@@ -23,7 +23,6 @@
 
         if(!isset($_SESSION['monthLoop'])){
             $weekDay = findFirstDayOfMonth($dayArray);
-
             $yearCode = 12;
             $monthCode = returnDayCount($dayArray);
 
@@ -38,12 +37,13 @@
 
         }
 
-        if(($_SESSION['monthLoop'] <= $yearCode) || isset($_SESSION['firstLoop']) ){ //here, monthloop and monthcode are different format. You should change that first.
+        if(($_SESSION['monthLoop'] === $yearCode) || isset($_SESSION['firstLoop']) ){ //here, monthloop and monthcode are different format. You should change that first.
             $weekDay = findFirstDayOfMonth($dayArray);
 
             $monthCode = returnDayCount($dayArray);
 
             $_SESSION['monthLoop'] += 1;
+
         }
 
         if($_SESSION['monthLoop'] === $yearCode){
@@ -66,11 +66,12 @@
         $_bool = $_SESSION['monthLoop'] < $yearCode or isset($_SESSION['firstLoop']);
         $boolean = $_SESSION['dayLoop'] >= $_SESSION['monthDay'] or isset($_SESSION['firstLoop']);
 
-        if(($_SESSION['dayLoop'] >= $_SESSION['monthDay']) || isset($_SESSION['firstLoop'])){ //codes from previous check still can get in here.
+        if(($_SESSION['dayLoop'] === $_SESSION['monthDay']) || isset($_SESSION['firstLoop'])){ //codes from previous check still can get in here.
             //codes broken because I mistype.
             
             $_SESSION['dayLoop'] = 1;
             $_SESSION['monthDay'] = returnDayCount($dayArray);
+            $firstDayOfMonth = findFirstDayOfMonth($dayArray);
             $enum_month = dayGenerate($enum_month, $_SESSION['monthDay'], $firstDayOfMonth);
         }
         
@@ -80,7 +81,7 @@
 
         unset($_SESSION['firstLoop']);
 
-        $correctResult = date('w', $unixTime);
+        $correctResult = intval(date('w', $unixTime));
         
         if($correctResult === $enum_month[$_SESSION['dayLoop'] - 1]){ //Because enum start at 0, and $_SESSION['dayloop'] start at 1. So I have to reduce base to give it equal.
             $isPassed = 1;
@@ -112,5 +113,10 @@
     else{
         echo 'some didn\'t pass<br>';
     }
+
+    unset($_SESSION['monthLoop']);
+    unset($_SESSION['dayLoop']);
+    unset($_SESSION['MonthDay']);
+    unset($_SESSION['firstLoop']);
 
 ?>
