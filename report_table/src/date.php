@@ -2,9 +2,9 @@
 
     function getDayOfWeek(){
 
-        $dayOfMonth = date('d');
+        $dayOfMonth = date('j');
 
-        $monthOfDay = date('F');
+        $monthOfDay = date('n');
         $yearOfDay = date('Y');
 
         $dayOfWeek = date('w');
@@ -19,37 +19,85 @@
         return $valueReturn;
     }
 
+    function createDayOfWeek($dateOfMonth, $monthOfDay, $yearOfDay){
+
+        if(!checkdate($monthOfDay, $dateOfMonth, $yearOfDay)){
+
+            return -1;
+        }
+
+        $unix = getUnixTimeOfDay($dateOfMonth, $monthOfDay, $yearOfDay);
+
+        $dayOfWeek = date('w', $unix);
+
+        $valueReturn = [
+            'dayOfMonth' => $dateOfMonth,
+            'monthOfDay' => $monthOfDay,
+            'yearOfDay' => $yearOfDay,
+            'dayOfWeek' => $dayOfWeek
+        ];
+
+        return $valueReturn;
+
+    }
+
+    function getDayFromUnix($unixTime){
+
+            $dayOfMonth = date('j', $unixTime);
+    
+            $monthOfDay = date('n', $unixTime);
+            $yearOfDay = date('Y', $unixTime);
+    
+            $dayOfWeek = date('w', $unixTime);
+    
+            $valueReturn = [
+                'dayOfMonth' => $dayOfMonth,
+                'monthOfDay' => $monthOfDay,
+                'yearOfDay' => $yearOfDay,
+                'dayOfWeek' => $dayOfWeek
+            ];
+
+            return $valueReturn;
+    }
+
+    function getUnixTimeOfDay($date, $month, $year) //get time of day at 12 pm
+    {
+        $unixTime = gmmktime(0, 0, 0, $month, $date, $year);
+
+        return $unixTime;
+    }
+
     function returnDayCount($arrayData){
         $month = $arrayData['monthOfDay'];
         $year = $arrayData['yearOfDay'];
 
         switch($month){
-            case 'January':
+            case 1:
                 return 31;
-            case 'February':
+            case 2:
                 if(isLeapYear($year)){
                     return 29;
                 }
                 return 28;
-            case 'March':
+            case 3:
                 return 31;
-            case 'April':
+            case 4:
                 return 30;
-            case 'May':
+            case 5:
                 return 31;
-            case 'June':
+            case 6:
                 return 30;
-            case 'July':
+            case 7:
                 return 31;
-            case 'August':
+            case 8:
                 return 31;
-            case 'September':
+            case 9:
                 return 30;
-            case 'October':
+            case 10:
                 return 31;
-            case 'November':
+            case 11:
                 return 30;
-            case 'December':
+            case 12:
                 return 31;
             default:
                 return 'invalid';
