@@ -11,6 +11,8 @@
 
     $pass = 0;
 
+    $enum_month = enumGenerator(31); //I forgot to calles enum, and I specifieddayGenerate wrong array.
+
     for($i = 1; $i <= normal12Years; $i++){
         $isValid = checkdate($dayArray['monthOfDay'], $dayArray['dayOfMonth'], $dayArray['yearOfDay']);
 
@@ -19,15 +21,21 @@
             break;
         }
 
-        $weekDay = findFirstDayOfMonth($dayArray);
-
-        $monthCode = $dayArray['yearOfDay'].$dayArray['monthOfDay'];
+        
 
         if(!isset($_SESSION['monthLoop'])){
+            $weekDay = findFirstDayOfMonth($dayArray);
+
+            $monthCode = returnDayCount($dayArray);
+
             $_SESSION['monthLoop'] = $monthCode;
         }
 
-        if($_SESSION['monthLoop'] < $monthCode){
+        if($_SESSION['monthLoop'] < $monthCode){ //here, monthloop and monthcode are different format. You should change that first.
+            $weekDay = findFirstDayOfMonth($dayArray);
+
+            $monthCode = returnDayCount($dayArray);
+
             $_SESSION['monthLoop'] += 1;
         }
 
@@ -39,12 +47,26 @@
             $_SESSION['dayLoop'] = $dayArray['dayOfMonth'];
             $_SESSION['monthDay'] = returnDayCount($dayArray);
             $firstDayOfMonth = findFirstDayOfMonth($dayArray);
-            $enum_month = dayGenerate($dayArray, $_SESSION['monthDay'], $firstDayOfMonth);
+            $enum_month = dayGenerate($enum_month, $_SESSION['monthDay'], $firstDayOfMonth);
+            $_SESSION['firstDayLoop'] = 1;
+            //here enum that produce is start at 0, not 1.
         }
+
+        if($_SESSION['dayLoop'] > $_SESSION['monthDay'] && !(isset($_SESSION['fisrtDayLoop']))){ //codes from previous check still can get in here.
+            $_SESSION['dayLoop'] = 1;
+            $_SESSION['monthDay'] = returnDayCount($dayArray);
+            $enum_month = dayGenerate($enum_month, $_SESSION['monthDay'], $firstDayOfMonth);
+        }
+        
+        else{
+            $_SESSION['dayLoop'] += 1;
+        }
+
+        unset($_SESSION['firstDayLoop']);
 
         $correctResult = date('w', $unixTime);
         
-        if($correctResult === $enum_month[$_SESSION['dayLoop']]){
+        if($correctResult === $enum_month[$_SESSION['dayLoop'] - 1]){
             $isPassed = 1;
 
         }
@@ -65,16 +87,6 @@
         }
 
         $isPass = 0;
-
-        if($_SESSION['dayLoop'] > $_SESSION['monthDay']){
-            $_SESSION['dayLoop'] = 1;
-            $_SESSION['monthDay'] = returnDayCount($dayArray);
-            $enum_month = dayGenerate($dayArray, $_SESSION['monthDay'], $firstDayOfMonth);
-        }
-        
-        else{
-            $_SESSION['dayLoop'] += 1;
-        }
 
     }
 

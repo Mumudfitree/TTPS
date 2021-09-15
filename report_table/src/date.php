@@ -124,16 +124,17 @@
 
     function findFirstDayOfMonth($arrayData){
 
-        $date = $arrayData['dayOfMonth'];
+        //Because first possible date is 1, but first possible day is 0, it need to reduce base inequality first.
+        $date = $arrayData['dayOfMonth'] - 1; 
         $day = $arrayData['dayOfWeek'];
 
         $exceedDay = $date%7;
 
-        if ($day > $exceedDay){
+        if ($day >= $exceedDay){
             return $day - $exceedDay;
         }
         
-        return 7 + $day - $exceedDay;
+        return 7 - abs($day - $exceedDay);
     }
 
     function dayGenerate($enumArray, $monthDay, $firstWeekDay){ //ทำการสร้างวันสำหรับทั้งเดือนนั้น คือ เก็บเป็น วันที่ 1 = 3, 2 = 4, ..., 5 = 0
@@ -230,8 +231,8 @@
         }
     }
 
-    function enumGenerator($enumSize){
-        for($i=1; $i<=$enumSize; $i++){
+    function enumGenerator($enumSize){ //enum have to start at 0.
+        for($i=0; $i<$enumSize; $i++){
             $enumArray[$i] = -1;
         }
 
