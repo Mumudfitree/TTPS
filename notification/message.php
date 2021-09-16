@@ -24,7 +24,7 @@
 
     function getToken()
     {
-        $sql = "SELECT token FROM notify WHERE master_id = ".$_SESSION['master_id']."; ";
+        $sql = "SELECT * FROM notify WHERE master_id = ".$_SESSION['master_id']."; ";
                 $query = mysqli_query($GLOBALS['conn'], $sql);
                 $row = mysqli_fetch_array($query);
 
@@ -34,7 +34,7 @@
                 //return $row['token'];
 
                 //if called indirectly, return token
-                return $row['token'];  
+                return $row;  
                 
                 //you are return as string, because you return only $row['token']; not entire $row
                 //if you return just $row, you will return as string
@@ -42,9 +42,11 @@
 
     function getAllToken()
     {
-        $sql = "SELECT token FROM notify";
+        $sql = "SELECT * FROM notify";
                 $query = mysqli_query($GLOBALS['conn'], $sql);
-                $row = mysqli_fetch_array($query);
+                while ($row = mysqli_fetch_array($query)) {
+
+                    if($row['master_id'] === $_SESSION['master_id']) return $row['token'];
 
                 //have check on this function if it have already sign in. Because it will give error if it was NULL.
 
@@ -52,7 +54,10 @@
                 //return $row['token'];
 
                 //if called indirectly, return token
-                return $row['token'];  
+
+                }
+
+                return NULL;
                 
                 //you are return as string, because you return only $row['token']; not entire $row
                 //if you return just $row, you will return as string

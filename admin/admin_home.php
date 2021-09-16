@@ -27,11 +27,9 @@
         include_once './src/script_admin.php';
         include_once './../notification/message.php';
 
-        $userToken = checkLineRegister();
-
         if (isset($_SESSION['cookie']))
         {
-            lineMessageSender($userToken, $_SESSION['cookie']);
+            lineMessageSender($_SESSION['token'], $_SESSION['cookie']);
         }
         else unset($_COOKIE['lineMessage']);
     }
@@ -42,10 +40,7 @@
 
     unset($_SESSION['sendMessage']);
     unset($_SESSION['cookie']);
-
-    if (isset($_SESSION['redirect'])){
-        RedirectURL($_SESSION['redirect']);
-    }
+    unset($_SESSION['token']);
 
 ?>
 

@@ -25,7 +25,7 @@
 
     function checkLineRegister() //I think it should be better to give redirect on files that called.
     {
-        $_SESSION['token'] = getToken();
+        $_SESSION['token'] = getAllToken();
 
             //if (isset($queryData['token']) or $queryData['token'] === NULL or $queryData['token'] === '\0')
             //it is not correct, because getToken() return as string. (Only $row['token'], not $row)
@@ -33,7 +33,7 @@
             //if (isset($queryData) or $queryData === NULL or $queryData === '\0')
             //it is still not correct, I need to find if it wasn't set. it should be !isset($queryData) not isset($queryData)
 
-            if (!isset($queryData) or $queryData === NULL or $queryData === '\0')
+            if (!isset($_SESSION['token']) || $_SESSION['token'] === NULL)
                 { //จะต้องกดปุ่มใหม่ ถ้ายังไม่ลงทะเบียน ยังต้องแก้ให้สามารถดึงมาต่อจุดเดิมได้
 
                     //header('locaton: /notification/line_notify.php');
