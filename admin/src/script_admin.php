@@ -25,7 +25,7 @@
 
     function checkLineRegister() //I think it should be better to give redirect on files that called.
     {
-        $queryData = getToken();
+        $_SESSION['token'] = getToken();
 
             //if (isset($queryData['token']) or $queryData['token'] === NULL or $queryData['token'] === '\0')
             //it is not correct, because getToken() return as string. (Only $row['token'], not $row)
@@ -40,12 +40,11 @@
 
                     //header('location: ./../../notification/line_notify.php'); //don't copy from testType.php, it was in test folder, and it isn't equivalent to this file.
 
-                    header('location: ./../notification/line_notify.php');
-
+                    return 1;
 
                 }
         
-        return $queryData;
+        return 0;
     }
 
     /*function lineMessageSender($tokenQuery, $messageData)   //This is old one, I want to edit this. but I just done in line_notify.php, So I just preserve it.

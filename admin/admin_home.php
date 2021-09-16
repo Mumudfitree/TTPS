@@ -4,7 +4,6 @@
     if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
     }
-
 ?>
 
 <?php
@@ -43,6 +42,10 @@
 
     unset($_SESSION['sendMessage']);
     unset($_SESSION['cookie']);
+
+    if (isset($_SESSION['redirect'])){
+        RedirectURL($_SESSION['redirect']);
+    }
 
 ?>
 
@@ -121,12 +124,35 @@
                 <form id="lineMessage" action="./admin_home.php" method="post">
                     <input type="text" name="lineMessageBox" value="nothing" hidden>
                         <!-- using hidden input can handle most situation, like can't find $_POST variable -->
+<?php
+
+    include_once './src/script_admin.php';
+    include_once './../notification/message.php';
+
+
+    $showLink = checkLineRegister();
+
+    if($showLink){
+        echo '
+             <a href="./../notification/line_notify.php" class="btn btn-success">เชื่อมต่อกับ Line</a>
+             
+             ';
+
+    }
+
+    if(!$showLink){
+        echo '
                     <button type="submit" class="btn btn-success" name="lineMessageButton"  value="shh" onclick=
                     "
-                        getDataPrompt();  //I will destroy cookie on php side. And I won't use destroyCookie() that I have created.
-                    ">
+                        getDataPrompt();  //I will destroy cookie on php side. And I won\'t use destroyCookie() that I have created.
+                    "
+                    >
                         ส่งข้อความผ่าน Line
                     </button>
+             ';
+    }
+?>         
+                    
                 </form>
             </div>
             

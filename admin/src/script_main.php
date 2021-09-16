@@ -19,4 +19,20 @@
         if(!isset($_COOKIE[$cookieName]) || $_COOKIE[$cookieName] === NULL || $_COOKIE[$cookieName] === '\0' || $_COOKIE[$cookieName] === '' || $_COOKIE[$cookieName] === '-1' || $_COOKIE[$cookieName] === -1) return NULL;
         return $_COOKIE[$cookieName];
     }
+
+    function RedirectURL($url, $refreshtime = null)
+{
+    unset($_SESSION['redirect']);
+
+    if(isset($refreshtime))
+    {
+        $header = header('refresh:'.$refreshtime.';url='.$url);
+    }
+    else
+    {
+        $header = header('Location:'.$url);
+    }
+    return $header;
+}
+
 ?>
