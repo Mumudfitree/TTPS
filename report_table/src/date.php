@@ -150,18 +150,18 @@
 
     }
 
-    function isWorkDay($date, $arrayData){ //ตรวจสอบว่าคือวันหยุดหรือไม่
+    function isWorkDay($day){ //ตรวจสอบว่าคือวันหยุดหรือไม่
         //ในขั้นต้นให้เขียนแค่ตรวจสอบวันเสาร์กับวันอาทิตย์ก่อน วันอาทิตย์คือ 0 ส่วนวันเสาร์คือ 6
         //คืนค่าเป็น 1 เมื่อเป็นวันทำงาน และ 0 เมื่อเป็นวันหยุด
         //$date คือส่งวันที่มา ส่วน $arrayData ส่งข้อมูลเกี่ยวกับวันนี้ ประกาศไว้ใน getDayOfWeek()
 
         //code here...
 
-        if($date === 0)
-        {
-            return 0;
+        $exceptArray = array(0, 7);
+        foreach($exceptArray as $loop){
+            if ($day === $loop) return 1;
+            if ($day > $loop) return 0;
         }
-        return 1;
     }
 
     /*function checkPainterSpecialCase($day){

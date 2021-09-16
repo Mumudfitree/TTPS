@@ -26,13 +26,13 @@
         
     </head>
     <body>
-        <link rel="stylesheet" href="./test/css/style.css"></link>
-        <table>
+        <link rel="stylesheet" href="./test/css/table.css"></link>
+        <table margin="center">
             <tr>
-                <th>
+                <th class="order">
                     ที่
                 </th>
-                <th>
+                <th class="name">
                     ชื่อ-สกุล
                 </th>
 <?php
@@ -46,22 +46,24 @@
             $day = 0;
         }
 
+        if(isWorkDay($day)) continue;
+
 
         echo '
-                <th>
+                <th class="date">
                 '.$counter.'
                 </th>
              ';
     }
 
 ?>
-                <th>
+                <th class="sum">
                     รวม (%d)
                 </th>
-                <th>
+                <th class="percent">
                     ร้อยละ
                 </th>
-                <th>
+                <th class="score">
                     คะเเนน
                 </th>
             </tr>
