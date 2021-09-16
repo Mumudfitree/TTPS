@@ -27,6 +27,8 @@
     //I have to create redirect control function after this.
     if(isset($_SESSION['processingStage']) && $_SESSION['processingStage'] === 'redirectBack'){
 
+            unset($_SESSION['processingStage']);
+
             header("location: ".$_SESSION['relatedURI']); //it should redirect back to unfinished work from before. Maybe I always save URL before it redirect to other page? But it shouldn't fix all of problem, I have to save stage too. Maybe save every stage that it progress. And have Central function to give where it should go, and what value it should be? Like 'redirectUnauthorizeHello' or 'errorAuthorizeRedirectTo_./admin/download.php'
     }   //I forgot to update function to be able to add token data. Now it just be able to add code only, not token.
         //No, I already did that.
@@ -154,7 +156,7 @@
                     //This is wrong, I need to find if there are already created one. Not finds if that datas that are reading now is exist. Or if datas that is reading now is NULL.
                     //if(!isset($distinctData["master_id"]) or $distinctData["master_id"] === NULL){
 
-                    if($distinctData['master_id'] === $_SESSION['master_id']){  //This is wrong. It will always try using INSERT INTO no matter what your datas is already there or not.
+                    if(intval($distinctData['master_id']) === intval($_SESSION['master_id']) && !isset($_SESSION['unregister'])){  //This is wrong. It will always try using INSERT INTO no matter what your datas is already there or not.
                     //But... Actually, it was true. Codes is UPDATE, not INSERT TO. INSERT TO are outside.
 
                         $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
@@ -163,7 +165,7 @@
                         //$insert_stmt->bindParam(":id", $_SESSION['user_login']); 
                         //old one, and didn't have to use anymore.
                         $insert_stmt->bindParam(":code", $_SESSION['code']);
-                        $insert_stmt->bindParam(":n", $_SESSION['dbid']);
+                        $insert_stmt->bindParam(":n", $_SESSION['master_id']); //forgot to change to master_id
 
                         if($insert_stmt->execute()){
                             $insertMsg = "Updated successfully.";  
@@ -177,11 +179,14 @@
                     //$insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code");
                     //This codes should have move to outside and get codes from outsides in.
                 }
+                $code = $_SESSION['code'];
+                $n = intval($_SESSION['master_id']);
                 
-                $insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code");
+                $insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code; ");
 
-                $insert_stmt->bindParam(":code", $_SESSION['code']);
-                $insert_stmt->bindParam(":n", $_SESSION['dbid']);
+
+                $insert_stmt->bindParam(":code", $code);
+                $insert_stmt->bindParam(":n", $n, \PDO::PARAM_INT); //forgot to change to master_id
                 
                 if($insert_stmt->execute()){
                     $insertMsg = "Updated successfully.";  
@@ -237,7 +242,7 @@
                                                                 SET token = :token
                                                                 WHERE master_id = :n;");
                     $insert_stmt->bindParam(":token", $_SESSION['token']);
-                    $insert_stmt->bindParam(":n", $_SESSION['dbid']);
+                    $insert_stmt->bindParam(":n", $_SESSION['master_id']); //forgot to change to master_id
                     
                     if($insert_stmt->execute()){
                         $insertMsg = "Updated successfully.";   

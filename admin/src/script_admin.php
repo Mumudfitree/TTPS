@@ -40,6 +40,7 @@
 
                     //header('location: ./../../notification/line_notify.php'); //don't copy from testType.php, it was in test folder, and it isn't equivalent to this file.
 
+                    $_SESSION['unregister'] = 1;
                     return 1;
 
                 }
