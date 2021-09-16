@@ -36,3 +36,59 @@ th {
 .score {
     width: 1.68cm;
 }
+
+.redText {
+    color: red;
+}
+
+.yellowText {
+    color: yellow;
+}
+
+.pinkText {
+    color: pink;
+}
+
+.greenText {
+    color: green;
+}
+
+.orangeText {
+    color: orange;
+}
+
+.blueText {
+    color: blue;
+}
+
+.purpleText {
+    color: purple;
+}
+
+.redBox {
+    background-color: red;
+}
+
+.yellowBox {
+    background-color: yellow;
+}
+
+.pinkBox {
+    background-color: pink;
+}
+
+.greenBox {
+    background-color: green;
+}
+
+.orangeBox {
+    background-color: orange;
+}
+
+.blueBox {
+    background-color: blue;
+}
+
+.purpleBox {
+    background-color: purple;
+}

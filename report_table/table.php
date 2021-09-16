@@ -37,9 +37,9 @@
                 </th>
 <?php
 
-    for($counter = 1, $day = $firstDay; $counter <= $monthCount; $counter++){
+    $trCount = 0;
 
-        $enum_day[$counter] = $day;
+    for($counter = 1, $day = $firstDay; $counter <= $monthCount; $counter++){
 
         $day += 1;
         if ($day === 7){
@@ -47,18 +47,19 @@
         }
 
         if(isWorkDay($day)) continue;
+        $trCount += 1;
 
+        if ($day === 6) echo '<th class="date blueBox">';
+        if ($day != 6) echo '<th class="date">';
 
-        echo '
-                <th class="date">
-                '.$counter.'
+        echo        $counter.'
                 </th>
              ';
     }
 
 ?>
                 <th class="sum">
-                    รวม (%d)
+                    รวม (<?php echo $trCount;?>)
                 </th>
                 <th class="percent">
                     ร้อยละ
@@ -78,9 +79,29 @@
                 <td>".$_SESSION['userNumber']."
                 </td>
                 <td>".$row['fname'].'  '.$row['lname']."
-                </td>
-                
-                <td>
+                </td>";
+        
+        for($counter = 1, $day = $firstDay; $counter <= $monthCount; $counter++){
+
+            $day += 1;
+
+            if ($day === 7){
+                $day = 0;
+            }
+
+            if(isWorkDay($day)) continue;
+
+            if ($day === 6) echo '<th class="date blueBox">';
+            if ($day != 6) echo '<th class="date">';
+
+            echo"</td>";
+
+            }
+
+        
+        
+
+        echo    "<td>
                 </td>
                 <td>
                 </td>
