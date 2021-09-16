@@ -4,6 +4,8 @@
 
 function storeCookie(cookieName, data){
 
+    if(data == null || data == '' || data == '\0' || data =='-1' || data == '-1') return;
+
     document.cookie = cookieName + "=" + data + ";path=/";
 }
 
@@ -25,8 +27,9 @@ function getDataPrompt()  //Second version, using cookie instead of directly ret
 {
     let message = String(prompt("กรุณาใส่ข้อความที่คุณต้องการส่ง"));
 
-    if (message == null || message == ''){
-        message = parseInt(-1);
+    if (message == null || message == '' || message == '\0' || message == '-1' || message == 1){
+        destroyCookie("lineMessage");
+        return 0;
     }
 
     storeCookie("lineMessage", message);

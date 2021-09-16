@@ -136,8 +136,14 @@
         }
     }*/
 
-    function lineMessageSender($tokenQuery, $messageData)
+    function lineMessageSender($tokenQuery, string $messageData)
     {   //using cURL method
+
+        if($messageData === NULL || $messageData === '\0' || $messageData === 'null') 
+        {
+            unset($_COOKIE['lineMessage']);
+            return 0;
+        }
 
         $senderID = getToken();  //forgot to pass token to variable.
 

@@ -19,12 +19,30 @@
 
     if(isset($_POST['lineMessageButton'])){
 
+        $_SESSION['cookie'] = $_COOKIE['lineMessage'];
+        unset($_COOKIE['lineMessage']);
+        $_SESSION['sendMessage'] = 1;
+
+        if($_SESSION['cookie'] === '-1') unset($_SESSION['cookie']);
+
         include_once './src/script_admin.php';
         include_once './../notification/message.php';
 
         $userToken = checkLineRegister();
-        lineMessageSender($userToken, $_COOKIE['lineMessage']);
+
+        if (isset($_SESSION['cookie']))
+        {
+            lineMessageSender($userToken, $_SESSION['cookie']);
+        }
+        else unset($_COOKIE['lineMessage']);
     }
+
+    if (isset($_COOKIE['lineMessage']) && !isset($_SESSION['sendMessage'])){
+        unset($_COOKIE['lineMessage']);
+    }
+
+    unset($_SESSION['sendMessage']);
+    unset($_SESSION['cookie']);
 
 ?>
 
