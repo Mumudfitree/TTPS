@@ -134,66 +134,54 @@
             echo $_SESSION['user_login'];
         }
 
-        try{   //Here you are still didn't give entry for new user, I have to fix this.
-            if(!isset($errorMsg)){ //This one doesn't use because I will use query() instead.
-                //$insert_stmt = $GLOBALS['db']->prepare("SELECT * FROM login_information WHERE username = :id;");
+       //Here you are still didn't give entry for new user, I have to fix this.
+        if(!isset($errorMsg)){ //This one doesn't use because I will use query() instead.
+            //$insert_stmt = $GLOBALS['db']->prepare("SELECT * FROM login_information WHERE username = :id;");
 
-                //this codes should be seperate to function in the future
-                /*if($insert_stmt->execute()){
+            //this codes should be seperate to function in the future
+            /*if($insert_stmt->execute()){
 
-                    //problem is, I forgot to change other one that called it. So the it show that SQL codes were wrong. Codes from first one is correct, but not the second one. Because it pass checking Query at first times, but not the second.
+                //problem is, I forgot to change other one that called it. So the it show that SQL codes were wrong. Codes from first one is correct, but not the second one. Because it pass checking Query at first times, but not the second.
 
-                }*/ //old one
+            }*/ //old one
 
-                //I mean, this codes should be seperate to function.
-                $insert_stmt = 'SELECT * FROM login_information';
-                $stmt = $GLOBALS['db']->query($insert_stmt);
+            //I mean, this codes should be seperate to function.
+            $insert_stmt = 'SELECT * FROM login_information';
+            $stmt = $GLOBALS['db']->query($insert_stmt);
 
-                $dbData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dbData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                foreach ($dbData as $distinctData){
+            foreach ($dbData as $distinctData){
 
-                    //This is wrong, I need to find if there are already created one. Not finds if that datas that are reading now is exist. Or if datas that is reading now is NULL.
-                    //if(!isset($distinctData["master_id"]) or $distinctData["master_id"] === NULL){
+                //This is wrong, I need to find if there are already created one. Not finds if that datas that are reading now is exist. Or if datas that is reading now is NULL.
+                //if(!isset($distinctData["master_id"]) or $distinctData["master_id"] === NULL){
 
-                    if(intval($distinctData['master_id']) === intval($_SESSION['master_id']) && !isset($_SESSION['unregister'])){  //This is wrong. It will always try using INSERT INTO no matter what your datas is already there or not.
-                    //But... Actually, it was true. Codes is UPDATE, not INSERT TO. INSERT TO are outside.
+                if(isset($_SESSION['unregister'])) break;
 
-                        $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
-                                                                        SET code = :code
-                                                                        WHERE master_id = :n;");
-                        //$insert_stmt->bindParam(":id", $_SESSION['user_login']); 
-                        //old one, and didn't have to use anymore.
-                        $insert_stmt->bindParam(":code", $_SESSION['code']);
-                        $insert_stmt->bindParam(":n", $_SESSION['master_id']); //forgot to change to master_id
+                if(intval($distinctData['master_id']) === intval($_SESSION['master_id'])){  //This is wrong. It will always try using INSERT INTO no matter what your datas is already there or not.
+                //But... Actually, it was true. Codes is UPDATE, not INSERT TO. INSERT TO are outside.
 
-                        if($insert_stmt->execute()){
-                            $insertMsg = "Updated successfully.";  
-                        }
-                        
-                        return 0;
-                        
-                    }
+                    $insert_stmt = "UPDATE notify SET code = '".$_SESSION['code']."' WHERE master_id = ".$_SESSION['master_id'].";";
+
+                    $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error());
+                    $row = mysqli_fetch_array($query);
                     
-                    //This codes should be seperate to function
-                    //$insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code");
-                    //This codes should have move to outside and get codes from outsides in.
+                    return 0;
+                    
                 }
-                $code = $_SESSION['code'];
-                $n = intval($_SESSION['master_id']);
-                
-                $insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code; ");
-
-
-                $insert_stmt->bindParam(":code", $code);
-                $insert_stmt->bindParam(":n", $n, \PDO::PARAM_INT); //forgot to change to master_id
-                
-                if($insert_stmt->execute()){
-                    $insertMsg = "Updated successfully.";  
-                }
+                    
+                //This codes should be seperate to function
+                //$insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code");
+                //This codes should have move to outside and get codes from outsides in.
             }
-        } catch (PDOException $e){
-            echo $e->getMessage();
+            $code = $_SESSION['code'];
+            $n = intval($_SESSION['master_id']);
+                
+            $insert_stmt = "INSERT INTO notify (master_id, code) VALUES (".$_SESSION['master_id'].", '".$_SESSION['code']."'); ";
+
+            $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error());
+            $row = mysqli_fetch_array($query);
+
         }
 
     }
@@ -214,7 +202,6 @@
             'client_secret' => $client_secret
         ];
         
-        try {
             $ch = curl_init();
         
             curl_setopt($ch, CURLOPT_URL, $api_url);
@@ -233,28 +220,15 @@
 
             $_SESSION['token'] = $json->access_token;
 
-
-            try{
-                if(!isset($errorMsg)){ //bugs is from here, I forgot to unset $errorMsg (or is it?)
+        if(!isset($errorMsg)){ //bugs is from here, I forgot to unset $errorMsg (or is it?)
                                        //No, it wasn't. bugs is from forgot to return function. And it run code outside Condition Scope.
 
-                    $insert_stmt = $GLOBALS['db']->prepare("UPDATE notify
-                                                                SET token = :token
-                                                                WHERE master_id = :n;");
-                    $insert_stmt->bindParam(":token", $_SESSION['token']);
-                    $insert_stmt->bindParam(":n", $_SESSION['master_id']); //forgot to change to master_id
+            $insert_stmt = "UPDATE notify SET token = '".$_SESSION['token']."' 
+                            WHERE master_id = ".$_SESSION['master_id'].";";
                     
-                    if($insert_stmt->execute()){
-                        $insertMsg = "Updated successfully.";   
-                    }
-                }
-            } catch (PDOException $e){
-                echo $e->getMessage();
-            }
-    
-        } catch(Exception $e) {
-            throw new Exception($e->getMessage());
-
+            $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error());
+            $row = mysqli_fetch_array($query);
+        
         }
     }
 

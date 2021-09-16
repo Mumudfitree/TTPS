@@ -145,7 +145,7 @@
             return 0;
         }
 
-        $senderID = getToken();  //forgot to pass token to variable.
+        $senderID = getAllToken();  //forgot to pass token to variable.
 
         //$senderID = $tokenQuery;
 
