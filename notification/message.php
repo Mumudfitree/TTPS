@@ -2,7 +2,6 @@
     if(session_status() != 2){
         session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
     }
-    require_once('../connection.php');
 
     if(!isset($_SESSION['login_type'])){
         $_SESSION['login_type'] = 0;
