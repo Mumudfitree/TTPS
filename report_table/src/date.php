@@ -157,10 +157,10 @@
 
         //code here...
 
-        $exceptArray = array(0, 7);
+        $exceptArray = array(0, 1);
         foreach($exceptArray as $loop){
             if ($day === $loop) return 1;
-            if ($day > $loop) return 0;
+            if ($loop > $day) return 0;
         }
     }
 
