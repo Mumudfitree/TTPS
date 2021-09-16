@@ -15,7 +15,7 @@
         $how_to_teach = $_REQUEST['txt_how_to_teach'];
         $media = $_REQUEST['txt_media'];
         $measure = $_REQUEST['txt_measure'];
-        $date_prepare = $_REQUEST['txt_date'];
+        $date_prepare = $_REQUEST['datepicker'];
        
         $today = date('d/m/Y');
         
@@ -27,7 +27,9 @@
 
         
 
-        if(empty($date_prepare)){
+        if(empty($choose_id)){
+            $errorMsg = "กรุณาเพิ่มข้อมูลในช่องวิชา";
+        }elseif(empty($date_prepare)){
             $errorMsg = "กรุณาเพิ่มข้อมูลในช่องของวัน";
         }elseif(empty($learn)){
             $errorMsg = "กรุณาเพิ่มข้อมูลในช่องของสาระการเรียนรู้/ตัวชี้วัด";
@@ -113,12 +115,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/jquery-ui.min.css">
-    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> <!-- datepickerเก่า -->
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> <!-- datepickerเก่า -->
-    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="jquery.datetimepicker.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -151,8 +147,15 @@
         });
     });
     </script>
+    <script>
+        $(function(){
+            $("#datepicker").datepicker({
+                language:'th-th',
+                format:'dd/mm/yyyy',
+                autoclose: true
+            });
+        });
     </script>
-
     <style>
     textarea {
         width: 100%;
@@ -209,7 +212,7 @@
                     <div class="row">
                         <label for="name_subject" class="col-sm-3 control-label">วิชาที่สอน</label>
                         <div class="col-sm-6">
-                            <select name="txt_choose_id" class="form-control">
+                            <select name="txt_choose_id" class="form-control" >
 
                                 <option value="">- กรุณาเลือก -</option>
                                 <?php foreach($resultz as $row2){
@@ -233,7 +236,7 @@
                     <div class="row">
                         <label for="" class="col-sm-3 control-label">วันที่</label>
                         <div class="col-sm-6">
-                            <input type="text" name="txt_date" id="datepicker" class="form-control"
+                            <input type="text"  name="datepicker" id="datepicker" class="form-control"
                                 placeholder="วัน/เดือน/ปี">
                         </div>
                     </div>

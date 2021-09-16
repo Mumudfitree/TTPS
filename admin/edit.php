@@ -39,26 +39,41 @@
         }else if(empty($email_up)){
             $errorMsg = "กรุณากรอกอีเมลล์";
         }else{
-                if(!isset($errorMsg))
-                    $sql = "UPDATE user_data SET firstname = '".$firstname_up."' ,lastname = '".$lastname_up."',
-                    email= '".$email_up."'
-                    WHERE user_id = '".$id."'";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
-                    mysqli_close($conn); //ปิดการเชื่อมต่อ database 
+                if(!isset($errorMsg)){
 
-    if($result){
-        echo "<script type='text/javascript'>";
-        echo "alert('อัพเดตข้อมูลเสร็จสิ้น');";
-        echo "window.location = 'index.php'; ";
-        echo "</script>";
-        }
-        else{
-        echo "<script type='text/javascript'>";
-        echo "alert('เกิดข้อผิดพลาดกรุณาอัพเดตใหม่อีกครั้ง');";
-        echo "</script>";
+        $check = "SELECT * FROM user_data WHERE firstname = '$firstname_up' AND lastname = '$lastname_up' OR email = '$email_up' ";
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $row_check = mysqli_fetch_array($query_check);
+        
+        if($row_check > 0)
+        {
+            echo "<script>";
+            echo "alert('มีข้อมูลซ้ำ กรุณาตรวจสอบ ชื่อ-สกุล หรือ อีเมลล์?');";
+            echo "window.location ='index.php'; ";
+         echo "</script>";
+        }else{
+            $sql ="UPDATE user_data SET firstname = '".$firstname_up."' ,lastname = '".$lastname_up."',
+            email= '".$email_up."'
+            WHERE user_id = '".$id."'";
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            mysqli_close($conn);
+            if($result){
+                echo "<script>";
+                echo "alert('สำเร็จ');";
+                echo "window.location ='index.php'; ";
+                $insertMsg = "อัพเดตข้อมูลของสมาชิกเสร็จสิ้น";
+                echo "</script>";
+                } else {
                 
+                echo "<script>";
+                echo "alert('ล้มเหลว!');";
+                echo "window.location ='index.php'; ";
+                echo "</script>";
+                }
             }
+
         }
+    }
 
     }
 

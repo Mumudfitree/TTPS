@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="direc_slidebar.css">
+    <style>
+    .pull-right {
+        text-align: right;
+        color: white;
+    }
+    </style>
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="col-md-12">
+            <div class="pull-right">คุณ: <?php echo $_SESSION['User']; ?>&ensp;สถานะในตอนนี้:
+                <?php echo $_SESSION['Role'];?>
+            </div>
+        </div>
+        <!--/.col -->
+    </nav>
 
     <div class="sidebar">
         <a href="deputydirector_home.php"><i class="fa fa-fw fa-home"></i> หน้าหลัก</a>

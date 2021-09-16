@@ -149,7 +149,7 @@
             }
 
             function search() {
-                location.href = "index.php?search=" + search_input();
+                location.href = "login_information.php?search=" + search_input();
 
             }
             </script>

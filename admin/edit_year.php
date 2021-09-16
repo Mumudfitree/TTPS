@@ -36,23 +36,36 @@
             $errorMsg = "กรุณากรอกเทอมการศึกษา";
         }else{
                 if(!isset($errorMsg))
-                    $sql = "UPDATE year SET year_name = '".$year_name_up."' ,term = '".$term_up."',
-                    status_year = 'Active' WHERE year_id = '".$id."'";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
-                    mysqli_close($conn); //ปิดการเชื่อมต่อ database 
-
-    if($result){
-        echo "<script type='text/javascript'>";
-        echo "alert('อัพเดตข้อมูลเสร็จสิ้น');";
-        echo "window.location = 'year.php'; ";
-        echo "</script>";
-        }
-        else{
-        echo "<script type='text/javascript'>";
-        echo "alert('เกิดข้อผิดพลาดกรุณาอัพเดตใหม่อีกครั้ง');";
-        echo "</script>";
+        $check = "SELECT * FROM year WHERE year_name = '$year_name' AND term = '$term' ";
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $row_check = mysqli_fetch_array($query_check);
+        
+        if($row_check > 0)
+        {
+            echo "<script>";
+            echo "alert('มีข้อมูลซ้ำ กรุณาตรวจสอบ ปีการศึกษาหรือภาคเรียน ?');";
+            echo "window.location ='year.php'; ";
+         echo "</script>";
+        }else{
+            $sql ="UPDATE year SET year_name = '".$year_name_up."' ,term = '".$term_up."',
+            status_year = 'Active' WHERE year_id = '".$id."' ";
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            mysqli_close($conn);
+            if($result){
+                echo "<script>";
+                echo "alert('อัพเดตข้อมูลเสร็จสิ้น');";
+                echo "window.location ='year.php'; ";
+                $insertMsg = "อัพเดตข้อมูลเสร็จสิ้น";
+                echo "</script>";
+                } else {
                 
-            }
+                echo "<script>";
+                echo "alert('ล้มเหลว!');";
+                echo "window.location ='year.php'; ";
+                echo "</script>";
+                }
+        }
+
         }
 
     }
@@ -60,6 +73,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,73 +81,80 @@
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" href="bootstrap/bootstrap_button.css">
 </head>
+
 <body>
-<?php include_once('slidebar_admin.php'); ?>
+    <?php include_once('slidebar_admin.php'); ?>
     <div class="main">
-    <div class="container">
-    <div class="display-3 text-center">หน้าแก้ไขข้อมูลสมาชิก</div>
-    </div>
-    <?php
+        <div class="container">
+            <div class="display-3 text-center">หน้าแก้ไขข้อมูลสมาชิก</div>
+        </div>
+        <?php
         if(isset($errorMsg)){
     ?>
         <div class="alert alert-danger">
-        <strong>เกิดข้อผิดพลาด! <?php echo $errorMsg; ?></strong>
+            <strong>เกิดข้อผิดพลาด! <?php echo $errorMsg; ?></strong>
         </div>
-    <?php } ?>
+        <?php } ?>
 
 
-    <?php
+        <?php
         if(isset($updateMeg)){
     ?>
         <div class="alert alert-success">
-        <strong>ดำเนินการเสร็จสิ้น <?php echo $updateMeg; ?></strong>
+            <strong>ดำเนินการเสร็จสิ้น <?php echo $updateMeg; ?></strong>
         </div>
-    <?php } ?>
+        <?php } ?>
 
-    <form method="post" class="form-horizontal mt-5">
-    <div class="form- text-center">
+        <form method="post" class="form-horizontal mt-5">
+            <div class="form- text-center">
                 <div class="row">
-                <label for="firstname" class="col-sm-3 control-label">ปีการศึกษา(ค.ศ)</label>
-                <div class="col-sm-6">
-                    <input type="text" name="txt_year" class="form-control" placeholder="ตัวอย่าง 2021" value="<?php echo $year_name; ?>">
-                </div>
+                    <label for="firstname" class="col-sm-3 control-label">ปีการศึกษา(ค.ศ)</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="txt_year" class="form-control" placeholder="ตัวอย่าง 2021"
+                            value="<?php echo $year_name; ?>">
+                    </div>
                 </div>
             </div>
             <br>
 
             <div class="form- text-center">
-            <div class="row">
-            <label for="type" class="col-sm-3 control-label">เทอมการศึกษา</label>
-            <div class="col-sm-6">
-                <select name="txt_term" class="form-control">
-                <option value="<?php echo $term; ?>" selected="selected"><?php echo $term; ?></option>
-                <?php if($row['status_year']=='Active' && $row['term'] !== $term){ ?>
-                <option value="<?php echo $row['year_id']; ?>"><?php echo $row['term']; ?></option>
-                <?php } ?>
-                </select>
+                <div class="row">
+                    <label for="type" class="col-sm-3 control-label">เทอมการศึกษา</label>
+                    <div class="col-sm-6">
+                        <select name="txt_term" class="form-control">
+                            <option value="<?php echo $term; ?>" selected="selected">เทอมการศึกษาที่<?php echo $term; ?></option>
+                            <?php if($row['status_year']=='Active' AND $row['term'] == '1'){?>
+                                <option value="2">เทอมการศึกษาที่2</option>
+                               <?php } elseif($row['status_year']=='Active' AND $row['term'] == '2'){?>
+                                <option value="1">เทอมการศึกษาที่1</option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
-        <br>
-        
+            <br>
 
 
-        <div class="form-group text-center">
-            <div class="col-sm-offset-3 col-sm-9 mt-5">
+
+            <div class="form-group text-center">
+                <div class="col-sm-offset-3 col-sm-9 mt-5">
                     <input type="submit" name="btn_update" class="btn btn-success" value="อัพเดต">
                     <a href="year.php" class="btn btn-danger">ยกเลิก</a>
                 </div>
             </div>
-    </form>
+        </form>
     </div>
-    
 
 
 
 
-    <script src="js/slime.js"></>
-    <script src="js/popper.js"></script>
+
+    <script src="js/slime.js">
+    < /> <
+    script src = "js/popper.js" >
+    </script>
     <script src="js/bootstrap.js"></script>
 
 </body>
+
 </html>

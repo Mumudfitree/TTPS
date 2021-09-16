@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2021 at 05:07 PM
+-- Generation Time: Sep 16, 2021 at 11:00 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -44,9 +44,11 @@ CREATE TABLE `choose_a_teaching` (
 --
 
 INSERT INTO `choose_a_teaching` (`choose_id`, `login_id`, `grade_id`, `subject_id`, `class_id`, `time_id`, `date`, `year_id`, `status_choose`) VALUES
-(1, 2, 5, 15, 19, 1, 'วันจันทร์', 1, 'Active'),
-(2, 2, 1, 1, 1, 6, 'วันพุธ', 1, 'Active'),
-(3, 2, 1, 1, 1, 6, 'วันพุธ', 1, 'Active');
+(1, 7, 1, 1, 1, 7, 'วันจันทร์', 1, 'Active'),
+(2, 7, 3, 7, 25, 6, 'วันอังคาร', 1, 'Active'),
+(25, 2, 2, 6, 8, 7, 'วันศุกร์', 1, 'Active'),
+(26, 2, 4, 9, 15, 5, 'วันอังคาร', 1, 'Active'),
+(27, 2, 1, 3, 3, 5, 'วันพฤหัสบดี', 1, 'Active');
 
 -- --------------------------------------------------------
 
@@ -89,7 +91,9 @@ INSERT INTO `classroom` (`class_id`, `grade_id`, `name_classroom`, `status_class
 (21, 5, 'ม.5/1', 'Active'),
 (22, 5, 'ม.5/2', 'Active'),
 (23, 5, 'ม.6/1', 'Active'),
-(24, 5, 'ม.6/2', 'Active');
+(24, 5, 'ม.6/2', 'Active'),
+(25, 3, 'ป.6/2', 'Active'),
+(26, 6, 'ม.6/2', 'Active');
 
 -- --------------------------------------------------------
 
@@ -140,8 +144,9 @@ INSERT INTO `login_information` (`login_id`, `user_id`, `username`, `password`, 
 (2, 2, 'test_teacher', '123456', 5, 'Active'),
 (3, 3, 'test_director', '123456', 2, 'Active'),
 (4, 4, 'primary', '123456', 6, 'Active'),
-(5, 5, 'hight', '123456', 7, 'Active'),
-(6, 6, 'd_director', '123456', 3, 'Active');
+(5, 5, 'high', '123456', 7, 'Active'),
+(6, 6, 'd_director', '123456', 3, 'Active'),
+(7, 7, 'teacher', '123456', 5, 'Active');
 
 -- --------------------------------------------------------
 
@@ -153,11 +158,11 @@ CREATE TABLE `prepare_to_teach` (
   `id_prepare` int(11) NOT NULL,
   `choose_id` int(20) NOT NULL,
   `date_prepare` varchar(50) NOT NULL,
-  `learning` varchar(200) NOT NULL,
-  `purpose` varchar(200) NOT NULL,
-  `how_to_teach` varchar(200) NOT NULL,
-  `media` varchar(200) NOT NULL,
-  `measure` varchar(200) NOT NULL,
+  `learning` varchar(1000) NOT NULL,
+  `purpose` varchar(1000) NOT NULL,
+  `how_to_teach` varchar(1000) NOT NULL,
+  `media` varchar(1000) NOT NULL,
+  `measure` varchar(1000) NOT NULL,
   `status_prepare_hours` varchar(20) NOT NULL DEFAULT 'Checking',
   `status_prepare` varchar(20) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -167,9 +172,10 @@ CREATE TABLE `prepare_to_teach` (
 --
 
 INSERT INTO `prepare_to_teach` (`id_prepare`, `choose_id`, `date_prepare`, `learning`, `purpose`, `how_to_teach`, `media`, `measure`, `status_prepare_hours`, `status_prepare`) VALUES
-(1, 1, '07/09/2021', 'ทดสอบครั้งที่อิอิ', 'ทดสอบครั้งที่1', 'ทดสอบครั้งที่1', 'ทดสอบครั้งที่1', 'ทดสอบครั้งที่1sss', 'Complete', 'Active'),
-(2, 2, '09/09/2021', 'กดเอก', 'กดอกอ', 'กดอกด', 'อกดอ', 'กดอกดอ', 'Complete', 'Active'),
-(3, 2, '13/09/2021', 'ทดสอบ1', 'ทดสอบ1', 'ทดสอบ1', 'ทดสอบ1', 'ทดสอบ1', 'Checking', 'Active');
+(1, 1, '17/09/2021', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', 'Checking', 'Active'),
+(2, 25, '20/09/2021', 'xsa', 'asc', 'sdc', 'sdc', 'sdcsd', 'Checking', 'Active'),
+(3, 26, '22/09/2021', 'sfvvdfv', 'dfvd', 'zfvdfv', 'dfvsdf', 'vdsfvsdfv', 'Checking', 'Active'),
+(4, 26, '23/09/2021', 'dscsdc', 'sdcsdc', 'sdc', 'sdc', 'sdc', 'Checking', 'Active');
 
 -- --------------------------------------------------------
 
@@ -191,21 +197,17 @@ CREATE TABLE `subject` (
 
 INSERT INTO `subject` (`subject_id`, `grade_id`, `code_subject`, `name_subject`, `status_subject`) VALUES
 (1, 1, 'ค 11101', 'คณิตศาสตร์', 'Active'),
-(2, 1, 'ค 12101', 'คณิตศาสตร์', 'Active'),
-(3, 1, 'ค 13101', 'คณิตศาสตร์', 'Active'),
-(4, 1, 'อ 11101', 'อังกฤษ', 'Active'),
-(5, 1, 'อ 12101', 'อังกฤษ', 'Active'),
-(6, 1, 'อ 13101', 'อังกฤษ', 'Active'),
-(7, 2, 'ค 14101', 'คณิตศาสตร์', 'Active'),
-(8, 2, 'ค 15101', 'คณิตศาสตร์', 'Active'),
-(9, 2, 'ค 16101', 'คณิตศาสตร์', 'Active'),
-(10, 2, 'ว 14101', 'วิทยาศาสตร์และเทคโนโลยี', 'Active'),
-(11, 2, 'ว 15101', 'วิทยาศาสตร์และเทคโนโลยี', 'Active'),
-(12, 2, 'ว 16101', 'วิทยาศาสตร์และเทคโนโลยี', 'Active'),
-(13, 4, 'ท 21101', 'ภาษาไทย', 'Active'),
-(14, 4, 'อ 21101', 'อังกฤษ', 'Active'),
-(15, 5, 'ฟ 21101', 'ฟิสิกส์', 'Active'),
-(16, 5, 'ช 21101', 'ชีวะ', 'Active');
+(2, 1, 'อ 11101', 'อังกฤษ', 'Active'),
+(3, 1, 'ส 11101', 'สังคมศึกษา', 'Active'),
+(4, 2, 'ค 21101', 'คณิตศาสตร์', 'Active'),
+(5, 2, 'อ 21101', 'อังกฤษ', 'Active'),
+(6, 2, 'ส 21101', 'สังคมศึกษา', 'Active'),
+(7, 3, 'อห 11101', 'อาหรับ', 'Active'),
+(8, 4, 'ค 32101', 'คณิตศาสตร์(เพิ่มเติม)', 'Active'),
+(9, 4, 'ว 11101', 'วิทยาศาสตร์และเทคโนโลยี', 'Active'),
+(10, 5, 'คม 11101', 'เคมี', 'Active'),
+(11, 5, 'ฟ 21101', 'ฟิสิกส์', 'Active'),
+(12, 6, 'มล 11311', 'มาลายู', 'Active');
 
 -- --------------------------------------------------------
 
@@ -257,7 +259,8 @@ INSERT INTO `user_data` (`user_id`, `firstname`, `lastname`, `email`, `status_us
 (3, 'ทดสอบ', 'ผู้อำนวยการ', 'director@gmail.com', 'Active'),
 (4, 'หัวหน้า', 'ประถม', 'pri@gmail.com', 'Active'),
 (5, 'หัวหน้า', 'มัธยม', 'hight@gmail.com', 'Active'),
-(6, 'รอง', 'ผู้อำนวยการ', 'diputydirector@gmail.com', 'Active');
+(6, 'รอง', 'ผู้อำนวยการ', 'diputydirector@gmail.com', 'Active'),
+(7, 'วิโรจน์', 'ครูน่าน', 'Wi@gmail.com', 'Active');
 
 -- --------------------------------------------------------
 
@@ -293,13 +296,13 @@ CREATE TABLE `weekly_summary` (
   `id_prepare_week` int(20) NOT NULL,
   `choose_id` int(20) NOT NULL,
   `date_prepare_week` varchar(20) NOT NULL,
-  `goal` varchar(200) NOT NULL,
-  `result` varchar(200) NOT NULL,
-  `activity_good` varchar(200) NOT NULL,
-  `activity_nogood` varchar(200) NOT NULL,
-  `problem` varchar(200) NOT NULL,
-  `student` varchar(200) NOT NULL,
-  `Solve_the_problem` varchar(200) NOT NULL,
+  `goal` varchar(1000) NOT NULL,
+  `result` varchar(1000) NOT NULL,
+  `activity_good` varchar(1000) NOT NULL,
+  `activity_nogood` varchar(1000) NOT NULL,
+  `problem` varchar(1000) NOT NULL,
+  `student` varchar(1000) NOT NULL,
+  `Solve_the_problem` text NOT NULL,
   `status_prepare_week` varchar(20) NOT NULL DEFAULT 'Checking',
   `status_week` varchar(20) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -309,9 +312,10 @@ CREATE TABLE `weekly_summary` (
 --
 
 INSERT INTO `weekly_summary` (`id_prepare_week`, `choose_id`, `date_prepare_week`, `goal`, `result`, `activity_good`, `activity_nogood`, `problem`, `student`, `Solve_the_problem`, `status_prepare_week`, `status_week`) VALUES
-(1, 1, '08/09/2021', 'eee', 'ee', 'ee', 'ee', 'ee', 'ee', 'ee', 'Complete', 'Active'),
-(2, 2, '09/09/2021', 'อดอด', 'อดอด', 'อดอด', 'อดอด', 'อดอด', 'อดอด', 'อดอด', 'Complete', 'Active'),
-(3, 1, '13/09/2021', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'เตรียมสอน', 'Complete', 'Active');
+(1, 1, '20/09/2021', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', ' PHP เป็นภาษาสคริปต์ ( Scripting Language ) คำสั่งต่างๆ จะเก็บในรูปของข้อความ (Text)อาจเขียนแทรกอยู่ภายในภาษา HTML หรือใช้งานอิสระก็ได้ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML ดังนั้นการเขียนโปรแกรมนี้ต้องมีความรู้ด้านภาษา HTML เป็นอย่างดี อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้\r\n\r\nเช่น Macromedia Dreamweaver หรือโปรแกรมประเภท Editor เช่น EditPlus ฯลฯ โปรแกรมเหล่านี้จะช่วยจำแนกคำ เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ ให้มีสีต่างกันเพื่อสะดวกในการสังเกตและมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไข\r\n\r\n \r\n\r\n           PHP คือ ภาษาคอมพิวเตอร์ Server-Side Script ซึ่งใช้ในการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบHTML โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษา ภาษาซี ภาษาจาวา และ ภาษาเพิร์ล เป้าหมายหลักของภาษาPHP คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว', 'Complete', 'Active'),
+(2, 25, '21/09/2021', 'fdvdvv', 'dsfvsd', 'fvdfvsdfv', 'dsfvsd', 'fvdsfvdsfv', 'sdfvdsfv', 'sdfvdfv', 'Complete', 'Active'),
+(4, 26, '22/09/2021', 'w4gdgbfgb', 'fdgbdfgbdfgb', 'fdgbdfgb', 'fdgbdfgb', 'fdgbdfgb', 'dfgbfdgb', 'dfgbfdgb', 'Checking', 'Active'),
+(9, 2, '22/09/2021', 'cuycyu', 'cu', 'cucuc', 'cuycuy', 'cyucuyc', 'ycuycuyc', 'ddfd', 'Checking', 'Active');
 
 -- --------------------------------------------------------
 
@@ -331,7 +335,7 @@ CREATE TABLE `year` (
 --
 
 INSERT INTO `year` (`year_id`, `year_name`, `term`, `status_year`) VALUES
-(1, 2561, '1', 'Active');
+(1, 2021, '1', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -424,13 +428,13 @@ ALTER TABLE `year`
 -- AUTO_INCREMENT for table `choose_a_teaching`
 --
 ALTER TABLE `choose_a_teaching`
-  MODIFY `choose_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `choose_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `class_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `class_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `grade_level`
@@ -442,19 +446,19 @@ ALTER TABLE `grade_level`
 -- AUTO_INCREMENT for table `login_information`
 --
 ALTER TABLE `login_information`
-  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `prepare_to_teach`
 --
 ALTER TABLE `prepare_to_teach`
-  MODIFY `id_prepare` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_prepare` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subject_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `subject_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `time`
@@ -466,7 +470,7 @@ ALTER TABLE `time`
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -478,13 +482,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `weekly_summary`
 --
 ALTER TABLE `weekly_summary`
-  MODIFY `id_prepare_week` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_prepare_week` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `year`
 --
 ALTER TABLE `year`
-  MODIFY `year_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `year_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

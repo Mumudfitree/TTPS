@@ -1,12 +1,12 @@
-<?php /*
+<?php
     session_start();
 
     if (!isset($_SESSION['admin_login'])) {
         header("location: ../index.php");
     }
-    */
+    
 ?>
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,15 +18,15 @@
 </head>
 
 <body>
-    <?php // include_once('slidebar_admin.php'); ?>
+    <?php include_once('slidebar_admin.php'); ?>
     <div class="main">
         <div class="container">
             <div class="form - text-center">
                 <div class="display-3 text-center">หน้าอัพโหลดข้อมูลผ่านทางexcel</div>
                 <br>
                 <form action="save.php" method="post" enctype="multipart/form-data">
-                    <input type="file" name="myfile" required
-                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    <input type="file" name="myfile" required 
+                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                     <button type="submit" class="btn btn-info">อัพโหลด</button>
                 </form>
 
@@ -42,8 +42,8 @@
     </div>
 </body>
 
-</html>-->
-<!DOCTYPE html>
+</html>
+<!--<!DOCTYPE html>
 <html>
    <head>
      <title>Import Data From Excel or CSV File to Mysql using PHPSpreadsheet</title>
@@ -105,4 +105,4 @@ $(document).ready(function(){
     })
   });
 });
-</script>
+</script>-->

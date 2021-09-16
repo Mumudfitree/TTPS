@@ -41,6 +41,7 @@
                             <!-- <th>วัน/เดือน/ปี</th> -->
                             <th>ปีการศึกษา</th>
                             <th>ดาวน์โหลดตารางสอน</th>
+                            
 
 
                         </tr>
@@ -48,11 +49,11 @@
                     <tbody>
                         <?php
                     $id =$_SESSION['UserID'];
-                    $sql = "SELECT * FROM choose_a_teaching as c,year as y WHERE c.year_id = y.year_id AND y.status_year = 'Active'  ";
+                    $sql = "SELECT * FROM choose_a_teaching as c,year as y, login_information as login, user_data as user WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.year_id = y.year_id AND y.status_year = 'Active'  ";
                     $query = mysqli_query($conn,$sql) ;
                     $row = mysqli_fetch_array($query);
                     ?>
-
+                    
 
 
                         <tr>
@@ -68,6 +69,7 @@
                                         <path
                                             d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
                                     </svg> ดาวน์โหลด</a></td>
+                                    
                             <?php } ?>
                         </tr>
                     </tbody>

@@ -161,7 +161,7 @@
                         //echo $thai_day_arr[$i_day];
                         $sql3="SELECT * FROM choose_a_teaching as c,grade_level as grade, classroom as class, subject as sub, time as t, year as y,login_information as login, user_data as user
                         WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.grade_id = grade.grade_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.time_id = t.time_id AND c.year_id = y.year_id 
-                        AND login.login_id = $id1 AND date ='$thai_day_arr[$i_day]' AND t.time_id = '$i_time' ";
+                         AND login.login_id = $id1 AND date ='$thai_day_arr[$i_day]' AND t.time_id = '$i_time' ";
                         $query3=mysqli_query($conn,$sql3);
                         $row3 = mysqli_fetch_array($query3,MYSQLI_ASSOC);
                 

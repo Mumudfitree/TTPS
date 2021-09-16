@@ -146,7 +146,7 @@
                         <div class="row">
                             <label for="lastname" class="col-sm-3 control-label">รหัสผ่าน</label>
                             <div class="col-sm-6">
-                                <input type="text" name="txt_password" class="form-control"
+                                <input type="password" name="txt_password" class="form-control"
                                     value="<?php echo $password; ?>">
                             </div>
                         </div>

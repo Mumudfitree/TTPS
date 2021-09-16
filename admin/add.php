@@ -21,23 +21,35 @@
         }else {
             
                 if(!isset($errorMsg)){
-                    $sql ="INSERT INTO user_data(firstname,lastname,email)VALUES ('$firstname','$lastname','$email')";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
-                    mysqli_close($conn);
-    
-                    if($result){
-                    echo "<script>";
-                    echo "alert('สำเร็จ');";
-                    echo "window.location ='index.php'; ";
-                    $insertMsg = "เพิ่มข้อมูลของสมาชิกเสร็จสิ้น";
-                    echo "</script>";
-                    } else {
+        $check = "SELECT * FROM user_data WHERE firstname = '$firstname' AND lastname = '$lastname' OR email = '$email' ";
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $row_check = mysqli_fetch_array($query_check);
+        
+        if($row_check > 0)
+        {
+            echo "<script>";
+            echo "alert('มีข้อมูลซ้ำ กรุณาตรวจสอบ ชื่อ-สกุล หรือ อีเมลล์?');";
+            echo "window.location ='index.php'; ";
+         echo "</script>";
+        }else{
+            $sql ="INSERT INTO user_data(firstname,lastname,email)VALUES ('$firstname','$lastname','$email')";
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            mysqli_close($conn);
+            if($result){
+                echo "<script>";
+                echo "alert('สำเร็จ');";
+                echo "window.location ='index.php'; ";
+                $insertMsg = "เพิ่มข้อมูลของสมาชิกเสร็จสิ้น";
+                echo "</script>";
+                } else {
+                
+                echo "<script>";
+                echo "alert('ล้มเหลว!');";
+                echo "window.location ='index.php'; ";
+                echo "</script>";
+                }
+        }
                     
-                    echo "<script>";
-                    echo "alert('ล้มเหลว!');";
-                    echo "window.location ='index.php'; ";
-                    echo "</script>";
-                    }
                     /*$insert_stmt = $db->prepare("INSERT INTO login_information(fname,lname,username,password,email,user_role_id) VALUE(:fname,:lname,:user,:pass,:email,:role) ");
                     $insert_stmt->bindParam(":fname", $firstname);
                     $insert_stmt->bindParam(":lname", $lastname);

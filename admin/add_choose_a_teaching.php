@@ -30,26 +30,35 @@
             $errorMsg = "กรุณาระบุชั้นเรียน";
         }else {
            
-                if(!isset($errorMsg)){
-                    //if($name != $row_check['master_id'] AND $grade_level != $row_check['grade_id'] AND $code != $row_check['subject_id'] AND $classroom != $row_check['class_id'] AND $time_name != $row_check['time_id'] AND $date != $row_check['date'] AND $year != $row_check['year_id'] ){
-                    $sql = "INSERT INTO choose_a_teaching(login_id, grade_id, subject_id, class_id, time_id, date, year_id) VALUE('".$name."', '".$grade_level."', '".$code."', '".$classroom."', '".$time_name."', '".$date."', '".$year."')";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
-                    mysqli_close($conn);
-                    //INSERT INTO `choose_a_teaching` (`choose_id`, `master_id`, `subject_id`, `class_id`, `status_choose`) VALUES (NULL, '41', '10', '14', 'Active');
-                    
-                    if($result){
-                        echo "<script>";
-                        echo "alert('สำเร็จ');";
-                        echo "window.location ='choose_a_teaching.php'; ";
-                        $insertMsg = "เพิ่มข้อมูลของสมาชิกเสร็จสิ้น";
-                        echo "</script>";
-                        } else {
-                        
-                        echo "<script>";
-                        echo "alert('ล้มเหลว!');";
-                        echo "window.location ='choose_a_teaching.php'; ";
-                        echo "</script>";
-                    }
+        if(!isset($errorMsg)){
+        $check = "SELECT * FROM choose_a_teaching WHERE login_id = '$name' AND time_id = '$time_name' AND date = '$date' ";
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $row_check = mysqli_fetch_array($query_check);
+        
+        if($row_check > 0)
+        {
+            echo "<script>";
+            echo "alert('มีข้อมูลซ้ำ กรุณาตรวจสอบว่ามีเวลาสอนซ้ำกันหรือไม่?');";
+            echo "window.location ='choose_a_teaching.php'; ";
+         echo "</script>";
+        }else{
+            $sql = "INSERT INTO choose_a_teaching(login_id, grade_id, subject_id, class_id, time_id, date, year_id) VALUE('".$name."', '".$grade_level."', '".$code."', '".$classroom."', '".$time_name."', '".$date."', '".$year."')";
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            if($result){
+                echo "<script>";
+                echo "alert('เพิ่มข้อมูลของสมาชิกเสร็จสิ้น');";
+                echo "window.location ='choose_a_teaching.php'; ";
+                //$insertMsg = "เพิ่มข้อมูลของสมาชิกเสร็จสิ้น";
+                echo "</script>";
+                } else {
+                
+                echo "<script>";
+                echo "alert('ล้มเหลว!');";
+                echo "window.location ='choose_a_teaching.php'; ";
+                echo "</script>";
+            }
+        }
+                   
                     
                 /*}else{
                         echo "<script>";
@@ -147,7 +156,7 @@
                 <br>-->
                 <div class="form- text-center">
                     <div class="row">
-                        <label for="grade_level" class="col-sm-3 control-label">ระดับชั้นแบบajax</label>
+                        <label for="grade_level" class="col-sm-3 control-label">ระดับชั้น</label>
                         <div class="col-sm-6">
                             <select name="txt_grade" id="grade_level" class="form-control">
                                 <option value="" selected="disable">กรุณาเลือกระดับชั้นเรียน</option>
@@ -164,7 +173,7 @@
 
                 <div class="form- text-center">
                     <div class="row">
-                        <label for="classroom" class="col-sm-3 control-label">ชั้นแบบajax</label>
+                        <label for="classroom" class="col-sm-3 control-label">ชั้นเรียน</label>
                         <div class="col-sm-6">
                             <select name="txt_classroom" id="classroom" class="form-control">
                             </select>
@@ -174,7 +183,7 @@
                 <br>
                 <div class="form- text-center">
                     <div class="row">
-                        <label for="subject" class="col-sm-3 control-label">วิชาแบบajax</label>
+                        <label for="subject" class="col-sm-3 control-label">วิชา</label>
                         <div class="col-sm-6">
                             <select name="txt_code" id="subject" class="form-control">
                             </select>

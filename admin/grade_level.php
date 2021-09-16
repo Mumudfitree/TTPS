@@ -91,15 +91,17 @@
     <div class="main">
         <div class="container">
             <div class="display-3 text-center">ระดับชั้นเรียน</div>
+            
             <a href="add_grade_level.php" class="btn btn-success mb-3">เพิ่มระดับชั้นเรียน</a>
             <!-- ปุ่ม Search -->
-            <ul class="nav nav-pills pull-right"> 
-            <div class="d-flex pb-3" >
-            <input class="form-control me-2" type="search" placeholder="ค้นหาระดับชั้น" aria-label="Search"
-                        id="Search" onchange="search_input()">
+            <ul class="nav nav-pills"> 
+                <div class="d-flex pb-3" ><!-- ขนาดความยาวกล่อง -->
+                <input class="form-control me-2 "  class="pull-right" type="search" placeholder="ค้นหาระดับชั้น"
+                 aria-label="Search"id="Search" onchange="search_input()">
                     <button class=" btn btn-outline-success" type="submit" onclick='search()'>ค้นหา</button>
             </div>
             </div>
+            
 
         <!-- ไอนี่ส่วน search ต้องใส่ ไม่ใส่แล้วดึงข้อมูลไม่ได้ แต่ซ่อน tag p ไว้ 😎😎 -->
         <script>

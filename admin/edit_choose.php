@@ -244,7 +244,7 @@
                     <label for="type" class="col-sm-3 control-label">วันที่สอน</label>
                     <div class="col-sm-6">
                         <select name="txt_date" class="form-control">
-                            <option value="<?php echo choose_id; ?>" selected="selected"><?php echo $date; ?></option>
+                            <option value="<?php echo date; ?>" selected="selected"><?php echo $date; ?></option>
                             <option value="วันจันทร์">วันจันทร์</option>
                             <option value="วันอังคาร">วันอังคาร</option>
                             <option value="วันพุธ">วันพุธ</option>
@@ -260,7 +260,7 @@
                     <label for="type" class="col-sm-3 control-label">ปีการศึกษา</label>
                     <div class="col-sm-6">
                         <select name="txt_year" class="form-control">
-                            <option value="<?php echo $year_id;?>" selected="selected"><?php echo $year_name;?></option>
+                            <option value="<?php echo $year_id;?>" selected="selected"><?php echo $term.'/'.$year_name;?></option>
                             <?php
                 $query5 = "SELECT * FROM year ";
                 $result5 = mysqli_query($conn,$query5);//classroom
