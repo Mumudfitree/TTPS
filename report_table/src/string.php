@@ -15,18 +15,28 @@
 
     }
 
-    function fetchTimeString ($string){
+    function fetchTimeString ($array){
 
-        $array = array(-1);
+        $i = 0;
 
-        for($i=0; $i<strlen($string); $i++){
-            $array = array_merge( $array, array(
-                'hour' => $string[0].$string[1],
-                'minute' => $string[3].$string[4]
+        $returnArray[0] = array(
+            'hour' => $array[$i][0].$array[$i][1],
+            'minute' => $array[$i][3].$array[$i][4]
+        );
+
+        $returnArray = array_merge( $returnArray, array(
+            'hour' => $array[$i][8].$array[$i][9],
+            'minute' => $array[$i][11].$array[$i][12]
+        ));
+
+        for($i=1; isset($array[$i]); $i++){
+            $returnArray = array_merge( $returnArray, array(
+                'hour' => $array[$i][0].$array[$i][1],
+                'minute' => $array[$i][3].$array[$i][4]
             ));
-            $array = array_merge( $array, array(
-                'hour' => $string[8].$string[9],
-                'minute' => $string[11].$string[12]
+            $returnArray = array_merge( $returnArray, array(
+                'hour' => $array[$i][8].$array[$i][9],
+                'minute' => $array[$i][11].$array[$i][12]
             ));
         }
 
