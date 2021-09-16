@@ -157,9 +157,9 @@
 
         //code here...
 
-        $exceptArray = array(0, 1);
+        $exceptArray = array(0, 6);
         foreach($exceptArray as $loop){
-            if ($day === $loop) return 1;
+            if ($loop === $day) return 1;
             if ($loop > $day) return 0;
         }
     }

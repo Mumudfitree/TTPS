@@ -35,26 +35,28 @@
                 <th class="name">
                     ชื่อ-สกุล
                 </th>
-<?php
+                <?php
 
-    $trCount = 0;
+$trCount = 0;
 
-    for($counter = 1, $day = $firstDay; $counter <= $monthCount; $counter++){
-
-        $day += 1;
+    for($counter = 1, $day = $firstDay; $counter <= $monthCount; $counter++, $day++){
+    
         if ($day === 7){
             $day = 0;
         }
-
+        
         if(isWorkDay($day)) continue;
+
+        
         $trCount += 1;
-
-        if ($day === 6) echo '<th class="date blueBox">';
-        if ($day != 6) echo '<th class="date">';
-
+        
+        if ($day === 5) echo '<th class="date blueBox">';
+        if ($day != 5) echo '<th class="date">';
+        
         echo        $counter.'
-                </th>
-             ';
+        </th>
+        ';
+
     }
 
 ?>
@@ -81,25 +83,23 @@
                 <td>".$row['fname'].'  '.$row['lname']."
                 </td>";
         
-        for($counter = 1, $day = $firstDay; $counter <= $monthCount; $counter++){
+                for($counter = 1, $day = $firstDay; $counter <= $monthCount; $counter++, $day++){
+    
+                    if ($day === 7){
+                        $day = 0;
+                    }
+                    
+                    if(isWorkDay($day)) continue;
+            
+                    
+                    $trCount += 1;
+                    
+                    if ($day === 5) echo '<td class="date blueBox">';
+                    if ($day != 5) echo '<td class="date">';
 
-            $day += 1;
-
-            if ($day === 7){
-                $day = 0;
-            }
-
-            if(isWorkDay($day)) continue;
-
-            if ($day === 6) echo '<th class="date blueBox">';
-            if ($day != 6) echo '<th class="date">';
-
-            echo"</td>";
-
-            }
-
-        
-        
+                    echo"</td>";
+                    
+                }
 
         echo    "<td>
                 </td>
