@@ -49,9 +49,11 @@
                     <tbody>
                         <?php
                     $id =$_SESSION['UserID'];
-                    $sql = "SELECT * FROM choose_a_teaching as c,year as y, login_information as login, user_data as user WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.year_id = y.year_id AND y.status_year = 'Active'  ";
+                   
+                    $sql = "SELECT * FROM choose_a_teaching as c,year as y, login_information as login, user_data as user WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.year_id = y.year_id AND y.status_year = 'Active' AND c.login_id ='$id' ";
                     $query = mysqli_query($conn,$sql) ;
                     $row = mysqli_fetch_array($query);
+                    
                     ?>
                     
 

@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "multiplelogin_v4";
+$database = "php_multiplelogin";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $database);
