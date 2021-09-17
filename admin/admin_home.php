@@ -121,6 +121,7 @@
                         <!-- using hidden input can handle most situation, like can't find $_POST variable -->
 <?php
 
+    include_once "./../connection.php";
     include_once './src/script_admin.php';
     include_once './../notification/message.php';
 

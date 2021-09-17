@@ -45,7 +45,7 @@ $trCount = 0;
             $day = 0;
         }
         
-        if(isWorkDay($day)) continue;
+        if(isWorkDayLoop($day)) continue;
 
         
         $trCount += 1;
@@ -89,7 +89,7 @@ $trCount = 0;
                         $day = 0;
                     }
                     
-                    if(isWorkDay($day)) continue;
+                    if(isWorkDayLoop($day)) continue;
             
                     
                     $trCount += 1;

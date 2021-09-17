@@ -58,6 +58,8 @@
                 if($upTime['hour'] === $dbTime[$i]['hour'] && $upTime['minute'] === $dbTime[$i]['minute']) return $i;
             }
 
+            return -1;
+
             /* if($i%2 === 1){
                 if ( ($upTime['hour'] + 1) > $dbTime[$i]['hour'] ) continue;
                 if( ($upTime['minute']) > $dbTime[$i]['minute']) continue;

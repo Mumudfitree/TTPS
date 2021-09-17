@@ -4,6 +4,6 @@
     for($i = 1; $i <= 31; $i++){
     $dayInfo = getDayOfWeek();
     $monthCount = returnDayCount($dayInfo);
-    echo $i.': '.isWorkDay($i, $dayInfo).'<br>';
+    echo $i.': '.isWorkDayLoop($i, $dayInfo).'<br>';
     }
 ?>
