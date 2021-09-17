@@ -20,26 +20,27 @@
         $i = 0;
 
         $returnArray[0] = array(
-            'hour' => $array[$i][0].$array[$i][1],
-            'minute' => $array[$i][3].$array[$i][4]
+            'hour' => intval($array[$i][0].$array[$i][1]),
+            'minute' => intval($array[$i][3].$array[$i][4])
         );
 
-        $returnArray = array_merge( $returnArray, array(
-            'hour' => $array[$i][8].$array[$i][9],
-            'minute' => $array[$i][11].$array[$i][12]
-        ));
+        $returnArray[1] = array(
+            'hour' => intval($array[$i][8].$array[$i][9]),
+            'minute' => intval($array[$i][11].$array[$i][12])
+        );
 
         for($i=1; isset($array[$i]); $i++){
-            $returnArray = array_merge( $returnArray, array(
-                'hour' => $array[$i][0].$array[$i][1],
-                'minute' => $array[$i][3].$array[$i][4]
-            ));
-            $returnArray = array_merge( $returnArray, array(
-                'hour' => $array[$i][8].$array[$i][9],
-                'minute' => $array[$i][11].$array[$i][12]
-            ));
+            $returnArray[$i*2] = array(
+                'hour' => intval($array[$i][0].$array[$i][1]),
+                'minute' => intval($array[$i][3].$array[$i][4])
+            );
+            $returnArray[$i*2+1] = array(
+                'hour' => intval($array[$i][8].$array[$i][9]),
+                'minute' => intval($array[$i][11].$array[$i][12])
+            );
         }
 
+        return $returnArray;
     }
 
 ?>

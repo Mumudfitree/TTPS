@@ -8,7 +8,7 @@
     $query = mysqli_query($GLOBALS['conn'], $sql);
     $row = mysqli_fetch_array($query);
 
-    getTimeFromDatabase();
+    getTimeTableFromDatabase();
 
     //foreach ($row as $data)
 
