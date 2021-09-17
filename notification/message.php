@@ -43,9 +43,16 @@
     {
         $sql = "SELECT * FROM notify";
                 $query = mysqli_query($GLOBALS['conn'], $sql);
+
+                $arr = array();
+                $i = 0;
                 while ($row = mysqli_fetch_array($query)) {
 
-                    if($row['master_id'] === $_SESSION['master_id']) return $row['token'];
+                    if($row['master_id'] === $_SESSION['master_id']) {
+
+                    }
+                    
+                    
 
                 //have check on this function if it have already sign in. Because it will give error if it was NULL.
 
@@ -53,10 +60,10 @@
                 //return $row['token'];
 
                 //if called indirectly, return token
-
+                    $arr[$i] = $row['master_id'];
                 }
 
-                return NULL;
+                return $arr;
                 
                 //you are return as string, because you return only $row['token']; not entire $row
                 //if you return just $row, you will return as string

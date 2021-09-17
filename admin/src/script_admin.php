@@ -164,35 +164,39 @@
             'Authorization' => 'Bearer '.$senderID.''
         ];*/
 
-        $headers = array( 'Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer '.$senderID.'');  //You have to send headers as arrays
+        
+        foreach ($senderID as $sender){  
 
-        $fields = [  //here should be able to send other forms, more than just text. But just do one-by-one now.
-            'message' => $messageData
-        ];
-        
-        try {
-            $ch = curl_init();
-        
-            curl_setopt($ch, CURLOPT_URL, $api_url);
-            //curl_setopt($ch, CURLOPT_HEADER, $headers); //not CURLOPT_HEADER, it's CURLOPT_HTTPHEADER
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_POST, count($fields));
-            //curl_setopt($ch, CURLOPT_POSTFIELDS, $fields); //have to send as string if it only have 1 argument, I can't send like this
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$messageData);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        
-            $res = curl_exec($ch);
-            curl_close($ch);
-        
-            if ($res == false)
-                throw new Exception(curl_error($ch), curl_errno($ch));
-        
-            $json = json_decode($res);
-        
-        } catch(Exception $e) {
-            throw new Exception($e->getMessage());
+            $headers = array( 'Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer '.$sender.'');  //You have to send headers as arrays
+    
+            $fields = [  //here should be able to send other forms, more than just text. But just do one-by-one now.
+                'message' => $messageData
+            ];
 
+            try {
+                $ch = curl_init();
+            
+                curl_setopt($ch, CURLOPT_URL, $api_url);
+                //curl_setopt($ch, CURLOPT_HEADER, $headers); //not CURLOPT_HEADER, it's CURLOPT_HTTPHEADER
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_POST, count($fields));
+                //curl_setopt($ch, CURLOPT_POSTFIELDS, $fields); //have to send as string if it only have 1 argument, I can't send like this
+                curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$messageData);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            
+                $res = curl_exec($ch);
+                curl_close($ch);
+            
+                if ($res == false)
+                    throw new Exception(curl_error($ch), curl_errno($ch));
+            
+                $json = json_decode($res);
+            
+            } catch(Exception $e) {
+                throw new Exception($e->getMessage());
+
+            }
         }
     }
 
