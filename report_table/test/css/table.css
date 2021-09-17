@@ -86,9 +86,30 @@ th {
 }
 
 .blueBox {
-    background-color: blue;
+    background-color: #48A73F;
 }
 
 .purpleBox {
     background-color: purple;
+}
+.blank {
+    background-color: #FD8D68;
+}
+.half {
+    background-color: #FCB94B;
+}
+.third {
+    background-color: #FCB94B;
+}
+.seventh {
+    background-color: #FCB94B;
+}
+.ill {
+    background-color: #FAD513;
+}
+.leave {
+    background-color: #FAD513;
+}
+.leave-assign {
+    background-color: #FEBCD9;
 }

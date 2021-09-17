@@ -60,7 +60,7 @@
       </div>
     </div>
         <?php $query = "SELECT * FROM login_information WHERE username = '".$_SESSION['user_login']."'";
-              $result = mysqli_query($conn, $query) or die ("Error in sql: $query" . mysqli_error($query));
+              $result = mysqli_query($conn, $query) or die ("Error in sql: $query" . mysqli_error());
         ?>
         <?php while ($row = mysqli_fetch_array($result)){//if (isset($_SESSION['username'])) : ?>
                 <h3 align="center">สวัสดีคุณ : <?php echo $row['fname']; ?> &nbsp;  <?php echo $row['lname']; ?></h3>   

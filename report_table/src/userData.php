@@ -58,10 +58,28 @@
                 0
             ];
 
-            $json_write = array_merge($json_write, $section)
+            $json_write = array_merge($json_write, $section);
 
             $json = json_encode($json_write);
         }
+    }
+
+    function dataGenerater(){
+
+        $possibility = array('1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
+                             '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
+                             '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
+                             '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
+                             '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
+                             '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
+                             '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
+                             '0.5', '0.5', '0.5', '0.7', '0.7', '0.3', '11', '0', '0',
+                             'ล', 'ล', 'ล', 'ป', 'ป');
+
+        $arraySize = count($possibility);
+        $rand = rand()%$arraySize;
+
+        return $possibility[$rand];
     }
 
 ?>

@@ -184,17 +184,25 @@
         }
     }
 
-    /*function checkPainterSpecialCase($day){
-        $exceptArray = array(6);
-        foreach ($exceptArray as $loop){
+    function checkPainterSpecialCase($case /*, $day*/){
+        $exceptCaseArray = array('0', '0.3', '0.5', '0.7', '11', 'ป', 'ล');
+        
+        foreach($exceptCaseArray as $data){
+            if($data === $case) return 1;
+        }
+
+        return 0;
+
+        /*$exceptDayArray = array(6);
+        foreach ($exceptDayArray as $loop){
             if($day === $loop){
                 return 1;
             }
             return 0;
-        }
-    }*/
+        }*/
+    }
 
-    function tableBlockPainter($day){ //ส่งลักษณะของสีพื้นหลังช่องตารางตามที่กำหนดไว้
+    function tableBlockPainter($case, $day){ //ส่งลักษณะของสีพื้นหลังช่องตารางตามที่กำหนดไว้
         //เบื้องต้นให้พิมพ์สีออกมาเฉพาะวันศุกร์ เป็นสีเขียว
         //เป็นไปได้ ให้ทำการใช้ color picker ดูดสีออกมาจากภาพ เพื่อให้สีตรงที่สุด
         //หรือแล้วแต่ ถ้าคิดว่ามีสีอื่นที่สวยกว่านั้น ก็ใช้อันนั้นได้
@@ -202,21 +210,31 @@
         //$day คือส่งวันมา เป็นตัวเลข 0 - 6 0 คือวันอาทิตย์ 6 คือวันเสาร์
 
         //code here...
-
-        switch($day){
-            case 6: {
-                    echo ' style="background-color:green;"'; break;
-                    }
-
-            case 0: echo '<tr'; break;
-            case 8: echo '</tr'; break;
-            case 9: echo '</div'; break;
-            case 10: echo '<td'; return 0;
-            case 11: echo '</td'; break;
-
-            default: break;
+        switch($case){
+            case '0':
+            case '0.3':
+            case '0.5':
+            case '0.7':
+            case '11':
+            case 'ป':
+            case 'ล':
         }
 
+        if($case === '1'){
+            switch($day){
+                case 6: {
+                        echo ' style="background-color:green;"'; break;
+                        }
+
+                case 0: echo '<tr'; break;
+                case 8: echo '</tr'; break;
+                case 9: echo '</div'; break;
+                case 10: echo '<td'; return 0;
+                case 11: echo '</td'; break;
+
+                default: break;
+            }
+        }
             echo '>';
 
             return 0;

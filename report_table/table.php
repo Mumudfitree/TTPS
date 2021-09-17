@@ -1,6 +1,10 @@
 <?php
     include_once('../connection.php');
     include_once('./src/date.php');
+    include_once('./src/userData.php');
+
+    define('Generate', 1);
+
 
     $query = "SELECT * FROM login_information ORDER BY master_id asc" or die("Error:" . mysqli_error());
     $result = mysqli_query($conn, $query);
@@ -90,14 +94,47 @@ $trCount = 0;
                     }
                     
                     if(isWorkDayLoop($day)) continue;
-            
+                    
+                    if(Generate){
+                        $rand = dataGenerater();
+                    }
                     
                     $trCount += 1;
                     
-                    if ($day === 5) echo '<td class="date blueBox">';
-                    if ($day != 5) echo '<td class="date">';
+                    if(checkPainterSpecialCase($rand)){
 
-                    echo"</td>";
+                        if($rand==='11'){
+                            echo '<td class="date leave-assign">1</td>';
+                        }
+                        else {
+                            if($rand==='0'){
+                                echo '<td class="date blank">';
+                            }
+                            if($rand==='0.3'){
+                                echo '<td class="date third">';
+                            }
+                            if($rand==='0.5'){
+                                echo '<td class="date half">';
+                            }
+                            if($rand==='0.7'){
+                                echo '<td class="date seventh">';
+                            }
+                            if($rand==='ป'){
+                                echo '<td class="date ill">';
+                            }
+                            if($rand==='ล'){
+                                echo '<td class="date leave">';
+                            }
+                            echo $rand."</td>";
+                        }
+                    }
+                    else {
+                        if ($day === 5) echo '<td class="date blueBox">';
+                        if ($day != 5) echo '<td class="date">';
+
+                        echo"1</td>";
+                    }
+
                     
                 }
 
