@@ -15,6 +15,8 @@
         return;
     }
 
+    include_once './../connection.php';
+
     $client_id = 'wpUIRBGGA6B7RaRF02BrON';
     $client_secret = 'o5mbSR8kqb2Rq5wOsfDwZQ2JiP8picFpFszofs2ea3A';
 
@@ -42,15 +44,15 @@
     function getAllToken()
     {
         $sql = "SELECT * FROM notify";
-                $query = mysqli_query($GLOBALS['conn'], $sql);
+        $query = mysqli_query($GLOBALS['conn'], $sql);
 
-                $arr = array();
-                $i = 0;
-                while ($row = mysqli_fetch_array($query)) {
+        $arr = array();
+        $i = 0;
+        while ($row = mysqli_fetch_array($query)) {
 
-                    if($row['master_id'] === $_SESSION['master_id']) {
+            if($row['master_id'] === $_SESSION['master_id']) {
 
-                    }
+            }
                     
                     
 
@@ -61,6 +63,7 @@
 
                 //if called indirectly, return token
                     $arr[$i] = $row['master_id'];
+                    $i++;
                 }
 
                 return $arr;
@@ -72,6 +75,14 @@
     function getUserToken(string $user)
     {
 
+    }
+
+    function getUserTokenLoop(int $id){
+        $sql = "SELECT * FROM notify WHERE master_id = ".$id.";";
+        $query = mysqli_query($GLOBALS['conn'], $sql);
+        $row = mysqli_fetch_array($query);
+
+        return $row;
     }
 
     function _message(string $msg) //stream methods
