@@ -34,11 +34,11 @@
         $status;
   
         if (empty($username)) {
-            $errorMsg[] = "Please enter username";
+            $errorMsg[] = "กรุณากรอกชื่อบัญชีผู้ใช้";
         } else if (empty($password)) {
-            $errorMsg[] = "Please enter password";
+            $errorMsg[] = "กรุณากรอกรหัสผ่าน";
         } else if (empty($role)) {
-            $errorMsg[] = "Please select role";
+            $errorMsg[] = "กรุณาระบุบทบาท";
         } else if ($username AND $password AND $role) {
             try {
                 $select_stmt = $db->prepare("SELECT username, password, user_role_id,status_master,fname,lname,master_id FROM login_information WHERE username = :uusername AND password = :upassword AND user_role_id = :urole");
@@ -113,7 +113,7 @@
                                     header("location: headhighschool/headhighschool_home.php");
                                 break;
                                 default:
-                                    $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
+                                $_SESSION['error'] = "กรุณาตรวจสอบบัญชีผู้ใช้ รหัสผ่าน หรือบทบาทใหม่อีกครั้ง";
                                     header("location: index.php");
                             }
                         }else{
