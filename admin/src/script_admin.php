@@ -25,7 +25,7 @@
 
     function checkLineRegister() //I think it should be better to give redirect on files that called.
     {
-        $_SESSION['token'] = getToken();
+        $_SESSION['token'] = getUserTokenLoop($_SESSION['master_id']);
 
             //if (isset($queryData['token']) or $queryData['token'] === NULL or $queryData['token'] === '\0')
             //it is not correct, because getToken() return as string. (Only $row['token'], not $row)
