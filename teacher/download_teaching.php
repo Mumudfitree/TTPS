@@ -35,8 +35,8 @@
     if(isset($_REQUEST['download_id'])){
         
             $id = $_REQUEST['download_id'];
-            $sql = "SELECT * FROM choose_a_teaching as c,subject as sub, classroom  as class,login_information as login, grade_level as grade,time ,year as y
-            WHERE  c.choose_id = $id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = y.year_id AND c.master_id =login.master_id AND c.master_id = $id1 
+            $sql = "SELECT * FROM choose_a_teaching as c,subject as sub, classroom  as class,login_information as login, grade_level as grade,time ,year as y, user_data as user
+            WHERE  user.user_id = login.user_id AND c.choose_id = $id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = y.year_id AND c.login_id =login.login_id AND c.login_id = $id1 
             AND c.grade_id = grade.grade_id AND c.time_id = time.time_id";
             $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
             $row = mysqli_fetch_array($result);
@@ -65,18 +65,19 @@
     <div class="container">
         <?php 
     $data_schedule=array();//array ของข้อมูล
-    $sql ="SELECT * FROM choose_a_teaching as c,login_information as login, classroom as class, subject as sub, grade_level as grade, time ,year as y
-    WHERE c.master_id = login.master_id AND c.class_id = class.class_id AND c.year_id = y.year_id AND c.subject_id = sub.subject_id AND c.grade_id = grade.grade_id AND c.time_id = time.time_id ";
+    $sql ="SELECT * FROM choose_a_teaching as c,login_information as login, classroom as class, subject as sub, grade_level as grade, time ,year as y, user_data as user
+    WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.class_id = class.class_id AND c.year_id = y.year_id AND c.subject_id = sub.subject_id AND c.grade_id = grade.grade_id AND c.time_id = time.time_id ";
     $query=mysqli_query($conn,$sql);
 ?>
         <form method="post" class="form-horizontal mt-5">
             <div class="display-5 text-center"><p>โรงเรียนกัลยาณชนรังสรรค์มูลนิธิ มัสยิดบ้านเหนือ</p></div>
             <div class="display-7 text-center">รายงานตารางสอนของครูผู้สอน ภาคเรียน :
-                <?php if($id1 == $row["master_id"]){ echo $row["term"].'/'.$row["year_name"];} ?></div>
-            <div class="display-7 text-left">ครูผู้สอน : <?php if($id1 == $row["master_id"]){
-        echo $row["fname"].' '.$row["lname"];
+                <?php if($id1 == $row["login_id"]){ echo $row["term"].'/'.$row["year_name"];} ?></div>
+            <div class="display-7 text-left">ครูผู้สอน : <?php if($id1 == $row["login_id"]){
+        echo $row["firstname"].' '.$row["lastname"];
      } ?></div>
             <br>
+            
 
 
             <table  align="center"  width="100%"  class="table" class="table1">
@@ -146,7 +147,7 @@
             $num_dayShow = 5;// 5 วัน
             //$arr_checkSpan=array();
             //$arr_detailShow=array();
-            $thai_day_arr=array("จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์");
+            $thai_day_arr=array("วันจันทร์","วันอังคาร","วันพุธ","วันพฤหัสบดี","วันศุกร์");
     
             
             for($i_day=0;$i_day<$num_dayShow;$i_day++){//วัน
@@ -158,11 +159,11 @@
                     <?php
                     for($i_time=1;$i_time<= $kab/*7คาบ*/ ;$i_time++){ //ตารางที่ของเวลาที่ว่างๆ **สำคัญ
                         //echo $thai_day_arr[$i_day];
-                        $sql3="SELECT * FROM choose_a_teaching as c,grade_level as grade, classroom as class, subject as sub, time as t, year as y,login_information as login
-                        WHERE c.master_id = login.master_id AND c.grade_id = grade.grade_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.time_id = t.time_id AND c.year_id = y.year_id 
-                        AND login.master_id ='50' AND date ='$thai_day_arr[$i_day]' AND t.time_id = '$i_time' ";
+                        $sql3="SELECT * FROM choose_a_teaching as c,grade_level as grade, classroom as class, subject as sub, time as t, year as y,login_information as login, user_data as user
+                        WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.grade_id = grade.grade_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.time_id = t.time_id AND c.year_id = y.year_id 
+                         AND login.login_id = $id1 AND date ='$thai_day_arr[$i_day]' AND t.time_id = '$i_time' ";
                         $query3=mysqli_query($conn,$sql3);
-                        $row3 = mysqli_fetch_array($query3, MYSQLI_ASSOC);
+                        $row3 = mysqli_fetch_array($query3,MYSQLI_ASSOC);
                 
                 
                 
@@ -186,7 +187,7 @@
                     //echo var_dump($row3);
                         if( $thai_day_arr[$i_day][$i_time] == $date1[$time]){?>
                     <td align="center" valign="middle" height="50" class="td">
-                        <?php echo $row3["code_subject"];?><br><?php echo $row3["name_classroom"]; ?></td>
+                        <?php echo $row3["code_subject"];?><br><?php echo $row3["name_subject"]; ?><br><?php echo $row3["name_classroom"]; ?></td>
                     <?php }else{?>
                     <td class="td" ></td>
                     <?php } ?>
@@ -205,7 +206,7 @@
 
             <!-- ส่วนลงชื่อ ผอ. -->
             <?php
-                $sql2 = "SELECT * FROM login_information as login , user_role as role WHERE login.user_role_id = role.user_role_id AND login.user_role_id = '2' ";
+                $sql2 = "SELECT * FROM login_information as login , user_data as user , user_role as role WHERE login.user_id = user.user_id AND login.user_role_id = role.user_role_id AND login.user_role_id = '2' ";
                 $query2 = mysqli_query($conn,$sql2);
                 $row2 = mysqli_fetch_array($query2);
 
@@ -213,12 +214,12 @@
             <div class="form- text-leftr">
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">ลงชื่อ
-                        <?php if($row2["user_role_id"] == '2'){ echo $row2["fname"].' '.$row2["lname"];} ?></label>
+                        <?php if($row2["user_role_id"] == '2'){ echo $row2["firstname"].' '.$row2["lastname"];} ?></label>
 
                 </div>
                 <div class="row">
                     <label for="" class="col-sm-4 control-label">(
-                        <?php if($row2["user_role_id"] == '2'){ echo $row2["fname"].' '.$row2["lname"];} ?> ) </label>
+                        <?php if($row2["user_role_id"] == '2'){ echo $row2["firstname"].' '.$row2["lastname"];} ?> ) </label>
                 </div>
             </div>
     </div>

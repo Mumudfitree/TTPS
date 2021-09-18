@@ -36,8 +36,8 @@ else if ($pagenum > $last) {
 
 $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-$nquery=mysqli_query($conn,"SELECT * from  weekly_summary as week,choose_a_teaching as c,subject as sub,classroom as class,grade_level as grade,login_information as login
-WHERE week.choose_id = c.choose_id AND c.class_id = class.class_id AND c.subject_id = sub.subject_id AND c.grade_id = grade.grade_id AND c.master_id = login.master_id
+$nquery=mysqli_query($conn,"SELECT * from  weekly_summary as week,choose_a_teaching as c,subject as sub,classroom as class,grade_level as grade,login_information as login, user_data as user
+WHERE user.user_id = login.user_id AND week.choose_id = c.choose_id AND c.class_id = class.class_id AND c.subject_id = sub.subject_id AND c.grade_id = grade.grade_id AND c.login_id = login.login_id
 ORDER BY id_prepare_week DESC $limit");
 
 $paginationCtrls = '';
@@ -109,9 +109,9 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
                         
                        
                     <tr>
-                    <?php if(($row['grade_id'] == '9' ||$row['grade_id'] == '12') && $row['status_prepare_week']=='Checking' ){ ?>
+                    <?php if(($row['grade_id'] == '1' ||$row['grade_id'] == '2' ||$row['grade_id'] == '3') && $row['status_prepare_week']=='Checking' ){ ?>
                         <td><?php echo $row['date_prepare_week']; ?></td>
-                        <td><?php echo $row['fname'].' '.$row['lname']; ?></td>
+                        <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
                         <td><?php echo  $row['code_subject'].' '.$row['name_subject'].' ('.$row['name_classroom'].')'; ?></td>
                         <td><a target ="_blank" href="download_week.php?download_id=<?php echo $row["id_prepare_week"]; ?>" class="btn btn-dark">ดาวน์โหลด</a></td>
                         <td><a href="confirm_week.php?confirm_id=<?php echo $row['id_prepare_week']; ?>" class="btn btn-success" onclick="return confirm('คุณต้องการยืนยันข้อมูลนี้หรือไม่')">อนุมัติให้ผ่าน</td>

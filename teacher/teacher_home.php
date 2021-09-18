@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
     
 </head>
 
@@ -32,7 +33,7 @@
         <div class="text-center mt-5">
             <div class="container">
                 <div class="display-5 text-center">
-                    <h1>เตรียมสอนรายชั่วโมง</h1>
+                    <h1>ตารางสอน</h1>
                 </div>
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
@@ -40,6 +41,7 @@
                             <!-- <th>วัน/เดือน/ปี</th> -->
                             <th>ปีการศึกษา</th>
                             <th>ดาวน์โหลดตารางสอน</th>
+                            
 
 
                         </tr>
@@ -47,16 +49,18 @@
                     <tbody>
                         <?php
                     $id =$_SESSION['UserID'];
-                    $sql = "SELECT * FROM choose_a_teaching as c,year as y WHERE c.year_id = y.year_id AND y.status_year = 'Active'  ";
+                   
+                    $sql = "SELECT * FROM choose_a_teaching as c,year as y, login_information as login, user_data as user WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.year_id = y.year_id AND y.status_year = 'Active' AND c.login_id ='$id' ";
                     $query = mysqli_query($conn,$sql) ;
                     $row = mysqli_fetch_array($query);
+                    
                     ?>
-
+                    
 
 
                         <tr>
 
-                            <?php if($row['master_id'] == $id && $row['status_choose'] == 'Active'){?>
+                            <?php if($row['login_id'] == $id && $row['status_choose'] == 'Active'){?>
                             <td><?php echo $row["term"].'/'.$row["year_name"]; ?></td>
                             <td><a target="_blank"
                                     href="download_teaching.php?download_id=<?php echo $row["choose_id"]; ?>"
@@ -67,6 +71,7 @@
                                         <path
                                             d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
                                     </svg> ดาวน์โหลด</a></td>
+                                    
                             <?php } ?>
                         </tr>
                     </tbody>

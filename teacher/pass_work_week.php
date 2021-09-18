@@ -32,8 +32,8 @@
 
     $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-    $nquery=mysqli_query($conn,"SELECT * from  weekly_summary  as week,choose_a_teaching as c, subject as sub, classroom as class,login_information as login
-    WHERE week.choose_id = c.choose_id AND c.subject_id =sub.subject_id AND c.class_id = class.class_id AND c.master_id = login.master_id AND  login.master_id = $id ORDER BY id_prepare_week DESC $limit");
+    $nquery=mysqli_query($conn,"SELECT * from  weekly_summary  as week,choose_a_teaching as c, subject as sub, classroom as class,login_information as login, user_data as user
+    WHERE user.user_id = login.user_id AND week.choose_id = c.choose_id AND c.subject_id =sub.subject_id AND c.class_id = class.class_id AND c.login_id = login.login_id AND  login.login_id = $id ORDER BY id_prepare_week DESC $limit");
 
     $paginationCtrls = '';
 
@@ -109,7 +109,7 @@
                      $id =$_SESSION['UserID']; ?>
                     <tr>
                     
-                    <?php if($row['status_prepare_week'] =='Complete' && $row['master_id'] == $id && $row['status_choose'] == 'Active'){?>
+                    <?php if($row['status_prepare_week'] =='Complete' && $row['login_id'] == $id && $row['status_choose'] == 'Active'){?>
                         <td><?php echo $row["date_prepare_week"]; ?></td>
                         <td><?php echo  $row['code_subject'].' '.$row['name_subject'].' ('.$row['name_classroom'].')'; ?></td>
                         <td><a href="edit_week.php?update_id=<?php echo $row["id_prepare_week"]; ?>"

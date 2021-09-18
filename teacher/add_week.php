@@ -8,7 +8,7 @@
     if(isset($_REQUEST['btn_insert'])){
         //$fname_lname =$_REQUEST['txt_fname_lname'] ;
         //$subject = $_REQUEST['txt_subject_id'];
-        $date = $_REQUEST['txt_date'];
+        $date = $_REQUEST['datepicker'];
         $goal = $_REQUEST['txt_goal'];
         $result = $_REQUEST['txt_result'];
         $activity_good = $_REQUEST['txt_activity_good'];
@@ -20,8 +20,11 @@
         //$grade = $_REQUEST['txt_grade'];
         $choose_id = $_REQUEST['txt_choose_id'];
         
-
-        if(empty($goal)){
+        if(empty($choose_id)){
+            $errorMsg = "กรุณากรอกข้อมูลวิชา";
+        }elseif(empty($date)){
+            $errorMsg = "กรุณากรอกข้อมูลวัน";
+        }elseif(empty($goal)){
             $errorMsg = "กรุณากรอกข้อมูลเป้าหมาย";
         }elseif(empty($result)){
             $errorMsg = "กรุณากรอกข้อมูลผลการปฎิบัติงาน";
@@ -72,16 +75,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เพิ่มสรุปรายสัปดาห์</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
-    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> <!-- datepickerเก่า -->
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> <!-- datepickerเก่า -->
-    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="jquery.datetimepicker.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/jquery-ui.min.css">
+    
+    <!--<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">-->
+    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> <!-- datepickerเก่า -->
+    <!--<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> <!-- datepickerเก่า -->
+    <!--<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">-->
+    <!--<script type="text/javascript" src="jquery.js"></script>-->
+    <!--<script type="text/javascript" src="jquery.datetimepicker.js"></script>-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script language="JavaScript">
@@ -111,7 +118,21 @@
         });
     });
     </script>
+    <script>
+        $(function(){
+            $("#datepicker").datepicker({
+                language:'th-th',
+                format:'dd/mm/yyyy',
+                autoclose: true
+            });
+        });
     </script>
+    <style>
+    textarea {
+        width: 100%;
+    }
+    </style>
+  
 
 </head>
 
@@ -156,15 +177,17 @@
                 <div class="row">
                     <label for="name_classroom" class="col-sm-3 control-label">วันที่รายงานผล</label>
                     <div class="col-sm-6">
-                        <input type="text" name="txt_date" id="datepicker" class="form-control"
+                        <input type="text" name="datepicker" id="datepicker" class="form-control"
                             placeholder="วัน/เดือน/ปี">
                     </div>
                 </div>
             </div>
             <br>
+            
+            
             <?php
                         $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id."' " ;//เชื่อม2ตาราง
+                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 
@@ -277,6 +300,8 @@
 
 
 
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>

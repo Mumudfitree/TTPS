@@ -15,7 +15,7 @@
         $how_to_teach = $_REQUEST['txt_how_to_teach'];
         $media = $_REQUEST['txt_media'];
         $measure = $_REQUEST['txt_measure'];
-        $date_prepare = $_REQUEST['txt_date'];
+        $date_prepare = $_REQUEST['datepicker'];
        
         $today = date('d/m/Y');
         
@@ -27,7 +27,9 @@
 
         
 
-        if(empty($date_prepare)){
+        if(empty($choose_id)){
+            $errorMsg = "กรุณาเพิ่มข้อมูลในช่องวิชา";
+        }elseif(empty($date_prepare)){
             $errorMsg = "กรุณาเพิ่มข้อมูลในช่องของวัน";
         }elseif(empty($learn)){
             $errorMsg = "กรุณาเพิ่มข้อมูลในช่องของสาระการเรียนรู้/ตัวชี้วัด";
@@ -51,12 +53,17 @@
                 VALUES('".$choose_id."', '$date_prepare','$learn', '$purpose','$how_to_teach', '$media', '$measure') ";
                 $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                 //$query = mysqli_query($conn,$sql) or die(mysqli_error($conn) . "<br>$sql");   ตรวจสอบบัค
-                mysqli_close($conn);
+                
                 if($result){
-                    echo "<script type='text/javascript'>";
+                    /*echo "<script type='text/javascript'>";
                     echo "alert('อัพเดตข้อมูลเสร็จสิ้น');";
                     echo "</script>";
-                    header("refresh:2,hours.php");
+                    header("hours.php");*/
+                    echo "<script>";
+                    echo "alert('สำเร็จ');";
+                    echo "window.location ='hours.php'; ";
+                    $insertMsg = "เพิ่มข้อมูลสำเร็จ";
+                    echo "</script>";
                     }
             }
             
@@ -108,12 +115,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/jquery-ui.min.css">
-    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> <!-- datepickerเก่า -->
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> <!-- datepickerเก่า -->
-    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="jquery.datetimepicker.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -146,8 +147,15 @@
         });
     });
     </script>
+    <script>
+        $(function(){
+            $("#datepicker").datepicker({
+                language:'th-th',
+                format:'dd/mm/yyyy',
+                autoclose: true
+            });
+        });
     </script>
-
     <style>
     textarea {
         width: 100%;
@@ -193,19 +201,21 @@
                 <br>
 
                 <?php
-                        $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
-                        $result2 = mysqli_query($conn, $query2);
+                        $sql2z = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class, login_information as login, user_data as user
+                        WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        
+                        $resultz = mysqli_query($conn,$sql2z) or die ("Error in query: $sql2z " . mysqli_error());
+                        
                     ?>
 
                 <div class="form- text-center">
                     <div class="row">
                         <label for="name_subject" class="col-sm-3 control-label">วิชาที่สอน</label>
                         <div class="col-sm-6">
-                            <select name="txt_choose_id" class="form-control">
+                            <select name="txt_choose_id" class="form-control" >
 
                                 <option value="">- กรุณาเลือก -</option>
-                                <?php foreach($result2 as $row2){
+                                <?php foreach($resultz as $row2){
                                 if($row2['status_choose'] == 'Active'){?>
                                 <option value="<?php echo $row2["choose_id"] ?>">
                                     <?php echo $row2['code_subject'].' '.$row2['name_subject'].' ('.$row2['name_classroom'].')';?>
@@ -226,7 +236,7 @@
                     <div class="row">
                         <label for="" class="col-sm-3 control-label">วันที่</label>
                         <div class="col-sm-6">
-                            <input type="text" name="txt_date" id="datepicker" class="form-control"
+                            <input type="text"  name="datepicker" id="datepicker" class="form-control"
                                 placeholder="วัน/เดือน/ปี">
                         </div>
                     </div>

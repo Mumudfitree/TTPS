@@ -9,43 +9,47 @@
     if(isset($_REQUEST['btn_insert'])){
         $firstname = $_REQUEST['txt_firstname'];
         $lastname = $_REQUEST['txt_lastname'];
-        $username = $_REQUEST['txt_username'];
-        $password = $_REQUEST['txt_password'];
         $email = $_REQUEST['txt_email'];
-        $role = $_REQUEST['txt_role'];
+        
 
         if(empty($firstname)){
             $errorMsg = "กรุณากรอกชื่อ";
         }else if(empty($lastname)){
             $errorMsg = "กรุณากรอกนามสกุล";
-        }else if(empty($username)){
-            $errorMsg = "กรุณากรอกชื่อบัญชีผู้ใช้";
-        }else if(empty($password)){
-            $errorMsg = "กรุณากรอกรหัสผ่าน";
         }else if(empty($email)){
             $errorMsg = "กรุณากรอกอีเมลล์";
-        }else if(empty($role)){
-            $errorMsg = "กรุณาระบุบทบาท";
         }else {
             
                 if(!isset($errorMsg)){
-                    $sql ="INSERT INTO login_information(fname,lname,username,password,email,user_role_id)VALUES ('$firstname','$lastname','$username','$password','$email','$role')";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
-                    mysqli_close($conn);
-    
-                    if($result){
-                    echo "<script>";
-                    echo "alert('สำเร็จ');";
-                    echo "window.location ='index.php'; ";
-                    $insertMsg = "เพิ่มข้อมูลของสมาชิกเสร็จสิ้น";
-                    echo "</script>";
-                    } else {
+        $check = "SELECT * FROM user_data WHERE firstname = '$firstname' AND lastname = '$lastname' OR email = '$email' ";
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $row_check = mysqli_fetch_array($query_check);
+        
+        if($row_check > 0)
+        {
+            echo "<script>";
+            echo "alert('มีข้อมูลซ้ำ กรุณาตรวจสอบ ชื่อ-สกุล หรือ อีเมลล์?');";
+            echo "window.location ='index.php'; ";
+         echo "</script>";
+        }else{
+            $sql ="INSERT INTO user_data(firstname,lastname,email)VALUES ('$firstname','$lastname','$email')";
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            mysqli_close($conn);
+            if($result){
+                echo "<script>";
+                echo "alert('สำเร็จ');";
+                echo "window.location ='index.php'; ";
+                $insertMsg = "เพิ่มข้อมูลของสมาชิกเสร็จสิ้น";
+                echo "</script>";
+                } else {
+                
+                echo "<script>";
+                echo "alert('ล้มเหลว!');";
+                echo "window.location ='index.php'; ";
+                echo "</script>";
+                }
+        }
                     
-                    echo "<script>";
-                    echo "alert('ล้มเหลว!');";
-                    echo "window.location ='index.php'; ";
-                    echo "</script>";
-                    }
                     /*$insert_stmt = $db->prepare("INSERT INTO login_information(fname,lname,username,password,email,user_role_id) VALUE(:fname,:lname,:user,:pass,:email,:role) ");
                     $insert_stmt->bindParam(":fname", $firstname);
                     $insert_stmt->bindParam(":lname", $lastname);
@@ -109,6 +113,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             <div class="form- text-center">
                 <div class="row">
@@ -118,24 +123,9 @@
                 </div>
                 </div>
             </div>
+            <br>
 
-            <div class="form- text-center">
-                <div class="row">
-                <label for="username" class="col-sm-3 control-label">ชื่อบัญชีผู้ใช้</label>
-                <div class="col-sm-6">
-                    <input type="text" name="txt_username" class="form-control" placeholder="ชื่อบัญชีผู้ใช้">
-                </div>
-                </div>
-            </div>
-
-            <div class="form- text-center">
-                <div class="row">
-                <label for="password" class="col-sm-3 control-label">รหัสผ่าน</label>
-                <div class="col-sm-6">
-                    <input type="password" name="txt_password" class="form-control" placeholder="รหัสผ่าน">
-                </div>
-                </div>
-            </div>
+            
 
             <div class="form- text-center">
                 <div class="row">
@@ -145,27 +135,7 @@
                 </div>
                 </div>
             </div>
-            <?php
-                $query = "SELECT * FROM user_role ORDER BY user_role_id asc" or die("Error:" . mysqli_error());
-                $result = mysqli_query($conn, $query);
-            ?>
-            <div class="form- text-center">
-                <div class="row">
-                <label for="" class="col-sm-3 control-label">บทบาท</label>
-                <div class="col-sm-6">
-                <select name="txt_role" class="form-control" required>
-                    <option value="">-ระบุตำแหน่ง-</option>
-                     <?php foreach($result as $results){
-                        if($results['status_role'] == 'Active'){?>
-                    <option value="<?php echo $results["user_role_id"];?>">
-                        <?php echo $results["name_role"]; ?>
-                    </option>
-                    <?php }else {
-                        # code...
-                    } ?>
-                    <?php } ?>
-                </select>
-            </div>
+            <br>
 
         
 

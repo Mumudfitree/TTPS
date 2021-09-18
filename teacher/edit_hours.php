@@ -27,7 +27,7 @@
         $media_up =$_REQUEST['txt_media']; 
         $measure_up =$_REQUEST['txt_measure'];
        // echo 'update ='.$id = $_REQUEST['update_id'] .'<br>';
-        $date_prepare = $_REQUEST['txt_date'];
+        $date_prepare = $_REQUEST['datepicker'];
         $status = "Checking";
         
         $choose_id = $_REQUEST['txt_choose_id'];
@@ -77,30 +77,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แก้ไขเตรียมสอนรายชั่วโมง</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> <!-- datepickerเก่า -->
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> <!-- datepickerเก่า -->
-    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="jquery.datetimepicker.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/jquery-ui.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script language="JavaScript">
     $(function() {
         var dates = $("#datepicker").datepicker({
-            dateFormat: 'dd/mm/yy',          
+            dateFormat: 'dd/mm/yy',
             defaultDate: "+1w",
             changeMonth: true,
             minDate: 0,
             beforeShowDay: noWeekends
 
-           
+
         });
 
         function noWeekends(date) {
@@ -118,7 +115,21 @@
         });
     });
     </script>
+    <script>
+        $(function(){
+            $("#datepicker").datepicker({
+                language:'th-th',
+                format:'dd/mm/yyyy',
+                autoclose: true
+            });
+        });
     </script>
+    <style>
+    textarea {
+        width: 100%;
+    }
+    </style>
+    
 </head>
 <body>
 <?php include_once('sidebar.php'); ?>
@@ -152,10 +163,10 @@
                 </div>
                 </div>
             </div>
-
+            <br>
             <?php
                         $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id1."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 
@@ -164,7 +175,7 @@
                     <label for="name_subject" class="col-sm-3 control-label">วิชาที่สอน</label>
                     <div class="col-sm-6">
                         <select name="txt_choose_id" class="form-control">
-                            <option value="<?php  echo $choose_id; ?>"><?php echo $name_subject.' '.$name_classroom.'  '.$choose_id; ?></option>
+                            <option value="<?php  echo $choose_id; ?>"><?php echo $name_subject.' '.$name_classroom; ?></option>
                             <?php foreach($result2 as $row2){
                                 if($row2['status_choose'] == 'Active' && $row2["choose_id"] !==$choose_id ){?>
                             <option value="<?php echo $row2["choose_id"]; ?>">
@@ -178,18 +189,20 @@
                     </div>
                 </div>
             </div>
+            <br>
             
             
             <div class="form- text-center">
                 <div class="row">
                 <label for="name_subject" class="col-sm-3 control-label">วันที่</label>
                 <div class="col-sm-6">
-                <input type="text" name="txt_date" class="form-control" id="datepicker" value="<?php echo $row['date_prepare'];?>"placeholder="วัน/เดือน/ปี">
+                <input type="text" name="datepicker" class="form-control" id="datepicker" value="<?php echo $row['date_prepare'];?>"placeholder="วัน/เดือน/ปี">
                 
                 
                 </div>
                 </div>
             </div>
+            <br>
 
 
             
@@ -202,6 +215,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             <div class="form- text-center">
                 <div class="row">
@@ -211,6 +225,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             <div class="form- text-center">
                 <div class="row">
@@ -220,6 +235,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             <div class="form- text-center">
                 <div class="row">
@@ -229,6 +245,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             <div class="form- text-center">
                 <div class="row">
@@ -238,6 +255,7 @@
                 </div>
                 </div>
             </div>
+            <br>
 
             
 
@@ -255,6 +273,8 @@
 
 
 
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>

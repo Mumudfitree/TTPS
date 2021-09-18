@@ -37,14 +37,14 @@
                     
                         $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
                         
-                        $sql ="SELECT * FROM choose_a_teaching as c, subject as sub , classroom as class, login_information as login, grade_level as grade, year
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = year.year_id
-                        AND c.master_id = login.master_id AND c.grade_id = grade.grade_id  ORDER BY choose_id DESC $limit";
+                        $sql ="SELECT * FROM choose_a_teaching as c, subject as sub , classroom as class, login_information as login, grade_level as grade, year, user_data as user
+                        WHERE user.user_id = login.user_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = year.year_id
+                        AND c.login_id = login.login_id AND c.grade_id = grade.grade_id  ORDER BY choose_id DESC $limit";
                          if(isset($_GET['search'])){ 
                             $search = $_GET['search'];
-                            $sql = "SELECT * FROM choose_a_teaching as c, subject as sub ,classroom as class,login_information as login, grade_level as grade, year
-                            WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = year.year_id
-                            AND c.master_id = login.master_id  AND  c.grade_id = grade.grade_id AND login.fname LIKE '%" . $search . "%' 
+                            $sql = "SELECT * FROM choose_a_teaching as c, subject as sub ,classroom as class,login_information as login, grade_level as grade, year, user_data as user
+                            WHERE user.user_id = login.user_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = year.year_id
+                            AND c.login_id = login.login_id  AND  c.grade_id = grade.grade_id AND login.firstname LIKE '%" . $search . "%' 
                             ORDER BY choose_id  DESC $limit";
                         }
                         $nquery=mysqli_query($conn,$sql);
@@ -148,14 +148,14 @@
                         <td><?php echo $row["term"].'/'.$row["year_name"]; ?></td>
                         <td><?php echo $row["grade_level_user"]; ?></td>
                         <td><?php echo $row["name_gradelevel"]; ?></td>
-                        <td><?php echo $row["fname"].' '.$row["lname"]; ?></td>
+                        <td><?php echo $row["firstname"].' '.$row["lastname"]; ?></td>
                         <td><?php echo $row["code_subject"]; ?></td>
                         <td><?php echo $row["name_subject"]; ?></td>
                         <td><?php echo $row["name_classroom"]; ?></td>
                         <td><?php if($row["status_choose"] == 'Active'){?>
                             <p class="active">ใช้งานได้</p>
                         <?php } elseif($row["status_choose"] == 'Inactive'){?>
-                            <p class="inactive">ถูกระงับการใช้งาน</p>
+                            <p class="inactive">ถูกระงับการใช้งานได้</p>
                        <?php } ?></td>
                         <td><a href="edit_choose.php?update_id=<?php echo $row['choose_id']; ?>"
                                 class="btn btn-warning">แก้ไข</td>

@@ -14,42 +14,37 @@
             $errorMsg = "กรุณากรอก";
         }else {
             
-                if(!isset($errorMsg)){
-                    $sql ="INSERT INTO year(year_id,year_name,term)VALUES (NULL,'$year_name','$term')";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
-                    mysqli_close($conn);
-    
-                    if($result){
-                    echo "<script>";
-                    echo "alert('สำเร็จ');";
-                    echo "window.location ='year.php'; ";
-                    $insertMsg = "เพิ่มข้อมูลของสมาชิกเสร็จสิ้น";
-                    echo "</script>";
-                    } else {
-                    
-                    echo "<script>";
-                    echo "alert('ล้มเหลว!');";
-                    echo "window.location ='year.php'; ";
-                    echo "</script>";
-                    }
-                    /*$insert_stmt = $db->prepare("INSERT INTO login_information(fname,lname,username,password,email,user_role_id) VALUE(:fname,:lname,:user,:pass,:email,:role) ");
-                    $insert_stmt->bindParam(":fname", $firstname);
-                    $insert_stmt->bindParam(":lname", $lastname);
-                    $insert_stmt->bindParam(":user", $username);
-                    $insert_stmt->bindParam(":pass", $password);
-                    $insert_stmt->bindParam(":email", $email);
-                    $insert_stmt->bindParam(":role", $role);
+        if(!isset($errorMsg)){
 
-                    if($insert_stmt->execute()){
-                        $insertMsg = "เพิ่มข้อมูลของสมาชิกเสร็จสิ้น";
-                        header("refresh:1,index.php");
-                        
-                    }
+        $check = "SELECT * FROM year WHERE year_name = '$year_name' AND term = '$term' ";
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $row_check = mysqli_fetch_array($query_check);
+        
+        if($row_check > 0)
+        {
+            echo "<script>";
+            echo "alert('มีข้อมูลซ้ำ กรุณาตรวจสอบ ปีการศึกษาหรือภาคเรียน ?');";
+            echo "window.location ='year.php'; ";
+         echo "</script>";
+        }else{
+            $sql ="INSERT INTO year(year_name,term)VALUES ('$year_name','$term')";
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            mysqli_close($conn);
+            if($result){
+                echo "<script>";
+                echo "alert('สำเร็จ');";
+                echo "window.location ='year.php'; ";
+                $insertMsg = "เพิ่มข้อมูลของปีการศึกษาเสร็จสิ้น";
+                echo "</script>";
+                } else {
+                
+                echo "<script>";
+                echo "alert('ล้มเหลว!');";
+                echo "window.location ='year.php'; ";
+                echo "</script>";
                 }
-            } catch (PDOException $e){
-                echo $e->getMessage();
-            }
-            */
+        }
+
                 
             }
         }
@@ -89,9 +84,9 @@
     <form method="post" class="form-horizontal mt-5">
             <div class="form- text-center">
                 <div class="row">
-                <label for="firstname" class="col-sm-3 control-label">ปีการศึกษา</label>
+                <label for="firstname" class="col-sm-3 control-label">ปีการศึกษา(ค.ศ)</label>
                 <div class="col-sm-6">
-                    <input type="text" name="txt_year" class="form-control" placeholder="ตัวอย่าง 2021">
+                    <input type="text" name="txt_year" class="form-control" placeholder="ตัวอย่าง 2020">
                 </div>
                 </div>
             </div>
@@ -104,7 +99,7 @@
                 <select name="txt_term" class="form-control">
                 <option value="" selected="selected">- กรุณาเลือก -</option>
                 <option value="1">เทอมการศึกษาที่1</option>
-                <option value="2<">เทอมการศึกษาที่2</option>
+                <option value="2">เทอมการศึกษาที่2</option>
                 </select>
             </div>
             </div>

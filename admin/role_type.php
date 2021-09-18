@@ -109,7 +109,7 @@
                 </button>
             </a>
              <!-- ปุ่ม Search -->
-             <ul class="nav nav-pills pull-right"> 
+             <!--<ul class="nav nav-pills pull-right"> 
             <div class="d-flex pb-3" >
             <input class="form-control me-2" type="search" placeholder="ค้นหาบทบาท" aria-label="Search"
                         id="Search" onchange="search_input()">
@@ -118,7 +118,7 @@
             </div>
 
         <!-- ไอนี่ส่วน search ต้องใส่ ไม่ใส่แล้วดึงข้อมูลไม่ได้ แต่ซ่อน tag p ไว้ 😎😎 -->
-        <script>
+        <!--<script>
         function search_input() {
             var search = document.getElementById("Search").value;
             return search;
@@ -127,7 +127,7 @@
         function search() {
             location.href = "role_type.php?search=" + search_input();
         }
-        </script>
+        </script>-->
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -149,7 +149,7 @@
                         <td><?php if($row["status_role"] == 'Active'){?>
                             <p class="active">ใช้งานได้</p>
                         <?php } elseif($row["status_role"] == 'Inactive'){?>
-                            <p class="inactive">ถูกระงับการใช้งาน</p>
+                            <p class="inactive">ถูกระงับการใช้งานได้</p>
                        <?php } ?></td>
                         <td><a href="edit_role.php?update_id=<?php echo $row['user_role_id']; ?>"
                                 class="btn btn-warning">แก้ไข</td>

@@ -5,12 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="high_slidebar.css">
+    <style>
+    .pull-right {
+        text-align: right;
+        color: white;
+    }
+    </style>
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="col-md-12">
+            <div class="pull-right">คุณ: <?php echo $_SESSION['User']; ?>&ensp;สถานะในตอนนี้:
+                <?php echo $_SESSION['Role'];?>
+            </div>
+        </div>
+        <!--/.col -->
+    </nav>
 
     <div class="sidebar">
-        <a href="headprimary_home.php"><i class="fa fa-fw fa-home"></i> หน้าหลัก</a>
+        <a href="headhighschool_home.php"><i class="fa fa-fw fa-home"></i> หน้าหลัก</a>
         <a href="check.php"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-journal-check" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -29,7 +43,7 @@
                 <path
                     d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
             </svg> ตรวจสอบสรุปผลรายสัปดาห์</a>
-        <a href="grade_level.php"><i class="fa fa-gear"></i> ตั้งค่า</a>
+        <!--<a href="grade_level.php"><i class="fa fa-gear"></i> ตั้งค่า</a>-->
         <a href="###" onclick=" logout()"><i class="fa fa-sign-out"></i> ออกจากระบบ</a>
 
     </div>

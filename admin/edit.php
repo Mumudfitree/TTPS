@@ -12,7 +12,7 @@
         //2. query ข้อมูลจากตาราง:
         $id = $_REQUEST['update_id'];
 
-        $sql = "SELECT * FROM  login_information as login, user_role as role WHERE login.master_id = '".$id."' AND login.user_role_id = role.user_role_id ";
+        $sql = "SELECT * FROM  user_data WHERE user_id = '".$id."'  ";
         $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
         $row = mysqli_fetch_array($result);
         extract($row);
@@ -28,10 +28,7 @@
     if(isset($_REQUEST['btn_update'])){
         $firstname_up = $_REQUEST['txt_firstname'];
         $lastname_up = $_REQUEST['txt_lastname'];
-        $username_up = $_REQUEST['txt_username'];
-        $password_up = $_REQUEST['txt_password'];
         $email_up = $_REQUEST['txt_email'];
-        $role_up = $_REQUEST['txt_role'];
         $status;
         
 
@@ -39,35 +36,44 @@
             $errorMsg = "กรุณากรอกชื่อ";
         }else if(empty($lastname_up)){
             $errorMsg = "กรุณากรอกนามสกุล";
-        }else if(empty($username_up)){
-            $errorMsg = "กรุณากรอกชื่อบัญชีผู้ใช้";
-        }else if(empty($password_up)){
-            $errorMsg = "กรุณากรอกรหัสผ่าน";
         }else if(empty($email_up)){
             $errorMsg = "กรุณากรอกอีเมลล์";
-        }else if(empty($role_up)){
-            $errorMsg = "กรุณาระบุบทบาท";
         }else{
-                if(!isset($errorMsg))
-                    $sql = "UPDATE login_information SET fname = '".$firstname_up."' ,lname = '".$lastname_up."',
-                    username = '".$username_up."', password = '".$password_up."',email= '".$email_up."', user_role_id = '".$role_up."' 
-                    WHERE master_id = '".$id."'";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
-                    mysqli_close($conn); //ปิดการเชื่อมต่อ database 
+                if(!isset($errorMsg)){
 
-    if($result){
-        echo "<script type='text/javascript'>";
-        echo "alert('อัพเดตข้อมูลเสร็จสิ้น');";
-        echo "window.location = 'index.php'; ";
-        echo "</script>";
-        }
-        else{
-        echo "<script type='text/javascript'>";
-        echo "alert('เกิดข้อผิดพลาดกรุณาอัพเดตใหม่อีกครั้ง');";
-        echo "</script>";
+        $check = "SELECT * FROM user_data WHERE firstname = '$firstname_up' AND lastname = '$lastname_up' OR email = '$email_up' ";
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $row_check = mysqli_fetch_array($query_check);
+        
+        if($row_check > 0)
+        {
+            echo "<script>";
+            echo "alert('มีข้อมูลซ้ำ กรุณาตรวจสอบ ชื่อ-สกุล หรือ อีเมลล์?');";
+            echo "window.location ='index.php'; ";
+         echo "</script>";
+        }else{
+            $sql ="UPDATE user_data SET firstname = '".$firstname_up."' ,lastname = '".$lastname_up."',
+            email= '".$email_up."'
+            WHERE user_id = '".$id."'";
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            mysqli_close($conn);
+            if($result){
+                echo "<script>";
+                echo "alert('สำเร็จ');";
+                echo "window.location ='index.php'; ";
+                $insertMsg = "อัพเดตข้อมูลของสมาชิกเสร็จสิ้น";
+                echo "</script>";
+                } else {
                 
+                echo "<script>";
+                echo "alert('ล้มเหลว!');";
+                echo "window.location ='index.php'; ";
+                echo "</script>";
+                }
             }
+
         }
+    }
 
     }
 
@@ -109,7 +115,7 @@
                 <div class="row">
                 <label for="firstname" class="col-sm-3 control-label">ชื่อ</label>
                 <div class="col-sm-6">
-                    <input type="text" name="txt_firstname" class="form-control" value="<?php echo $fname; ?>">
+                    <input type="text" name="txt_firstname" class="form-control" value="<?php echo $firstname; ?>">
                 </div>
                 </div>
             </div>
@@ -118,28 +124,11 @@
                 <div class="row">
                 <label for="lastname" class="col-sm-3 control-label">นามสกุล</label>
                 <div class="col-sm-6">
-                    <input type="text" name="txt_lastname" class="form-control" value="<?php echo $lname; ?>">
+                    <input type="text" name="txt_lastname" class="form-control" value="<?php echo $lastname; ?>">
                 </div>
                 </div>
             </div>
 
-            <div class="form- text-center">
-                <div class="row">
-                <label for="username" class="col-sm-3 control-label">ชื่อบัญชีผู้ใช้</label>
-                <div class="col-sm-6">
-                    <input type="text" name="txt_username" class="form-control" value="<?php echo $username; ?>">
-                </div>
-                </div>
-            </div>
-
-            <div class="form- text-center">
-                <div class="row">
-                <label for="password" class="col-sm-3 control-label">รหัสผ่าน</label>
-                <div class="col-sm-6">
-                    <input type="password" name="txt_password" class="form-control" value="<?php echo $password; ?>">
-                </div>
-                </div>
-            </div>
 
             <div class="form- text-center">
                 <div class="row">
@@ -150,29 +139,6 @@
                 </div>
             </div>
 
-            <div class="form- text-center">
-                <div class="row">
-                <label for="name_subject" class="col-sm-3 control-label">บทบาท</label>
-                <div class="col-sm-6">
-                    <select name="txt_role" class="form-control">
-                    <?php 
-                    $query = ("SELECT * FROM user_role ");
-                    $result =mysqli_query($conn,$query);
-                     ?>
-                     <option value="<?php echo $user_role_id; ?>"><?php echo $name_role; ?></option>
-                    <?php foreach($result as $row){?>
-                        <?php if($row['status_role']=='Active' && $row['user_role_id'] !== $user_role_id){?>
-                           <option value="<?php echo $row["user_role_id"];?>">
-                           <?php echo $row['name_role']; ?></option>
-                    </option>
-                    <?php }else{?>
-                        
-                    <?php } ?>
-                    <?php } ?>
-                    </select>
-                </div>
-                </div>
-            </div>
         
 
 

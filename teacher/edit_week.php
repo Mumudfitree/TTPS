@@ -80,27 +80,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แก้ไขสรุปผลรายสัปดาห์</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> <!-- datepickerเก่า -->
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> <!-- datepickerเก่า -->
-    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="jquery.datetimepicker.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/jquery-ui.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script language="JavaScript">
     $(function() {
         var dates = $("#datepicker").datepicker({
-            dateFormat: 'dd/mm/yy',          
+            dateFormat: 'dd/mm/yy',
             defaultDate: "+1w",
             changeMonth: true,
             minDate: 0,
             beforeShowDay: noWeekends
 
-           
+
         });
 
         function noWeekends(date) {
@@ -118,7 +116,20 @@
         });
     });
     </script>
+    <script>
+        $(function(){
+            $("#datepicker").datepicker({
+                language:'th-th',
+                format:'dd/mm/yyyy',
+                autoclose: true
+            });
+        });
     </script>
+    <style>
+    textarea {
+        width: 100%;
+    }
+    </style>
 </head>
 
 <body>
@@ -156,7 +167,7 @@
             </div>
             <br>
             
-            >
+            
 
             <div class="form- text-center">
                 <div class="row">
@@ -170,7 +181,7 @@
 
             <?php
                         $query2 = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class
-                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.master_id = '".$id1."' " ;//เชื่อม2ตาราง
+                        WHERE c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id1."' " ;//เชื่อม2ตาราง
                         $result2 = mysqli_query($conn, $query2);
                     ?>
 
@@ -198,7 +209,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">เป้าหมาย</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_goal" rows="4" cols="95" value=""><?php echo $row['goal'];?></textarea>
+                        <textarea id="" name="txt_goal" rows="4" cols="70" value=""><?php echo $row['goal'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -208,7 +219,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">ผลการปฎิบัติงาน</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_result" rows="4" cols="95" ><?php echo $row['result'];?></textarea>
+                        <textarea id="" name="txt_result" rows="4" cols="70" ><?php echo $row['result'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -218,7 +229,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">กิจกรรมที่ทำได้ดี</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_activity_good" rows="4" cols="95"><?php echo $row['activity_good'];?></textarea>
+                        <textarea id="" name="txt_activity_good" rows="4" cols="70"><?php echo $row['activity_good'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -228,7 +239,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">กิจกรรมที่ทำได้ไม่ดี</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_activity_nogood" rows="4" cols="95"><?php echo $row['activity_nogood'];?></textarea>
+                        <textarea id="" name="txt_activity_nogood" rows="4" cols="70"><?php echo $row['activity_nogood'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -238,7 +249,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">ปัญหา/อุปสรรค</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_problem" rows="4" cols="95" ><?php echo $row['problem'];?></textarea>
+                        <textarea id="" name="txt_problem" rows="4" cols="70" ><?php echo $row['problem'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -247,7 +258,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">นักเรียน/กิจกรรมที่ต้องปรับปรุง</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_student" rows="4" cols="95" ><?php echo $row['student'];?></textarea>
+                        <textarea id="" name="txt_student" rows="4" cols="70" ><?php echo $row['student'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -257,7 +268,7 @@
                 <div class="row">
                     <label for="" class="col-sm-3 control-label">แนวทางการแก้ปัญหาหรือการปฎิบัติการครั้งต่อไป</label>
                     <div class="col-sm-6">
-                        <textarea id="" name="txt_solve_the_problem" rows="4" cols="95"><?php echo $row['Solve_the_problem'];?></textarea>
+                        <textarea id="" name="txt_solve_the_problem" rows="4" cols="70"><?php echo $row['Solve_the_problem'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -276,6 +287,8 @@
 
 
 
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script src="js/slime.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
