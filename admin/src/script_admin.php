@@ -145,7 +145,7 @@
             return 0;
         }
 
-        $senderID = getAllToken();  //forgot to pass token to variable.
+        $senderID = getUserTokenLoop($_SESSION['master_id']);  //forgot to pass token to variable.
 
         //$senderID = $tokenQuery;
 
