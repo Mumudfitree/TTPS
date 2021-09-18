@@ -41,7 +41,7 @@
             $errorMsg[] = "กรุณาระบุบทบาท";
         } else if ($username AND $password AND $role) {
             try {
-                $select_stmt = $db->prepare("SELECT username, password, user_role_id,status_master,fname,lname,master_id FROM login_information WHERE username = :uusername AND password = :upassword AND user_role_id = :urole");
+                $select_stmt = $db->prepare("SELECT * FROM login_information WHERE username = :uusername AND password = :upassword AND user_role_id = :urole");
                 $select_stmt->bindParam(":uusername", $username);
                 $select_stmt->bindParam(":upassword", $password);
                 $select_stmt->bindParam(":urole", $role);
@@ -53,10 +53,11 @@
                     $dbusername = $row['username'];
                     $dbpassword = $row['password'];
                     $dbrole = $row['user_role_id'];
-                    $dbstatus = $row['status_master'];
-                    $dbfname = $row['fname'];
-                    $dblname = $row['lname'];
-                    $dbid = $row['master_id'];
+                    //$dbstatus = $row['status_master'];
+                    //$dbfname = $row['fname'];
+                    //$dblname = $row['lname'];
+                    //$dbid = $row['master_id'];
+                    $dbid = $row['login_id'];
 
             
                     
@@ -64,13 +65,13 @@
                 if ($username != null AND $password != null AND $role != null ) {
                     if ($select_stmt->rowCount() > 0) {
                         
-                        if ($username == $dbusername AND $password == $dbpassword AND $role == $dbrole AND $dbstatus == 'Active')  {
+                        if ($username == $dbusername AND $password == $dbpassword AND $role == $dbrole )  {
                             
-                            $_SESSION['master_id'] = $dbid;
+                            $_SESSION['master_id'] = intval($dbid);
                             $_SESSION['user_login'] = $dbusername;
-                            $_SESSION['fname'] = $dbfname;
-                            $_SESSION['lname'] = $dblname;
-                            $_SESSION['name'] = $_SESSION['fname'].' '.$_SESSION['lname'];
+                            //$_SESSION['fname'] = $dbfname;
+                            //$_SESSION['lname'] = $dblname;
+                            //$_SESSION['name'] = $_SESSION['fname'].' '.$_SESSION['lname'];
 
                             switch($dbrole) {
                                 case '1':
@@ -131,7 +132,6 @@
         }
     }
 
-?>
 ?>
 <?php 
         if(session_status() != 2){
