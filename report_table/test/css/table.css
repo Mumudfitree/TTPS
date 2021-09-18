@@ -1,0 +1,138 @@
+้html {
+    text-align: center;
+    margin: auto;
+}
+
+div {
+    text-align: center;
+    margin: auto;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    font-size: .8rem;
+    table-layout: auto;
+    margin: auto;
+    text-align: center;
+}
+
+td,
+th {
+    border: 1px solid rgb(190, 190, 190);
+    height: 0.73cm;
+}
+
+.order {
+    width: 1cm;
+}
+
+.name {
+    width: 4.75cm;
+}
+
+.date {
+    width: 0.75cm;
+}
+
+.sum {
+    width: 1.5cm;
+}
+
+.percent {
+    width: 1.8cm;
+}
+
+.score {
+    width: 1.68cm;
+}
+
+.redText {
+    color: red;
+}
+
+.yellowText {
+    color: yellow;
+}
+
+.pinkText {
+    color: pink;
+}
+
+.greenText {
+    color: green;
+}
+
+.orangeText {
+    color: orange;
+}
+
+.blueText {
+    color: blue;
+}
+
+.purpleText {
+    color: purple;
+}
+
+.redBox {
+    background-color: red;
+}
+
+.yellowBox {
+    background-color: yellow;
+}
+
+.pinkBox {
+    background-color: pink;
+}
+
+.greenBox {
+    background-color: green;
+}
+
+.orangeBox {
+    background-color: orange;
+}
+
+.blueBox {
+    background-color: #48A73F;
+}
+
+.purpleBox {
+    background-color: purple;
+}
+.blank {
+    background-color: #FD8D68;
+}
+.half {
+    background-color: #FCB94B;
+}
+.third {
+    background-color: #FCB94B;
+}
+.seventh {
+    background-color: #FCB94B;
+}
+.ill {
+    background-color: #FAD513;
+}
+.leave {
+    background-color: #FAD513;
+}
+.leave-assign {
+    background-color: #FEBCD9;
+}
+
+.container {
+    column-width: 570px;
+    column-gap: 30px;
+    align-items: initial;
+  }
+  
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 10px;
+    margin: 0 0 1em 0;
+  }
