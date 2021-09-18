@@ -1,42 +1,35 @@
 <?php 
-    DEFINE('conflictFix', 1);
-
-if(session_status() != 2){
-    session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
-}
+    if(session_status() != 2){
+        session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
+    }
     require_once 'connection.php';
 
     //$_SESSION['login_type'] = 0;  //ต้นตอปัญหาล็อกอินแล้วค่ามันรี ต้องล็อกอินใหม่ตลอด
 
     if(!isset($_SESSION['master_id'])){ //ขอใช้ master_id ตรวจสอบ เพราะว่าจะได้ทดสอบได้ทันทีว่าเคยล็อกอินแล้วยัง และการล็อกอินไม่ใช่ข้อมูลลวง
-      /*$_SESSION['login_type'] = 0;
-      unset($_SESSION['master_id']);
-      unset($_SESSION['user_login']);
-      unset($_SESSION['name']);
-      unset($_SESSION['fname']);
-      unset($_SESSION['lname']);
-      unset($_SESSION['success']);
-      unset($_SESSION['error']);*/
+        /*$_SESSION['login_type'] = 0;
+        unset($_SESSION['master_id']);
+        unset($_SESSION['user_login']);
+        unset($_SESSION['name']);
+        unset($_SESSION['fname']);
+        unset($_SESSION['lname']);
+        unset($_SESSION['success']);
+        unset($_SESSION['error']);*/
 
-      //ใช้วิธีนี้ดีกว่า
-      session_destroy();
+        //ใช้วิธีนี้ดีกว่า
+        session_destroy();
 
-      if(session_status() != 2){
-          session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
-      }
-      
-      $_SESSION['login_type'] = 0;
-  }
+        if(session_status() != 2){
+            session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
+        }
+        
+        $_SESSION['login_type'] = 0;
+    }
 
     if (isset($_POST['btn_login'])) {
         $username = $_POST['txt_username']; // textbox name 
         $password = $_POST['txt_password']; // password
         $role = $_POST['txt_role']; // select option role
-        $fname;
-        $lname;
-        $id;
-    
-
 
         $status;
   
@@ -47,114 +40,103 @@ if(session_status() != 2){
         } else if (empty($role)) {
             $errorMsg[] = "กรุณาระบุบทบาท";
         } else if ($username AND $password AND $role) {
-           
-                $strSQL = "SELECT * FROM login_information WHERE username = '".$username."' 
-                AND password = '".$password." 'AND user_role_id = '".$role."'; ";
+            try {
+                $select_stmt = $db->prepare("SELECT username, password, user_role_id,status_master,fname,lname,master_id FROM login_information WHERE username = :uusername AND password = :upassword AND user_role_id = :urole");
+                $select_stmt->bindParam(":uusername", $username);
+                $select_stmt->bindParam(":upassword", $password);
+                $select_stmt->bindParam(":urole", $role);
+                //$select_stmt->bindParam(":ustatus'", $status);
 
-                $objQuery = mysqli_query($conn, $strSQL);
-                $row = mysqli_fetch_array($objQuery);
+                $select_stmt->execute(); 
 
-                $dbusername = $row['username'];
-                $dbpassword = $row['password'];
-                $dbrole = $row['user_role_id'];
-                $dbstatus = $row['status_master'];
-                $dbfname = $row['fname'];
-                $dblname = $row['lname'];
-                $dbid = $row['master_id'];
+                while($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $dbusername = $row['username'];
+                    $dbpassword = $row['password'];
+                    $dbrole = $row['user_role_id'];
+                    $dbstatus = $row['status_master'];
+                    $dbfname = $row['fname'];
+                    $dblname = $row['lname'];
+                    $dbid = $row['master_id'];
+
             
-                if(conflictFix){
-                  $_SESSION["UserID"] = $row["master_id"]; //รหัส ID
-                  $_SESSION["User"] = $row["fname"]." ".$row["lname"]; //ชื่อ-สกุล
-                  $_SESSION["Userlevel"] = $row["user_role_id"]; //รหัสบทบาท
-                }
                     
-                
+                }
                 if ($username != null AND $password != null AND $role != null ) {
+                    if ($select_stmt->rowCount() > 0) {
+                        
                         if ($username == $dbusername AND $password == $dbpassword AND $role == $dbrole AND $dbstatus == 'Active')  {
-                                                      
-                          $_SESSION['master_id'] = $dbid;
-                          $_SESSION['user_login'] = $dbusername;
-                          $_SESSION['fname'] = $dbfname;
-                          $_SESSION['lname'] = $dblname;
-                          $_SESSION['name'] = $_SESSION['fname'].' '.$_SESSION['lname'];
-
+                            
+                            $_SESSION['master_id'] = $dbid;
+                            $_SESSION['user_login'] = $dbusername;
+                            $_SESSION['fname'] = $dbfname;
+                            $_SESSION['lname'] = $dblname;
+                            $_SESSION['name'] = $_SESSION['fname'].' '.$_SESSION['lname'];
 
                             switch($dbrole) {
                                 case '1':
-                                    $_SESSION['admin_login'] = $username;
                                     $_SESSION['login_type'] = 1;
                                     $_SESSION['success'] = "ผู้ดูแลระบบ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
-                                    if (conflictFix) $_SESSION['Role'] = 'ผู้ดูแลระบบ';
                                     header("location: admin/admin_home.php");
                                 break;
                                 case '2':
-                                    $_SESSION['director_login'] = $username;
                                     $_SESSION['login_type'] = 2;
                                     $_SESSION['success'] = "ผู้อำนวยการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
-                                    if (conflictFix) $_SESSION['Role'] = 'ผู้อำนวยการ';
                                     header("location: director/director_home.php");
                                 break;
                                 case '3':
-                                    $_SESSION['deputydirector_login'] = $username;
                                     $_SESSION['login_type'] = 3;
                                     $_SESSION['success'] = "รองผู้อำนวยการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
-                                    if (conflictFix) $_SESSION['Role'] = 'รองผู้อำนวยการ';
                                     header("location: deputydirector/deputydirector_home.php");
                                 break;
                                 case '4':
-                                    $_SESSION['academicdepartment_login'] = $username;
                                     $_SESSION['login_type'] = 4;
                                     $_SESSION['success'] = "ฝ่ายวิชาการ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
-                                    if (conflictFix) $_SESSION['Role'] = 'ฝ่ายวิชาการ';
                                     header("location: academicdepartment/academicdepartment_home.php");
                                 break;
                                 case '5':
-                                    
-                                    $_SESSION['teacher_login'] = $username;
+
                                     $_SESSION['login_type'] = 5;
                                     $_SESSION['success'] = "ครู ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
-                                    if (conflictFix) $_SESSION['Role'] = 'คุณครู';
                                     header("location: teacher/teacher_home.php");
                                 break;
                                 case '6':
 
-                                  $_SESSION['login_type'] = 6;
-                                  $_SESSION['success'] = "หัวหน้าช่วงชั้นประถม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
-                                  if (conflictFix) $_SESSION['Role'] = 'หัวหน้าช่วงชั้นประถม';
-                                  header("location: headprimary/headprimary_home.php");
-                              break;
-                              
-                              case '7':
+                                    $_SESSION['login_type'] = 6;
+                                    $_SESSION['success'] = "หัวหน้าช่วงชั้นประถม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
+                                    header("location: headprimary/headprimary_home.php");
+                                break;
+                                
+                                case '7':
 
-                                  $_SESSION['login_type'] = 7;
-                                  $_SESSION['success'] = "หัวหน้าช่วงชั้นมัธยม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
-                                  if (conflictFix) $_SESSION['Role'] = 'หัวหน้าช่วงชั้นมัธยม';
-                                  header("location: headhighschool/headhighschool_home.php");
-                              break;
+                                    $_SESSION['login_type'] = 7;
+                                    $_SESSION['success'] = "หัวหน้าช่วงชั้นมัธยม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
+                                    header("location: headhighschool/headhighschool_home.php");
+                                break;
                                 default:
-                                    $_SESSION['error'] = "กรุณาตรวจสอบบัญชีผู้ใช้ รหัสผ่าน หรือบทบาทใหม่อีกครั้ง";
+                                $_SESSION['error'] = "กรุณาตรวจสอบบัญชีผู้ใช้ รหัสผ่าน หรือบทบาทใหม่อีกครั้ง";
                                     header("location: index.php");
                             }
                         }else{
-                            
-                               // $_SESSION['admin_login'] = $username;
-                               // $_SESSION['success'] = "ผู้ดูแลระบบ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
-                               // header("location: admin/admin_home.php");
-                            
-                            //$_SESSION['error'] = "กรุณาตรวจสอบบัญชีผู้ใช้ รหัสผ่าน หรือบทบาทใหม่อีกครั้ง";
-                        //header("location: index.php");
+                            $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
+                        header("location: index.php");
                         }
-                    
+                    } else {
+                        $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
+                        header("location: index.php");
+                    }
                 }
-            
-        
+            } catch(PDOException $e) {
+                $e->getMessage();
+            }
+        }
     }
-    }
+
+?>
 ?>
 <?php 
-    if(session_status() != 2){
-        session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
-    }
+        if(session_status() != 2){
+            session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
+        }
         if(isset($_POST['btn_login'])){
 				//connection
                   include("connection.php");
@@ -165,7 +147,7 @@ if(session_status() != 2){
 				//query 
                   $sql="SELECT * FROM login_information, user_data  WHERE 
                   username='".$username."' and password='".$password."' and user_role_id ='".$role."' 
-                  AND login_information.user_id = user_data.user_id;";
+                  AND login_information.user_id = user_data.user_id";
 
                   $result = mysqli_query($conn,$sql);
 				
@@ -181,6 +163,7 @@ if(session_status() != 2){
                       if($_SESSION["Userlevel"]== "1" && $row['status_login'] == 'Active'  ){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin_page.php
 
                         $_SESSION['admin_login'] = $username;
+                        $_SESSION["User"];
                         $_SESSION['Role'] = 'ผู้ดูแลระบบ';
                         $_SESSION['success'] = "ผู้ดูแลระบบ ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                         header("location: admin/admin_home.php");
@@ -284,11 +267,16 @@ if(session_status() != 2){
     
                       }
 
+                  }else{
+                    echo "<script>";
+                        echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
+                        echo "window.history.back()";
+                    echo "</script>";
                   }
 
                 }
 
-    //This function have been added for compatible reason, you can remove if you already ensure no more codes is used.
+                //This function have been added for compatible reason, you can remove if you already ensure no more codes is used.
     function legacyLogin(int $isEnabled) {
       if (!$isEnabled){
           return;
@@ -323,5 +311,5 @@ if(session_status() != 2){
           
       }
   }
-
-?>  
+  
+?>    
