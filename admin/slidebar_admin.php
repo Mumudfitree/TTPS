@@ -1,7 +1,6 @@
 <?php 
     if ($_SESSION['login_type'] != 1) {
         header("location: ../index.php");
-        include("connection.php");
     }
 
 ?>
