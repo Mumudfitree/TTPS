@@ -1,33 +1,47 @@
 <?php 
+
+    http_response_code(200);
+
     include_once('connection.php');
     session_start();
 
-    if (isset($_SESSION['admin_login'])) {
-        header("location: admin/admin_home.php");
-    }
+    //This code have been added for compatible reason, you can remove if you already ensure no more codes is used.
+    include_once('login_db.php');
+    legacyLogin(1);
 
-    if (isset($_SESSION['director_login'])) {
-        header("location: director/director_home.php");
-    }
 
-    if (isset($_SESSION['deputydirector_login'])) {
-        header("location: deputydirector/deputydirector_home.php");
-    }
+    if(isset($_SESSION['login_type'])){    
 
-    if (isset($_SESSION['academicdepartment_login'])) {
-        header("location: academicdepartment/academicdepartment_home.php");
-    }
-    
-    if (isset($_SESSION['teacher_login'])) {
-        header("location: teacher/teacher_home.php");
-    }
+        if ($_SESSION['login_type'] === 1) {
+            header("location: admin/admin_home.php");
+        }
 
-    if (isset($_SESSION['headprimary_login'])) {
-        header("location: headprimary/headprimary_home.php");
-    }
+        if ($_SESSION['login_type'] === 2) {
+            header("location: director/director_home.php");
+        }
 
-    if (isset($_SESSION['headhighschool_login'])) {
-        header("location: headhighschool/headhighschool_home.php");
+        if ($_SESSION['login_type'] === 3) {
+            header("location: deputydirector/deputydirector_home.php");
+        }
+
+        if ($_SESSION['login_type'] === 4) {
+            header("location: academicdepartment/academicdepartment_home.php");
+        }
+        
+        if ($_SESSION['login_type'] === 5) {
+            header("location: teacher/teacher_home.php");
+        }
+        
+        if ($_SESSION['login_type'] === 6) {
+            header("location: headprimary/headprimary_home.php");
+        }
+        
+        if ($_SESSION['login_type'] === 7) {
+            header("location: headhighschool/headhighschool_home.php");
+        }
+
+    } else {
+        $_SESSION['login_type'] = 0;
     }
     
 ?>
