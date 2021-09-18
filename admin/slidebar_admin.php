@@ -221,6 +221,7 @@
             <a href="choose_a_teaching.php">รายละเอียด</a>
         </div>
 
+        <a href="../report_table/table.php">สรุปการเข้าสอน</a>
         <a href="###" onclick=" logout()"> ออกจากระบบ</a>
     </div>
 
