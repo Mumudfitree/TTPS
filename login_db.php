@@ -1,4 +1,7 @@
 <?php 
+
+    define("compatibleSQL", 1);
+
     if(session_status() != 2){
         session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
     }
@@ -137,6 +140,9 @@
         if(session_status() != 2){
             session_start();//คำสั่งต้องloginก่อนถึงเข้าได้
         }
+
+        include_once "./src/script.php";
+
         if(isset($_POST['btn_login'])){
 				//connection
                   include("connection.php");
@@ -169,10 +175,8 @@
                         header("location: admin/admin_home.php");
 
                       }else{
-                        echo "<script>";
-                            echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
-                            echo "window.history.back()";
-                        echo "</script>";
+
+                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
     
                       }
 
@@ -184,10 +188,8 @@
                         header("location: director/director_home.php");
 
                       }else{
-                        echo "<script>";
-                            echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
-                            echo "window.history.back()";
-                        echo "</script>";
+                          
+                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
     
                       }
 
@@ -199,11 +201,8 @@
                         header("location: deputydirector/deputydirector_home.php");
 
                       }else{
-                        echo "<script>";
-                            echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
-                            echo "window.history.back()";
-                        echo "</script>";
-    
+
+                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
                       }
 
                       if ($_SESSION["Userlevel"]=="4" && $row['status_login'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
@@ -213,10 +212,8 @@
                         header("location: academicdepartment/academicdepartment_home.php");
 
                       }else{
-                        echo "<script>";
-                            echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
-                            echo "window.history.back()";
-                        echo "</script>";
+                        
+                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
     
                       }
                       
@@ -231,10 +228,8 @@
                         header("location: teacher/teacher_home.php");
 
                       }else{
-                        echo "<script>";
-                            echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
-                            echo "window.history.back()";
-                        echo "</script>";
+                        
+                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
     
                       }
 
@@ -246,10 +241,8 @@
                         header("location: headprimary/headprimary_home.php");
 
                       }else{
-                        echo "<script>";
-                            echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
-                            echo "window.history.back()";
-                        echo "</script>";
+                        
+                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
     
                       }
                       if ($_SESSION["Userlevel"]=="7" && $row['status_login'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
@@ -260,56 +253,53 @@
                         header("location: headhighschool/headhighschool_home.php");
 
                       }else{
-                        echo "<script>";
-                            echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
-                            echo "window.history.back()";
-                        echo "</script>";
+                        
+                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
     
                       }
 
                   }else{
-                    echo "<script>";
-                        echo "alert(\" ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง\");"; 
-                        echo "window.history.back()";
-                    echo "</script>";
+                    
+                    alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
+                    
                   }
 
                 }
 
-                //This function have been added for compatible reason, you can remove if you already ensure no more codes is used.
+    //This function have been added for compatible reason, you can remove if you already ensure no more codes is used.
     function legacyLogin(int $isEnabled) {
-      if (!$isEnabled){
-          return;
-      }
+        if (!$isEnabled){
+            return;
+        }
 
-      switch ($_SESSION['login_type']) {
-          case 0:
-              break;
-          case 1:
-              $_SESSION['admin_login'] = $_SESSION['user_login'];
-              break;
-          case 2:
-              $_SESSION['director_login'] = $_SESSION['user_login'];
-              break;
-          case 3:
-              $_SESSION['deputydirector_login'] = $_SESSION['user_login'];
-              break;
-          case 4:
-              $_SESSION['academicdepartment_login'] = $_SESSION['user_login'];
-              break;
-          case 5:
-              $_SESSION['teacher_login'] = $_SESSION['user_login'];
-              break;
-          case 6:
-              $_SESSION['headprimary_login'] = $_SESSION['user_login'];
-              break;
-          case 7:
-              $_SESSION['headhighschool_login'] = $_SESSION['user_login'];
-              break;
-          default:
-              $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
-          
-      }
-  }
-  
-?>    
+        switch ($_SESSION['login_type']) {
+            case 0:
+                break;
+            case 1:
+                $_SESSION['admin_login'] = $_SESSION['user_login'];
+                break;
+            case 2:
+                $_SESSION['director_login'] = $_SESSION['user_login'];
+                break;
+            case 3:
+                $_SESSION['deputydirector_login'] = $_SESSION['user_login'];
+                break;
+            case 4:
+                $_SESSION['academicdepartment_login'] = $_SESSION['user_login'];
+                break;
+            case 5:
+                $_SESSION['teacher_login'] = $_SESSION['user_login'];
+                break;
+            case 6:
+                $_SESSION['headprimary_login'] = $_SESSION['user_login'];
+                break;
+            case 7:
+                $_SESSION['headhighschool_login'] = $_SESSION['user_login'];
+                break;
+            default:
+                $_SESSION['error'] = "ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง";
+            
+        }
+    }
+
+?>
