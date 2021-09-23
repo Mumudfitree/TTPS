@@ -7,7 +7,8 @@ http_response_code(200);
 
     //This code have been added for compatible reason, you can remove if you already ensure no more codes is used.
     include_once('login_db.php');
-    legacyLogin(1);
+    
+    //legacyLogin(1);
 
 
     if(isset($_SESSION['login_type'])){    
