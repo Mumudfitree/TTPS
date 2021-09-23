@@ -176,7 +176,11 @@
 
                       }else{
 
-                        incorrectUserDataError();
+                        $script = incorrectUserDataError();
+
+                        foreach($script as $statement){
+                            echo $statement;
+                        }
     
                       }
 
@@ -189,7 +193,11 @@
 
                       }else{
                           
-                        incorrectUserDataError();
+                        $script = incorrectUserDataError();
+
+                        foreach($script as $statement){
+                            echo $statement;
+                        }
     
                       }
 
@@ -202,7 +210,11 @@
 
                       }else{
 
-                        incorrectUserDataError();
+                        $script = incorrectUserDataError();
+
+                        foreach($script as $statement){
+                            echo $statement;
+                        }
                       }
 
                       if ($_SESSION["Userlevel"]=="4" && $row['status_login'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
@@ -213,7 +225,11 @@
 
                       }else{
                         
-                        incorrectUserDataError();
+                        $script = incorrectUserDataError();
+
+                        foreach($script as $statement){
+                            echo $statement;
+                        }
     
                       }
                       
@@ -229,7 +245,11 @@
 
                       }else{
                         
-                        incorrectUserDataError();
+                        $script = incorrectUserDataError();
+
+                        foreach($script as $statement){
+                            echo $statement;
+                        }
     
                       }
 
@@ -242,7 +262,11 @@
 
                       }else{
                         
-                        incorrectUserDataError();
+                        $script = incorrectUserDataError();
+
+                        foreach($script as $statement){
+                            echo $statement;
+                        }
     
                       }
                       if ($_SESSION["Userlevel"]=="7" && $row['status_login'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
@@ -254,13 +278,21 @@
 
                       }else{
                         
-                        incorrectUserDataError();
+                        $script = incorrectUserDataError();
+
+                        foreach($script as $statement){
+                            echo $statement;
+                        }
     
                       }
 
                   }else{
                     
-                    incorrectUserDataError();
+                    $script = incorrectUserDataError();
+
+                        foreach($script as $statement){
+                            echo $statement;
+                        }
 
                   }
 

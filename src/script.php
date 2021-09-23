@@ -2,22 +2,14 @@
 
     function alertBox(string $message){
 
-        $command = 
-            '
-                alert("'.$message.'");
-            '
-        ;
+        $command = 'alert("'.$message.'");';
 
         return $command;
     }
 
     function pageReturn(){
 
-        $command = 
-            '
-                window.history.back();
-            '
-        ;
+        $command = 'window.history.back();';
 
         return $command;
     }
@@ -46,7 +38,9 @@
         $statement[0] = alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
         $statement[1] = pageReturn();
 
-        jsCombine($statement);
+        $js = jsCombine($statement);
+
+        return $js;
 
     }
 
