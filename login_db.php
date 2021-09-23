@@ -176,7 +176,7 @@
 
                       }else{
 
-                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
+                        incorrectUserDataError();
     
                       }
 
@@ -189,7 +189,7 @@
 
                       }else{
                           
-                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
+                        incorrectUserDataError();
     
                       }
 
@@ -202,7 +202,7 @@
 
                       }else{
 
-                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
+                        incorrectUserDataError();
                       }
 
                       if ($_SESSION["Userlevel"]=="4" && $row['status_login'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
@@ -213,7 +213,7 @@
 
                       }else{
                         
-                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
+                        incorrectUserDataError();
     
                       }
                       
@@ -229,7 +229,7 @@
 
                       }else{
                         
-                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
+                        incorrectUserDataError();
     
                       }
 
@@ -242,7 +242,7 @@
 
                       }else{
                         
-                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
+                        incorrectUserDataError();
     
                       }
                       if ($_SESSION["Userlevel"]=="7" && $row['status_login'] == 'Active'){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
@@ -254,14 +254,14 @@
 
                       }else{
                         
-                        alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
+                        incorrectUserDataError();
     
                       }
 
                   }else{
                     
-                    alertBox("ชื่อบัญชีผู้ใช้ รหัสผ่าน หรือ ระบุบทบาท ไม่ถูกต้อง");
-                    
+                    incorrectUserDataError();
+
                   }
 
                 }
