@@ -1,11 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "php_multiplelogin";
+$db_host = "localhost"; // localhost server
+$db_user = "root"; // database username
+$db_password = ""; // database password
+$db_name = "php_multiplelogin"; // database name
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 mysqli_set_charset($conn, "utf8");
 
 // Check connection
@@ -15,11 +15,7 @@ if (!$conn) {
 
     //อันเก่าแบบPDO
 
-    $db_host = "localhost"; // localhost server
-    $db_user = "root"; // database username
-    $db_password = ""; // database password
-    $db_name = "php_multiplelogin"; // database name
-    
+
     // Create connection
     try {
 
