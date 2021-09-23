@@ -106,10 +106,12 @@
                 $_SESSION['success'] = "หัวหน้าช่วงชั้นมัธยม ... ดำเนินการเข้าสู่ระบบเสร็จสิ้น";
                 header("location: headhighschool/headhighschool_home.php");
 
-            }
+            }*/
 
         }
-            
+        
+        /*
+
         $script = incorrectUserDataError();
 
         foreach($script as $statement){
