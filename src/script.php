@@ -13,4 +13,14 @@
         return 0;
 
     }
+
+    function pageReturn(){
+        echo (
+            '
+            <script>
+                window.history.back();
+            </script>
+            '
+        );
+    }
 ?>
