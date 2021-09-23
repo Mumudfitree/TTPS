@@ -25,14 +25,19 @@
     
     function jsCombine(array $command){
         
-        echo '<script>';
+        $jsStatement[0] = '<script>';
         
+        $i = 1;
+
         foreach($command as $statement){
             
-            echo $statement;
+            $jsStatement[$i] = $statement;
+            $i++;
         }
 
-        echo '</script>';
+        $jsStatement[$i] = '</script>';
+
+        return $jsStatement;
         
     }
 
