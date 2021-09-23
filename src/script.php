@@ -2,21 +2,24 @@
 
     function alertBox(string $message){
 
-        echo (
+        $command = 
             '
                 alert("'.$message.'");
             '
-        );
+        ;
 
+        return $command;
     }
 
     function pageReturn(){
-        
-        echo (
+
+        $command = 
             '
                 window.history.back();
             '
-        );
+        ;
+
+        return $command;
     }
 
     
