@@ -33,11 +33,18 @@
 
             $row = mysqli_fetch_array($result);
 
-            sessionDeclare($row);
+            $stmt = sessionDeclare($row);
 
             legacyLogin(legacySession);
 
-            if($_SESSION['login_type'] === 0)
+            if($_SESSION['login_type'] === 0) {
+                foreach($stmt as $command){
+                    echo $command;
+                }
+
+            }
+
+            unset($stmt);
 
             /*
             $_SESSION["UserID"] = $row["login_id"]; //รหัส ID
