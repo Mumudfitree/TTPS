@@ -33,18 +33,7 @@
 
             $row = mysqli_fetch_array($result);
 
-            $stmt = sessionDeclare($row);
-
             legacyLogin(legacySession);
-
-            if($_SESSION['login_type'] === 0) {
-                foreach($stmt as $command){
-                    echo $command;
-                }
-
-            }
-
-            unset($stmt);
 
             /*
             $_SESSION["UserID"] = $row["login_id"]; //รหัส ID
@@ -195,9 +184,10 @@
             break;
             default:
             $_SESSION['login_type'] = 0;
-                $script = incorrectUserDataError();
+                $_SESSION['script'] = incorrectUserDataError();
 
-                return $script;
+                header("location: index.php");
+            break;
         }
 
 

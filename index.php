@@ -61,6 +61,22 @@ http_response_code(200);
 
 <body>
 
+
+<?php
+
+        if(isset($_SESSION['script'])){
+
+            $stmt = $_SESSION['script'];
+
+            foreach ($stmt as $command){
+
+                echo $command;
+            }
+
+        }
+
+?>
+
     <div class="container">
         <h1 class="mt-5">เข้าสู่ระบบ</h1>
         <hr>
