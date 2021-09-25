@@ -21,10 +21,10 @@
         if(!compatibleSQL) {
             $sql="SELECT * FROM login_information, user_data  WHERE 
             username='".$username."' and password='".$password."' and user_role_id ='".$role."' 
-            AND login_information.user_id = user_data.user_id";
+            AND login_information.user_id = user_data.user_id;";
         }
         else {
-            $sql="SELECT * FROM login_information WHERE username = $username AND password = $password AND user_role_id = $role";
+            $sql="SELECT * FROM login_information WHERE username = '".$username."' AND password = '".$password."' AND user_role_id = '".$role."';";
         }
 
         $result = mysqli_query($conn,$sql);
@@ -151,6 +151,7 @@
 
         }
 
+        //You may remove this condition if your codes didn't work. This codes is play safe.
         if(isset($_SESSION['master_id'])) $dbrole = $data['user_role_id'];
         
         if(!isset($dbrole)) {
