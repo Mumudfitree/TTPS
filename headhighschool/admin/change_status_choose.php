@@ -9,13 +9,13 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
         $id = $_REQUEST['change_id'];
 
         $sql = "SELECT * FROM  choose_a_teaching WHERE choose_id = '".$id."'";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
     }
 
     $sql = "UPDATE choose_a_teaching SET  status_choose  = 'Active' WHERE choose_id = '".$id."'";
-    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
     if($result){

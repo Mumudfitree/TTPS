@@ -15,7 +15,7 @@
             
                 if(!isset($errorMsg)){
                     $sql = "INSERT INTO user_role(name_role) VALUE('".$role."') ";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn);
 
                     if($result){

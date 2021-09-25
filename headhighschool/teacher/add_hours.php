@@ -49,7 +49,7 @@
             if(!isset($errorMsg)){
                 $sql = "INSERT INTO prepare_to_teach (choose_id,date_prepare,learning,purpose,how_to_teach,media,measure) 
                 VALUES('".$choose_id."', '$date_prepare','$learn', '$purpose','$how_to_teach', '$media', '$measure') ";
-                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                 //$query = mysqli_query($conn,$sql) or die(mysqli_error($conn) . "<br>$sql");   ตรวจสอบบัค
                 mysqli_close($conn);
                 if($result){

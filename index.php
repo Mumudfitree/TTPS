@@ -102,7 +102,7 @@ http_response_code(200);
             
 
             <?php
-                $query = "SELECT * FROM user_role ORDER BY user_role_id asc" or die("Error:" . mysqli_error());
+                $query = "SELECT * FROM user_role ORDER BY user_role_id asc" or die("Error:" . mysqli_error($conn));
                 $result = mysqli_query($conn, $query);
             ?>
             <label for="username" class="col-sm-3 control-label">บทบาทผู้ใช้</label>

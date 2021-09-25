@@ -12,7 +12,7 @@
         //2. query ข้อมูลจากตาราง:
         $id = $_REQUEST['update_id'];
         $sql = "SELECT * FROM  year WHERE year_id = '".$id."' ";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
             /*$id = $_REQUEST['update_id'];
@@ -37,7 +37,7 @@
         }else{
                 if(!isset($errorMsg))
         $check = "SELECT * FROM year WHERE year_name = '$year_name' AND term = '$term' ";
-        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error($conn));
         $row_check = mysqli_fetch_array($query_check);
         
         if($row_check > 0)
@@ -49,7 +49,7 @@
         }else{
             $sql ="UPDATE year SET year_name = '".$year_name_up."' ,term = '".$term_up."',
             status_year = 'Active' WHERE year_id = '".$id."' ";
-            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
             mysqli_close($conn);
             if($result){
                 echo "<script>";

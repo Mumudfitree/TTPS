@@ -27,7 +27,7 @@
            
                 if(!isset($errorMsg)){
                     $sql = "INSERT INTO choose_a_teaching(master_id, grade_id, subject_id, class_id, time_id, date, year_id) VALUE('".$name."', '".$grade_level."', '".$code."', '".$classroom."', '".$time_name."', '".$date."', '".$year."')";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn);
                     //INSERT INTO `choose_a_teaching` (`choose_id`, `master_id`, `subject_id`, `class_id`, `status_choose`) VALUES (NULL, '41', '10', '14', 'Active');
                     

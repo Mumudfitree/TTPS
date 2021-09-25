@@ -13,7 +13,7 @@
         $id = $_REQUEST['update_id'];
 
         $sql = "SELECT * FROM  time, year WHERE time.year_id = year.year_id AND time_id = '".$id."' ";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
             /*$id = $_REQUEST['update_id'];
@@ -35,7 +35,7 @@
         }else{
                 if(!isset($errorMsg))
                     $sql = "UPDATE time SET time_name = '".$time_name_up."',year_id = '".$year_up."' WHERE time_id = '".$id."'";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
     if($result){

@@ -40,7 +40,7 @@
                 if(!isset($errorMsg)){
                     $sql = "INSERT INTO weekly_summary(choose_id,date_prepare_week,goal,result,activity_good,activity_nogood,problem,student,solve_the_problem)
                      VALUE('$choose_id', '$date', '$goal', '$result', '$activity_good', '$activity_nogood', '$problem', '$student', '$solve_the_problem') ";
-                     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                     $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                      //$query = mysqli_query($conn,$sql) or die(mysqli_error($conn) . "<br>$sql");   ตรวจสอบบัค
                      mysqli_close($conn);
 

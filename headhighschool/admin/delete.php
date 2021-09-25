@@ -13,7 +13,7 @@ if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก�
         $id = $_REQUEST['delete_id'];
 
         $sql = "SELECT * FROM  login_information WHERE master_id = '".$id."'";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
         
@@ -26,7 +26,7 @@ if (!isset($_SESSION['admin_login'])) {//คำสั่งต้องloginก�
             
     }
     $sql = "UPDATE login_information SET  status_master  = 'Inactive' WHERE master_id = '".$id."'";
-    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
     if($result){

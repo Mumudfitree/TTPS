@@ -32,7 +32,7 @@
            
         if(!isset($errorMsg)){
         $check = "SELECT * FROM choose_a_teaching WHERE login_id = '$name' AND time_id = '$time_name' AND date = '$date' ";
-        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error($conn));
         $row_check = mysqli_fetch_array($query_check);
         
         if($row_check > 0)
@@ -43,7 +43,7 @@
          echo "</script>";
         }else{
             $sql = "INSERT INTO choose_a_teaching(login_id, grade_id, subject_id, class_id, time_id, date, year_id) VALUE('".$name."', '".$grade_level."', '".$code."', '".$classroom."', '".$time_name."', '".$date."', '".$year."')";
-            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
             if($result){
                 echo "<script>";
                 echo "alert('เพิ่มข้อมูลของสมาชิกเสร็จสิ้น');";

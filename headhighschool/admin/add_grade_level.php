@@ -16,7 +16,7 @@
             
                 if(!isset($errorMsg)){
                     $sql = "INSERT INTO grade_level(grade_level_user, name_gradelevel) VALUE('".$grade_level_user."', '".$name_gradelevel."') ";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn);
 
                     if($result){

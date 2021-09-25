@@ -163,7 +163,7 @@
 
                     $insert_stmt = "UPDATE notify SET code = '".$_SESSION['code']."' WHERE master_id = ".$_SESSION['master_id'].";";
 
-                    $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error());
+                    $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error($conn));
                     $row = mysqli_fetch_array($query);
                     
                     return 0;
@@ -179,7 +179,7 @@
                 
             $insert_stmt = "INSERT INTO notify (master_id, code) VALUES (".$_SESSION['master_id'].", '".$_SESSION['code']."'); ";
 
-            $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error());
+            $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error($conn));
             $row = mysqli_fetch_array($query);
 
         }
@@ -226,7 +226,7 @@
             $insert_stmt = "UPDATE notify SET token = '".$_SESSION['token']."' 
                             WHERE master_id = ".$_SESSION['master_id'].";";
                     
-            $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error());
+            $query=mysqli_query($GLOBALS['conn'], $insert_stmt) or die ("Error in query: $insert_stmt " . mysqli_error($conn));
             $row = mysqli_fetch_array($query);
         
         }

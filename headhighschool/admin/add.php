@@ -30,7 +30,7 @@
             
                 if(!isset($errorMsg)){
                     $sql ="INSERT INTO login_information(fname,lname,username,password,email,user_role_id)VALUES ('$firstname','$lastname','$username','$password','$email','$role')";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn);
     
                     if($result){
@@ -146,7 +146,7 @@
                 </div>
             </div>
             <?php
-                $query = "SELECT * FROM user_role ORDER BY user_role_id asc" or die("Error:" . mysqli_error());
+                $query = "SELECT * FROM user_role ORDER BY user_role_id asc" or die("Error:" . mysqli_error($conn));
                 $result = mysqli_query($conn, $query);
             ?>
             <div class="form- text-center">

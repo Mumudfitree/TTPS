@@ -24,7 +24,7 @@
             
                 if(!isset($errorMsg)){
                     $sql ="INSERT INTO login_information(user_id,username,password,user_role_id)VALUES ('$user','$username','$password','$role')";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn);
     
                     if($result){
@@ -97,7 +97,7 @@
     <form method="post" class="form-horizontal mt-5">
 
             <?php
-                $queryz = "SELECT * FROM user_data ORDER BY user_id asc" or die("Error:" . mysqli_error());
+                $queryz = "SELECT * FROM user_data ORDER BY user_id asc" or die("Error:" . mysqli_error($conn));
                 $resultz = mysqli_query($conn, $queryz);
             ?>
             <div class="form- text-center">
@@ -141,7 +141,7 @@
             <br>
 
             <?php
-                $query = "SELECT * FROM user_role ORDER BY user_role_id asc" or die("Error:" . mysqli_error());
+                $query = "SELECT * FROM user_role ORDER BY user_role_id asc" or die("Error:" . mysqli_error($conn));
                 $result = mysqli_query($conn, $query);
             ?>
             <div class="form- text-center">

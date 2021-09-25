@@ -114,7 +114,7 @@ foreach($data as $q[]){
 
         
         $check = "SELECT * FROM choose_a_teaching WHERE login_id = '$login_id' AND time_id = '$time_id' AND date = '$date' ";
-        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error($conn));
         $row_check = mysqli_fetch_array($query_check);
         
         if($row_check > 0)

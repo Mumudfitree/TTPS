@@ -38,7 +38,7 @@
             $id = $_REQUEST['download_id'];
             $sql = "SELECT * FROM weekly_summary as week,choose_a_teaching as c,subject as sub, classroom  as class,login_information as login, user_data as user
             WHERE user.user_id = login.user_id AND week.choose_id = c.choose_id AND c.subject_id = sub.subject_id AND c.login_id = login.login_id AND c.class_id =class.class_id AND week.id_prepare_week = $id ";
-            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
             $row = mysqli_fetch_array($result);
             extract($row);
         

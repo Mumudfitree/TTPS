@@ -12,7 +12,7 @@
         //2. query ข้อมูลจากตาราง:
         $id = $_REQUEST['update_id'];
         $sql = "SELECT * FROM  year WHERE year_id = '".$id."' ";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
             /*$id = $_REQUEST['update_id'];
@@ -38,7 +38,7 @@
                 if(!isset($errorMsg))
                     $sql = "UPDATE year SET year_name = '".$year_name_up."' ,term = '".$term_up."',
                     status_year = 'Active' WHERE year_id = '".$id."'";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
     if($result){

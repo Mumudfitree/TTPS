@@ -38,7 +38,7 @@
             $sql = "SELECT * FROM choose_a_teaching as c,subject as sub, classroom  as class,login_information as login, grade_level as grade,time ,year as y, user_data as user
             WHERE  user.user_id = login.user_id AND c.choose_id = $id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.year_id = y.year_id AND c.login_id =login.login_id AND c.login_id = $id1 
             AND c.grade_id = grade.grade_id AND c.time_id = time.time_id";
-            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
             $row = mysqli_fetch_array($result);
             extract($row);
         

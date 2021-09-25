@@ -15,7 +15,7 @@
             $sql = "SELECT * FROM prepare_to_teach as pre ,choose_a_teaching as c, subject as sub , classroom as class, grade_level as grade
             WHERE pre.id_prepare = '".$id2."' AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.grade_id = grade.grade_id AND
             pre.choose_id = c.choose_id ";
-            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
             $row = mysqli_fetch_array($result);
             extract($row);
         
@@ -51,7 +51,7 @@
                     $sql = "UPDATE prepare_to_teach SET  choose_id = '".$choose_id."', date_prepare ='".$date_prepare."'
                    , learning='".$learn_up."',purpose='".$purpose_up."',how_to_teach='".$how_to_teach_up."',media='".$media_up."',measure='".$measure_up."',status_prepare_hours='".$status."' 
                    WHERE id_prepare = '".$id2."' ";
-                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                 mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
                 if($result){

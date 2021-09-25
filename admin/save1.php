@@ -8,7 +8,7 @@ if(isset($_POST["submit"]))
                 $database='excel';
                 $conn=mysqli_connect($servername,$username,$password,$database);
           if(!$conn){
-          die('Could not Connect My Sql:' .mysqli_error());
+          die('Could not Connect My Sql:' .mysqli_error($conn));
 		  }
           $file = $_FILES['file']['tmp_name'];
           $handle = fopen($file, "r");

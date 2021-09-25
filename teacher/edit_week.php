@@ -14,7 +14,7 @@
             $sql = "SELECT * FROM weekly_summary as week ,choose_a_teaching as c, subject as sub , classroom as class, grade_level as grade
             WHERE week.id_prepare_week = '".$id."' AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.grade_id = grade.grade_id AND
             week.choose_id = c.choose_id ";
-            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
             $row = mysqli_fetch_array($result);
             extract($row);
         
@@ -52,7 +52,7 @@
                 $sql = "UPDATE weekly_summary 
                 SET choose_id = '".$choose_id."', date_prepare_week = '".$date."', goal = '".$goal."', result = '".$result."', activity_good = '".$activity_good."', activity_nogood = '".$activity_nogood."', problem ='".$problem."', student = '".$student."', Solve_the_problem ='".$solve_the_problem."'  
                 , status_prepare_week ='Checking' WHERE id_prepare_week = '".$id."' ";
-                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                 mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
                 if($result){

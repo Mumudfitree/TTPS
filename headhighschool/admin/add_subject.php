@@ -19,7 +19,7 @@
             
                 if(!isset($errorMsg)){
                     $sql ="INSERT INTO subject(grade_id, code_subject, name_subject) VALUE('".$grade."', '".$code_subject."', '".$name_subject."') ";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn);
 
                     if($result){

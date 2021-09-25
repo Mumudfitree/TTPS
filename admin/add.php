@@ -22,7 +22,7 @@
             
                 if(!isset($errorMsg)){
         $check = "SELECT * FROM user_data WHERE firstname = '$firstname' AND lastname = '$lastname' OR email = '$email' ";
-        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error($conn));
         $row_check = mysqli_fetch_array($query_check);
         
         if($row_check > 0)
@@ -33,7 +33,7 @@
          echo "</script>";
         }else{
             $sql ="INSERT INTO user_data(firstname,lastname,email)VALUES ('$firstname','$lastname','$email')";
-            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
             mysqli_close($conn);
             if($result){
                 echo "<script>";

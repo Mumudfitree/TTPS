@@ -14,7 +14,7 @@
 
         $sql = "SELECT * FROM  login_information as login, user_data as user, user_role as role 
         WHERE login.user_id = user.user_id AND login.user_role_id = role.user_role_id AND login.login_id = '".$id."'  ";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
             /*$id = $_REQUEST['update_id'];
@@ -47,7 +47,7 @@
                     $sql = "UPDATE login_information SET user_id = '".$user_up."' ,username = '".$username_up."',
                     password= '".$password_up."',user_role_id ='".$role_up."'
                     WHERE login_id = '".$id."'";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
     if($result){

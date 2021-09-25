@@ -12,7 +12,7 @@
         $id = $_REQUEST['update_id'];
 
         $sql = "SELECT * FROM  subject as sub,grade_level as grade  WHERE sub.grade_id = grade.grade_id AND sub.subject_id = '".$id."'";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
             /*$id = $_REQUEST['update_id'];
@@ -36,7 +36,7 @@
                 if(!isset($errorMsg))
                 $sql = "UPDATE subject SET grade_id = '".$grade_level_user."', code_subject = '".$code_subject."', name_subject ='".$name_subject."' 
                     WHERE subject_id = '".$id."' ";
-                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
                     if($result){

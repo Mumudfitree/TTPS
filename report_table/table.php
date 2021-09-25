@@ -5,7 +5,7 @@
 
     define('Generate', 1);
 
-    $query = "SELECT * FROM login_information ORDER BY master_id asc" or die("Error:" . mysqli_error());
+    $query = "SELECT * FROM login_information ORDER BY master_id asc" or die("Error:" . mysqli_error($conn));
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_array($result);
 

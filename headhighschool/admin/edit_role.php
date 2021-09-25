@@ -12,7 +12,7 @@
         $id = $_REQUEST['update_id'];
 
         $sql = "SELECT * FROM  user_role WHERE user_role_id = '".$id."'";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
         
@@ -32,7 +32,7 @@
             
                 if(!isset($errorMsg))
                 $sql = "UPDATE user_role SET  name_role = '".$name_role."' WHERE user_role_id = '".$id."'";
-                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                 mysqli_close($conn); //ปิดการเชื่อมต่อ database 
             
         }

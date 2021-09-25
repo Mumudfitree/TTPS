@@ -34,7 +34,7 @@
 
         
         $sql = "SELECT * FROM work_history WHERE user_id = ".$_SESSION['master_id']."; ";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
 
             if(isset($row['work_history'])){

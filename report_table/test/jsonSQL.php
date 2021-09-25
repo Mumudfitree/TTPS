@@ -4,7 +4,7 @@
     include_once "./../../connection.php";
 
     $sql = "SELECT * FROM work_history ";
-    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
     $row = mysqli_fetch_array($result);
 
     $data = [
@@ -16,6 +16,6 @@
     $json = json_encode($data);
 
     $sql = "INSERT INTO work_history VALUES (".$_SESSION['master_id'].", '".$json."');";
-    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
     $row = mysqli_fetch_array($result);
 ?>

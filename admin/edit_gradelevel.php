@@ -12,7 +12,7 @@
         $id = $_REQUEST['update_id'];
 
         $sql = "SELECT * FROM  grade_level WHERE grade_id = '".$id."' ";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
 
@@ -33,7 +33,7 @@
             
                 if(!isset($errorMsg))
                 $sql = "UPDATE grade_level SET grade_level_user = '".$grade_level_user."' , name_gradelevel = '".$name_gradelevel."' WHERE grade_id = '".$id."'";
-                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
                     if($result){
@@ -90,7 +90,7 @@
         <form method="post" class="form-horizontal mt-5">
         <?php 
             $sql1 = "SELECT * FROM grade_level WHERE grade_id = '".$id."' ";
-            $result1 = mysqli_query($conn, $sql1) or die ("Error in query: $sql1 " . mysqli_error());
+            $result1 = mysqli_query($conn, $sql1) or die ("Error in query: $sql1 " . mysqli_error($conn));
                     mysqli_close($conn);
         ?>
 

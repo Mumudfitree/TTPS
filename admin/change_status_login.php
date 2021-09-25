@@ -10,7 +10,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
         $id = $_REQUEST['change_id'];
 
         $sql = "SELECT * FROM  login_information WHERE login_id = '".$id."'";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
           /*  $id = $_REQUEST['change_id'];
@@ -22,7 +22,7 @@ session_start();//คำสั่งต้องloginก่อนถึงเข
             
     }
     $sql = "UPDATE login_information SET  status_login  = 'Active' WHERE login_id = '".$id."'";
-    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+    $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
     mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
     if($result){

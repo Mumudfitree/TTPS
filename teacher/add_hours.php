@@ -51,7 +51,7 @@
             if(!isset($errorMsg)){
                 $sql = "INSERT INTO prepare_to_teach (choose_id,date_prepare,learning,purpose,how_to_teach,media,measure) 
                 VALUES('".$choose_id."', '$date_prepare','$learn', '$purpose','$how_to_teach', '$media', '$measure') ";
-                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+                $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
                 //$query = mysqli_query($conn,$sql) or die(mysqli_error($conn) . "<br>$sql");   ตรวจสอบบัค
                 
                 if($result){
@@ -204,7 +204,7 @@
                         $sql2z = "SELECT * FROM choose_a_teaching as c, subject as sub, classroom as class, login_information as login, user_data as user
                         WHERE user.user_id = login.user_id AND c.login_id = login.login_id AND c.subject_id = sub.subject_id AND c.class_id = class.class_id AND c.login_id = '".$id1."' " ;//เชื่อม2ตาราง
                         
-                        $resultz = mysqli_query($conn,$sql2z) or die ("Error in query: $sql2z " . mysqli_error());
+                        $resultz = mysqli_query($conn,$sql2z) or die ("Error in query: $sql2z " . mysqli_error($conn));
                         
                     ?>
 

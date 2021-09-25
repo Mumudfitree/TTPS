@@ -13,7 +13,7 @@
         $id = $_REQUEST['update_id'];
 
         $sql = "SELECT * FROM  user_data WHERE user_id = '".$id."'  ";
-        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         extract($row);
             /*$id = $_REQUEST['update_id'];
@@ -42,7 +42,7 @@
                 if(!isset($errorMsg)){
 
         $check = "SELECT * FROM user_data WHERE firstname = '$firstname_up' AND lastname = '$lastname_up' OR email = '$email_up' ";
-        $query_check = mysqli_query($conn,$check)or die(mysqli_error());
+        $query_check = mysqli_query($conn,$check)or die(mysqli_error($conn));
         $row_check = mysqli_fetch_array($query_check);
         
         if($row_check > 0)
@@ -55,7 +55,7 @@
             $sql ="UPDATE user_data SET firstname = '".$firstname_up."' ,lastname = '".$lastname_up."',
             email= '".$email_up."'
             WHERE user_id = '".$id."'";
-            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+            $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
             mysqli_close($conn);
             if($result){
                 echo "<script>";
