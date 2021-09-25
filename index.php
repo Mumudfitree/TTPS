@@ -73,6 +73,9 @@ http_response_code(200);
                 echo $command;
             }
 
+            unset($stmt);
+            unset($_SESSION['script']);
+
         }
 
 ?>
