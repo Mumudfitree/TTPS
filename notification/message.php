@@ -29,16 +29,8 @@
                 $query = mysqli_query($GLOBALS['conn'], $sql);
                 $row = mysqli_fetch_array($query);
 
-                //have check on this function if it have already sign in. Because it will give error if it was NULL.
-
-                //if called directly, return token values (and UserID?)
-                //return $row['token'];
-
-                //if called indirectly, return token
                 return $row;  
                 
-                //you are return as string, because you return only $row['token']; not entire $row
-                //if you return just $row, you will return as string
     }
 
     function getAllToken()
@@ -54,22 +46,12 @@
 
             }
                     
-                    
-
-                //have check on this function if it have already sign in. Because it will give error if it was NULL.
-
-                //if called directly, return token values (and UserID?)
-                //return $row['token'];
-
-                //if called indirectly, return token
                     $arr[$i] = $row['master_id'];
                     $i++;
                 }
 
                 return $arr;
-                
-                //you are return as string, because you return only $row['token']; not entire $row
-                //if you return just $row, you will return as string
+
     }
 
     function getUserToken(string $user)
@@ -120,11 +102,6 @@
         //You should send CURLOPT_POSTFIELDS as strings according to document
         //https://www.php.net/manual/en/function.curl-setopt.php
 
-        /*$headers = [
-            'Content-Type' => 'application/x-www-form-urlencoded',
-            'Authorization' => 'Bearer '.$senderID.''
-        ];*/
-
         $headers = array( 'Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer '.$senderID.'');  //You have to send headers as arrays
 
         $fields = [  //here should be able to send other forms, more than just text. But just do one-by-one now.
@@ -135,10 +112,8 @@
             $ch = curl_init();
         
             curl_setopt($ch, CURLOPT_URL, $api_url);
-            //curl_setopt($ch, CURLOPT_HEADER, $headers); //not CURLOPT_HEADER, it's CURLOPT_HTTPHEADER
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($ch, CURLOPT_POST, count($fields));
-            //curl_setopt($ch, CURLOPT_POSTFIELDS, $fields); //have to send as string if it only have 1 argument, I can't send like this
             curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$msg);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

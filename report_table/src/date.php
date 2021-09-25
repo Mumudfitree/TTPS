@@ -150,12 +150,7 @@
 
     }
 
-    function isWorkDayLoop($day){ //ตรวจสอบว่าคือวันหยุดหรือไม่
-        //ในขั้นต้นให้เขียนแค่ตรวจสอบวันเสาร์กับวันอาทิตย์ก่อน วันอาทิตย์คือ 0 ส่วนวันเสาร์คือ 6
-        //คืนค่าเป็น 1 เมื่อเป็นวันทำงาน และ 0 เมื่อเป็นวันหยุด
-        //$date คือส่งวันที่มา ส่วน $arrayData ส่งข้อมูลเกี่ยวกับวันนี้ ประกาศไว้ใน getDayOfWeek()
-
-        //code here...
+    function isWorkDayLoop($day){
 
         $exceptArray = array(0, 6);
         foreach($exceptArray as $loop){
@@ -184,7 +179,7 @@
         }
     }
 
-    function checkPainterSpecialCase($case /*, $day*/){
+    function checkPainterSpecialCase($case){
         $exceptCaseArray = array('0', '0.3', '0.5', '0.7', '11', 'ป', 'ล');
         
         foreach($exceptCaseArray as $data){
@@ -193,23 +188,10 @@
 
         return 0;
 
-        /*$exceptDayArray = array(6);
-        foreach ($exceptDayArray as $loop){
-            if($day === $loop){
-                return 1;
-            }
-            return 0;
-        }*/
     }
 
-    function tableBlockPainter($case, $day){ //ส่งลักษณะของสีพื้นหลังช่องตารางตามที่กำหนดไว้
-        //เบื้องต้นให้พิมพ์สีออกมาเฉพาะวันศุกร์ เป็นสีเขียว
-        //เป็นไปได้ ให้ทำการใช้ color picker ดูดสีออกมาจากภาพ เพื่อให้สีตรงที่สุด
-        //หรือแล้วแต่ ถ้าคิดว่ามีสีอื่นที่สวยกว่านั้น ก็ใช้อันนั้นได้
-        //ให้ทำการ echo ออกมาเลย ไม่ต้องคืนคาอะไรกลับไป
-        //$day คือส่งวันมา เป็นตัวเลข 0 - 6 0 คือวันอาทิตย์ 6 คือวันเสาร์
+    function tableBlockPainter($case, $day){
 
-        //code here...
         switch($case){
             case '0':
             case '0.3':
@@ -239,18 +221,6 @@
 
             return 0;
 
-        //echo '
-            //text-align:center;">
-
-             //';
-
-
-
-        //สิ่งที่ต้องทำต่อไปสำหรับฟังก์ชั่นนี้ ตรงนี้ยังไม่จำเป็นต้องทำ
-        //ลงสีคนขาด 0
-        //ลงสีคนลา ล
-        //ลงสีคนลาป่วย ป
-        //ลงสีคนมาทำงานครึ่งวัน 0.5
     }
 
     function tableBlockPrint($data){

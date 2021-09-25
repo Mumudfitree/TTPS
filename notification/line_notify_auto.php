@@ -27,8 +27,6 @@ $paramPos = strpos($URL, "?");
         </script>");
 
 function sendlinemesg() {
-    // LINE LINE_API https://notify-api.line.me/api/notify
-    // LINE TOKEN mhIYaeEr9u3YUfSH1u7h9a9GlIx3Ry6TlHtfVxn1bEu แนะนำให้ใช้ของตัวเองนะครับเพราะของผมยกเลิกแล้วไม่สามารถใช้ได้
     define('LINE_API',"https://notify-api.line.me/api/notify");
     //define('LINE_TOKEN',"AwdpAwmOgcBDD00CnulluEJTNBVkwmnOX1I8kbLeven");   test token
     //define('LINE_TOKEN', "UO1yducRKhwDFp9Oz6ime3wKKdxtIns7uA30JZbjpQ5");    test_2 token

@@ -60,12 +60,6 @@
 
             return -1;
 
-            /* if($i%2 === 1){
-                if ( ($upTime['hour'] + 1) > $dbTime[$i]['hour'] ) continue;
-                if( ($upTime['minute']) > $dbTime[$i]['minute']) continue;
-
-                if( ($upTime['hour'] - $dbTime[$i]['hour']) <= 0 && ( $upTime['hour'] - $dbTime[$i]['hour'] ) >= -1 && ( ($upTime['minute'] - $dbTime[$i]['minute']) <= 1 ) && ( ($upTime['minute'] - $dbTime[$i]['minute']) >= -1 ) ) return $i;
-            } */
         }
 
     }

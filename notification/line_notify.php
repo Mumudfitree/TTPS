@@ -110,42 +110,14 @@
     }
     
     function addDatabase(){
-
-        //ยังไม่เรียบร้อย แต่ว่าพอใช้งานได้
-        //อยากให้มีระบบตรวจทานว่าเพิ่มไปให้ใคร
-        //ถ้ามีอีเมล์ก็ตรวจว่าตรงกับที่มีไหม
-        //ถ้าตรง ให้ทำการเพิ่มไปใน database และแจ้งว่าเพิ่มลงในอีเมล์นี้แล้ว
-        //แล้วถามเพิ่มว่า ไม่ใช่บัญชีนี้หรือ
-        //ถ้าไม่ตรง ให้เพิ่มลงใน guestXX ก่อน
-        //แล้วแจ้งว่า เพิ่มลงใน guest แล้ว
-        //ถามเพิ่มว่า เพิ่มชื่อลงในระบบ
-
-        //เวลาที่ใช้บัญชีที่ทำการเชื่อม line notify แล้ว
-        //ให้ดึงข้อมูลไปใช้ได้ทันที ไม่ต้องขอใหม่
-
-
-        //ปัญหาที่ยังไม่แก้ไข
-        //การจะใช้งาน line notify จำเป็นต้อง log in ในระบบก่อน
-        //ไม่เช่นนั้นจะทำการเพิ่มข้อมูลไม่ขึ้น
-        //เพราะพยายามเชื่อมกับ database จึงจำเป็นต้องมี master_id
-
     
         if($_SESSION['login_type']){
             echo $_SESSION['user_login'];
         }
 
-       //Here you are still didn't give entry for new user, I have to fix this.
-        if(!isset($errorMsg)){ //This one doesn't use because I will use query() instead.
-            //$insert_stmt = $GLOBALS['db']->prepare("SELECT * FROM login_information WHERE username = :id;");
+        if(!isset($errorMsg)){
 
-            //this codes should be seperate to function in the future
-            /*if($insert_stmt->execute()){
-
-                //problem is, I forgot to change other one that called it. So the it show that SQL codes were wrong. Codes from first one is correct, but not the second one. Because it pass checking Query at first times, but not the second.
-
-            }*/ //old one
-
-            //I mean, this codes should be seperate to function.
+            //This codes should be seperate to function.
             $insert_stmt = 'SELECT * FROM login_information';
             $stmt = $GLOBALS['db']->query($insert_stmt);
 
@@ -153,13 +125,9 @@
 
             foreach ($dbData as $distinctData){
 
-                //This is wrong, I need to find if there are already created one. Not finds if that datas that are reading now is exist. Or if datas that is reading now is NULL.
-                //if(!isset($distinctData["master_id"]) or $distinctData["master_id"] === NULL){
-
                 if(isset($_SESSION['unregister'])) break;
 
-                if(intval($distinctData['master_id']) === intval($_SESSION['master_id'])){  //This is wrong. It will always try using INSERT INTO no matter what your datas is already there or not.
-                //But... Actually, it was true. Codes is UPDATE, not INSERT TO. INSERT TO are outside.
+                if(intval($distinctData['master_id']) === intval($_SESSION['master_id'])){
 
                     $insert_stmt = "UPDATE notify SET code = '".$_SESSION['code']."' WHERE master_id = ".$_SESSION['master_id'].";";
 
@@ -170,9 +138,6 @@
                     
                 }
                     
-                //This codes should be seperate to function
-                //$insert_stmt = $GLOBALS['db']->prepare("INSERT INTO notify (master_id, code) VALUES :n, :code");
-                //This codes should have move to outside and get codes from outsides in.
             }
             $code = $_SESSION['code'];
             $n = intval($_SESSION['master_id']);
@@ -220,8 +185,7 @@
 
             $_SESSION['token'] = $json->access_token;
 
-        if(!isset($errorMsg)){ //bugs is from here, I forgot to unset $errorMsg (or is it?)
-                                       //No, it wasn't. bugs is from forgot to return function. And it run code outside Condition Scope.
+        if(!isset($errorMsg)){
 
             $insert_stmt = "UPDATE notify SET token = '".$_SESSION['token']."' 
                             WHERE master_id = ".$_SESSION['master_id'].";";
