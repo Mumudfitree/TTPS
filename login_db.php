@@ -110,14 +110,12 @@
 
         }
 
-        if(!isset($dbrole)) {
+        if(!isset($_SESSION['master_id'])) {
 
             $_SESSION['login_type'] = 0;
             $_SESSION['script'] = incorrectUserDataError();
 
             header("location: index.php");
-
-            return 403;
             
         }
         
@@ -142,7 +140,6 @@
             $_SESSION['user_login'] = $data['username'];
             $_SESSION['name'] = $data['fname'].' '.$data['lname'];
 
-            if(isset($data)) $dbrole = $data['user_role_id'];
         }
 
         if(isset($data['login_id'])) {
@@ -152,9 +149,10 @@
             $_SESSION['user_login'] = $data['username'];
             $_SESSION['name'] = $data['firstname'].' '.$data['lastname'];
 
-            if(isset($data)) $dbrole = $data['user_role_id'];
         }
 
+        if(isset($_SESSION['master_id'])) $dbrole = $data['user_role_id'];
+        
         if(!isset($dbrole)) {
 
             $_SESSION['login_type'] = 0;
