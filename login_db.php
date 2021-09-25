@@ -37,6 +37,8 @@
 
             legacyLogin(legacySession);
 
+            if($_SESSION['login_type'] === 0)
+
             /*
             $_SESSION["UserID"] = $row["login_id"]; //รหัส ID
             $_SESSION["User"] = $row["firstname"]." ".$row["lastname"]; //ชื่อ-สกุล
@@ -188,11 +190,7 @@
             $_SESSION['login_type'] = 0;
                 $script = incorrectUserDataError();
 
-                foreach($script as $statement){
-                    echo $statement;
-                }
-
-
+                return $script;
         }
 
 
