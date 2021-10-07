@@ -64,7 +64,7 @@
         ?>
         <?php while ($row = mysqli_fetch_array($result)){//if (isset($_SESSION['username'])) : ?>
                 <h3 align="center">สวัสดีคุณ : <?php echo $row['fname']; ?> &nbsp;  <?php echo $row['lname']; ?></h3>   
-        <?php }?><?php?><br>
+        <?php }?><?php ?><br>
                 <h5 align="center">
         <?php $today = date('Y-m-d'); 
               $sql1 = "SELECT * FROM work WHERE work_date = '$today' AND username = '".$_SESSION['username']."' ";
