@@ -2,8 +2,8 @@
 
     $time = getdate();
 
-    foreach($time as $timeData){
-        $timeData = strval($timeData);
+    foreach($time as $arrayName=>$timeData){
+        $time[$arrayName] = strval($timeData);
     }
 
     if(!isset($time['mon'][1])){
