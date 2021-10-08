@@ -2,10 +2,15 @@
 
     $time = getdate();
 
-    $time['year'] = strval($time['year']);
-    $time['mon'] = strval($time['mon']);
-    $time['mday'] = strval($time['mday']);
-    $time['wday'] = strval($time['wday']);
+    $i = 0;
+
+    foreach($time as $timeData){
+        $time[$i] = strval($timeData);
+
+        $i++;
+    }
+
+    unset($i);
 
     if(!isset($time['mon'][1])){
         $time['mon'][1] = $time['mon'][0];
