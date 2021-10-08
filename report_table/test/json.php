@@ -2,12 +2,17 @@
 
     $time = getdate();
 
-    $firstData = [
-        "year" => $time["year"],
-        "month" => $time["mon"],
-        "day" => $time["mday"],
-        "date" => $time["wday"]
-    ];
+    if(!isset($time['mon'][1])){
+        $time['mon'][1] = $time['mon'][0];
+        $time['mon'][0] = '0';
+    }
+
+    if(!isset($time['mday'][1])){
+        $time['mday'][1] = $time['mday'][0];
+        $time['mday'][0] = '0';
+    }
+
+    $firstData = sprintf("%s%s%s%s", $time['year'], $time['mon'], $time['mday'], $time['wday']);
 
     $times = rand()%10 + 1;
 
@@ -29,6 +34,12 @@
     }
 
     $ndJson = json_encode($secondData);
+
+    $data = [
+        $firstData => $secondData
+    ];
+
+    $json = json_encode($data);
 
     return 0;
     
