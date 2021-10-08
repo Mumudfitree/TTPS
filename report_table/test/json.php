@@ -2,6 +2,11 @@
 
     $time = getdate();
 
+    $time['year'] = strval($time['year']);
+    $time['mon'] = strval($time['mon']);
+    $time['mday'] = strval($time['mday']);
+    $time['wday'] = strval($time['wday']);
+
     if(!isset($time['mon'][1])){
         $time['mon'][1] = $time['mon'][0];
         $time['mon'][0] = '0';
