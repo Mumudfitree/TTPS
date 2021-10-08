@@ -2,15 +2,9 @@
 
     $time = getdate();
 
-    $i = 0;
-
     foreach($time as $timeData){
-        $time[$i] = strval($timeData);
-
-        $i++;
+        $timeData = strval($timeData);
     }
-
-    unset($i);
 
     if(!isset($time['mon'][1])){
         $time['mon'][1] = $time['mon'][0];
