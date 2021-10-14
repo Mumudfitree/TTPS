@@ -18,6 +18,11 @@
 
             }
 
+            else if ($nameGen[$index-1] === ' '){
+                $char = rand()%26;
+                $char = chr($char + 65);
+                $nameGen = $nameGen.$char;
+            }
             else {
                 $char = rand()%27;
                 $char = ($char === 26) ? chr(32) : chr($char + 97);
@@ -30,11 +35,12 @@
         }
         
         array_push($name, $nameGen);
-        $nameJs = json_encode($name);
-        printf("%s<br>", $nameJs);
-
+        
     }
-
+    
+    $nameJs = json_encode($name);
+    printf("%s<br>", $nameJs);
+    
     $jsonStream = array();
 
     foreach($time as $arrayName=>$timeData){
