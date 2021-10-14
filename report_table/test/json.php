@@ -8,22 +8,21 @@
 
     for($i = 0; $i < $times; $i++){
 
-        $nameGen = array();
-
         $strlen = rand()%100;
 
         for($index = 0; $index < $strlen; $index++){
 
             if($index === 0){
-                $char = (rand()%26) + 65;
+                $char = chr((rand()%26) + 65);
+                $nameGen = $char;
 
             }
 
             else {
-                $char = (rand()%26) + 97;
+                $char = chr((rand()%26) + 97);
+                $nameGen = $nameGen.$char;
             }
 
-            $nameGen[$index] = $char;
 
             
             $nameGenJs = json_encode($nameGen);
@@ -91,12 +90,14 @@
     ];
 
     $userData = [
-        $name => $data
+        $name[0] => $data
     ];
 
     array_push($jsonStream, $userData);
 
-    $json = json_encode($data);
+    //$json = json_encode($data);
+
+    $json = json_encode($userData);
 
     echo $json;
 
