@@ -2,6 +2,10 @@
 
     $time = getdate();
 
+    $name = "Imron";
+
+    $jsonStream = array();
+
     foreach($time as $arrayName=>$timeData){
         $time[$arrayName] = strval($timeData);
     }
@@ -43,7 +47,15 @@
         $firstData => $secondData
     ];
 
+    $userData = [
+        $name => $data
+    ];
+
+    array_push($jsonStream, $userData);
+
     $json = json_encode($data);
+
+    echo $json;
 
     return 0;
     
