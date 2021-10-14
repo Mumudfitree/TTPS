@@ -30,7 +30,6 @@
             }
             
             $nameGenJs = json_encode($nameGen);
-            //printf("%s\n", $nameGenJs);
             
         }
         
@@ -61,13 +60,13 @@
 
     $userData = array();
 
-    for($i=0; isset($name[$i]); $i++){
+    foreach($name as $key=>$value){
 
         $times = rand()%10 + 1;
 
         $secondData = array();
 
-        for($i = 0; $i < $times; $i++){
+        while($times){
 
             $hour = strval(rand()%24);
             $minute = strval(rand()%60);
@@ -86,6 +85,8 @@
 
             array_push($secondData, $timeString);
 
+            --$times;
+
         }
 
         $ndJson = json_encode($secondData);
@@ -94,14 +95,8 @@
             $firstData => $secondData
         ];
 
-        if($i === 0){
-            $userData = [
-                $name[0] => $data
-            ];
-        }
-        else {
-            array_push($userData, $data);
-        }
+        array_push($userData, $data);
+
     }
 
     array_push($jsonStream, $userData);
