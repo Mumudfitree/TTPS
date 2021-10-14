@@ -2,8 +2,10 @@
 
     include_once "../src/userJsonHandle.php";
 
-    for($i=0; $i<1000; $i++){
-        $value =randomScope($i, 1000);
+    $scope = 100;
+
+    for($i=0; $i<$scope; $i++){
+        $value =randomScope($i, $scope);
         echo $value."<br>";
     }
 
