@@ -2,7 +2,32 @@
 
     $time = getdate();
 
-    $name = "Imron";
+    $name = array("Imron");
+
+    $times = rand()%100;
+
+    for($i = 0; $i < $times; $i++){
+
+        $nameGen = array();
+
+        $strlen = rand()%100;
+
+        for($index = 0; $index < $strlen; $index++){
+
+            $char = (rand()%26) + 97;
+
+            if($index === 0){
+                $char -= 32;
+
+            }
+
+            $nameGen[$index] = $char;
+
+            array_push($name, $nameGen);
+
+            printf("%s\n", $nameGen);
+        }
+    }
 
     $jsonStream = array();
 
@@ -34,14 +59,12 @@
         $timeString = array();
 
         if(!isset($hour[1])){
-            $hour[1] = $hour[0];
-            $hour[0] = "0";
+            $hour = "0".$hour[0];
 
         }
 
         if(!isset($minute[1])){
-            $minute[1] = $minute[0];
-            $minute[0] = "0";
+            $minute = "0".$minute[0];
 
         }
 
