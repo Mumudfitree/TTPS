@@ -59,40 +59,50 @@
 
     $firstData = sprintf("%s%s%s%s", $time['year'], $time['mon'], $time['mday'], $time['wday']);
 
-    $times = rand()%10 + 1;
+    $userData = array();
 
-    $secondData = array();
+    for($i=0; isset($name[$i]); $i++){
 
-    for($i = 0; $i < $times; $i++){
+        $times = rand()%10 + 1;
 
-        $hour = strval(rand()%24);
-        $minute = strval(rand()%60);
+        $secondData = array();
 
-        if(!isset($hour[1])){
-            $hour = "0".$hour[0];
+        for($i = 0; $i < $times; $i++){
+
+            $hour = strval(rand()%24);
+            $minute = strval(rand()%60);
+
+            if(!isset($hour[1])){
+                $hour = "0".$hour[0];
+
+            }
+
+            if(!isset($minute[1])){
+                $minute = "0".$minute[0];
+
+            }
+
+            $timeString = $hour.$minute;
+
+            array_push($secondData, $timeString);
 
         }
 
-        if(!isset($minute[1])){
-            $minute = "0".$minute[0];
+        $ndJson = json_encode($secondData);
 
+        $data = [
+            $firstData => $secondData
+        ];
+
+        if($i === 0){
+            $userData = [
+                $name[0] => $data
+            ];
         }
-
-        $timeString = $hour.$minute;
-
-        array_push($secondData, $timeString);
-
+        else {
+            array_push($userData, $data);
+        }
     }
-
-    $ndJson = json_encode($secondData);
-
-    $data = [
-        $firstData => $secondData
-    ];
-
-    $userData = [
-        $name[0] => $data
-    ];
 
     array_push($jsonStream, $userData);
 
