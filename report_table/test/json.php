@@ -14,19 +14,27 @@
 
         for($index = 0; $index < $strlen; $index++){
 
-            $char = (rand()%26) + 97;
-
             if($index === 0){
-                $char -= 32;
+                $char = (rand()%26) + 65;
 
+            }
+
+            else {
+                $char = (rand()%26) + 97;
             }
 
             $nameGen[$index] = $char;
 
-            array_push($name, $nameGen);
-
-            printf("%s\n", $nameGen);
+            
+            $nameGenJs = json_encode($nameGen);
+            printf("%s\n", $nameGenJs);
+            
         }
+        
+        array_push($name, $nameGen);
+        $nameJs = json_encode($name);
+        printf("%s\n", $nameJs);
+
     }
 
     $jsonStream = array();
