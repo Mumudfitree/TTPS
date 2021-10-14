@@ -4,11 +4,11 @@
 
     $name = array("Imron");
 
-    $times = rand()%100;
+    $times = rand()%20 + 1;
 
     for($i = 0; $i < $times; $i++){
 
-        $strlen = rand()%100;
+        $strlen = rand()%20 + 1;
 
         for($index = 0; $index < $strlen; $index++){
 
@@ -19,20 +19,19 @@
             }
 
             else {
-                $char = chr((rand()%26) + 97);
+                $char = rand()%27;
+                $char = ($char === 26) ? chr(32) : chr($char + 97);
                 $nameGen = $nameGen.$char;
             }
-
-
             
             $nameGenJs = json_encode($nameGen);
-            printf("%s\n", $nameGenJs);
+            //printf("%s\n", $nameGenJs);
             
         }
         
         array_push($name, $nameGen);
         $nameJs = json_encode($name);
-        printf("%s\n", $nameJs);
+        printf("%s<br>", $nameJs);
 
     }
 
@@ -63,8 +62,6 @@
         $hour = strval(rand()%24);
         $minute = strval(rand()%60);
 
-        $timeString = array();
-
         if(!isset($hour[1])){
             $hour = "0".$hour[0];
 
@@ -79,8 +76,6 @@
 
         array_push($secondData, $timeString);
 
-        $string = sprintf("%s%s", $hour, $minute);
-
     }
 
     $ndJson = json_encode($secondData);
@@ -94,8 +89,6 @@
     ];
 
     array_push($jsonStream, $userData);
-
-    //$json = json_encode($data);
 
     $json = json_encode($userData);
 
