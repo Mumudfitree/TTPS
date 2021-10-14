@@ -33,13 +33,13 @@
 
         $timeString = array();
 
-        if($hour[0] != "0"){
+        if(!isset($hour[1])){
             $hour[1] = $hour[0];
             $hour[0] = "0";
 
         }
 
-        if($minute[0] != "0"){
+        if(!isset($minute[1])){
             $minute[1] = $minute[0];
             $minute[0] = "0";
 
