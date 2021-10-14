@@ -28,12 +28,24 @@
 
     for($i = 0; $i < $times; $i++){
 
-        $hour = rand()%24;
-        $minute = rand()%60;
+        $hour = strval(rand()%24);
+        $minute = strval(rand()%60);
 
         $timeString = array();
 
-        array_push($timeString, $hour, $minute);
+        if($hour[0] != "0"){
+            $hour[1] = $hour[0];
+            $hour[0] = "0";
+
+        }
+
+        if($minute[0] != "0"){
+            $minute[1] = $minute[0];
+            $minute[0] = "0";
+
+        }
+
+        $timeString = $hour.$minute;
 
         array_push($secondData, $timeString);
 
