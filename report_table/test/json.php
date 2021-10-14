@@ -39,7 +39,7 @@
     
     $nameJs = json_encode($name);
     printf("%s<br>", $nameJs);
-    
+
     $jsonStream = array();
 
     foreach($time as $arrayName=>$timeData){
@@ -59,8 +59,9 @@
     $firstData = sprintf("%s%s%s%s", $time['year'], $time['mon'], $time['mday'], $time['wday']);
 
     $userData = array();
+    $jsonStream = array();
 
-    foreach($name as $key=>$value){
+    foreach($name as $value){
 
         $times = rand()%10 + 1;
 
@@ -95,13 +96,15 @@
             $firstData => $secondData
         ];
 
-        array_push($userData, $data);
+        $userData = [
+            $value => $data 
+        ];
+
+        array_push($jsonStream, $userData);
 
     }
 
-    array_push($jsonStream, $userData);
-
-    $json = json_encode($userData);
+    $json = json_encode($jsonStream);
 
     echo $json;
 
