@@ -1,31 +1,31 @@
 <?php
 
+    include_once "../src/userJsonHandle.php";
+
     $time = getdate();
 
     $name = array("Imron");
 
-    $times = rand()%20 + 1;
-
+    $times = randomScope(1, 20);
     for($i = 0; $i < $times; $i++){
 
-        $strlen = rand()%20 + 1;
+        $strlen = randomScope(1, 20);
 
         for($index = 0; $index < $strlen; $index++){
 
             if($index === 0){
-                $char = chr((rand()%26) + 65);
+                $char = chr(randomScope(65, 90));
                 $nameGen = $char;
 
             }
 
             else if ($nameGen[$index-1] === ' '){
-                $char = rand()%26;
-                $char = chr($char + 65);
+                $char = chr(randomScope(65, 90));
                 $nameGen = $nameGen.$char;
             }
             else {
-                $char = rand()%27;
-                $char = ($char === 26) ? chr(32) : chr($char + 97);
+                $char = randomScope(97, 123);
+                $char = ($char === 123) ? chr(32) : chr($char);
                 $nameGen = $nameGen.$char;
             }
             
