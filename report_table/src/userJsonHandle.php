@@ -12,8 +12,12 @@
         
         $value = -1;
 
-        while($value < $leastPossible || $value > $mostPossible){
-            $value = rand()% $mostPossible;
+        while(TRUE){
+            $value = (rand() % $mostPossible) + 1;
+
+            if($value >= $leastPossible){
+                break;
+            }
         }
 
         return $value;

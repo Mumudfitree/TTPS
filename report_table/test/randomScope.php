@@ -6,7 +6,7 @@
 
     for($i=0; $i<$scope; $i++){
         $value =randomScope($i, $scope);
-        echo $value."<br>";
+        printf("%3d:   %4d<br>", $i, $value);
     }
 
 ?>
