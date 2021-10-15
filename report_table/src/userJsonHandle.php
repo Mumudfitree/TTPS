@@ -41,11 +41,37 @@
 
         switch($generateMode){
             case '0':
-                $value = randomScope(65, 90);
-                break;
+                $first = 65;
+                $last = ($first - 1) + $charPool;
+                $value = randomScope($first, $last);
+                if($value === 91){
+                    return chr(32);
+                }
+                return chr($value);
             case '1':
-                $value = randomScope(97, 122);
-                break;
+                $first = 97;
+                $last = ($first - 1) + $charPool;
+                $value = randomScope($first, $last);
+                if($value === 123){
+                    return chr(32);
+                }
+                return chr($value);
+            case '2':
+                $first = 0;
+                $last = ($first - 1) + $charPool + 26;
+                $value = randomScope($first, $last);
+
+                if($value < 26){
+                    return chr($value+65);
+                }
+                if($value < 52){
+                    return chr($value+97);
+                }
+                if($value === 52){
+                    return chr(32);
+                }
+            default:
+                return 1;
         }
         
 
