@@ -45,16 +45,21 @@
         switch($generateMode){
             case '1':
                 $first = 65;
-                $last = ($first - 1) + $charPool;
+                break;
             case '2':
                 $first = 97;
-                $last = ($first - 1) + $charPool;
+                break;
             case '3':
                 $first = 0;
                 $last = ($first - 1) + $charPool + 26;
+                break;
 
             default:
                 return 1;
+        }
+
+        if($generateMode != '3'){
+            $last = ($first - 1) + $charPool;
         }
 
         $value = randomScope($first, $last);
