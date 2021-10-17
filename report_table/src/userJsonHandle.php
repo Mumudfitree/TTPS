@@ -39,40 +39,38 @@
         $charPool = (isset($mode[1])) ? 27 : 26;
         $generateMode = (isset($mode[1])) ? $mode[1] : $mode[0];
 
+        $first = -1;
+        $last = -1;
+
         switch($generateMode){
-            case '0':
+            case '1':
                 $first = 65;
                 $last = ($first - 1) + $charPool;
-                $value = randomScope($first, $last);
-                if($value === 91){
-                    return chr(32);
-                }
-                return chr($value);
-            case '1':
+            case '2':
                 $first = 97;
                 $last = ($first - 1) + $charPool;
-                $value = randomScope($first, $last);
-                if($value === 123){
-                    return chr(32);
-                }
-                return chr($value);
-            case '2':
+            case '3':
                 $first = 0;
                 $last = ($first - 1) + $charPool + 26;
-                $value = randomScope($first, $last);
 
-                if($value < 26){
-                    return chr($value+65);
-                }
-                if($value < 52){
-                    return chr($value+97);
-                }
-                if($value === 52){
-                    return chr(32);
-                }
             default:
                 return 1;
         }
+
+        $value = randomScope($first, $last);
+
+        if($value === 91 || $value === 123 || $value === 52){
+            return chr(32);
+        }
+
+        if($value < 26){
+            return chr($value+65);
+        }
+        if($value < 52){
+            return chr($value+97);
+        }
+
+        return chr($value);
         
 
     }
