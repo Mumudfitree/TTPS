@@ -23,7 +23,7 @@
         return $value;
     }
 
-    function charGenerate($mode){ //mode: 2 letter (start with 1), enable spacebar;
+    function charGenerate($mode, ?int $isEnabledDebugging, ?int $charSequence){ //mode: 2 letter (start with 1), enable spacebar;
                                   //      end letter: 1- only UPPERCASE 2- only lowercase 3- mixed
 
         switch(gettype($mode[0])){
@@ -62,7 +62,13 @@
             $last = ($first - 1) + $charPool;
         }
 
-        $value = randomScope($first, $last);
+        if ($isEnabledDebugging){
+            $value = $first + $charSequence;
+        }
+
+        else{
+                $value = randomScope($first, $last);
+        }
 
         if($value === 91 || $value === 123 || $value === 52){
             return chr(32);
