@@ -14,18 +14,17 @@
         for($index = 0; $index < $strlen; $index++){
 
             if($index === 0){
-                $char = chr(randomScope(65, 90));
+                $char = charGenerate('01');
                 $nameGen = $char;
 
             }
 
             else if ($nameGen[$index-1] === ' '){
-                $char = chr(randomScope(65, 90));
+                $char = charGenerate('01');
                 $nameGen = $nameGen.$char;
             }
             else {
-                $char = randomScope(97, 123);
-                $char = ($char === 123) ? chr(32) : chr($char);
+                $char = charGenerate('13');
                 $nameGen = $nameGen.$char;
             }
             

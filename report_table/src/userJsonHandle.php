@@ -80,7 +80,7 @@
             return chr($value+65);
         }
         if($value < 52){
-            return chr($value+97);
+            return chr(($value+97)-26);  //I have to reduce 26, because first that come in this condition, $value will be 26. And 26+97 = 123 which isn't right.
         }
 
         return chr($value);

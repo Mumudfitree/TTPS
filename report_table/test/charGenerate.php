@@ -6,10 +6,14 @@
 
         for($j=1; $j<=3; $j++){
 
-            for($k=0; $k<27; $k++){
+            for($k=0; $k<53; $k++){
 
                 if(!$i && $k === 26){
                     continue;
+                }
+
+                if($j != 3 && $k >= 27){
+                    break;
                 }
 
                 $mode = strval($i).strval($j);
