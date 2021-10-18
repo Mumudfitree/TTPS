@@ -26,7 +26,9 @@
     function charGenerate($mode, ?int $isEnabledDebugging, ?int $charSequence){ //mode: 2 letter (start with 1), enable spacebar;
                                   //      end letter: 1- only UPPERCASE 2- only lowercase 3- mixed
 
-        switch(gettype($mode[0])){
+        //$type = gettype($mode);
+        
+        switch(gettype($mode)[0]){
             case 'i': //'i' from "integer"
                 $mode = strval($mode);
                 break;
